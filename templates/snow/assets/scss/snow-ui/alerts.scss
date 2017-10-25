@@ -1,0 +1,49 @@
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    @include alert-variant(theme-color-level($color), theme-color-level($color), theme-color-level($color, -11));
+    // bgcolor + border + textcolor
+  }
+}
+
+
+.alert {
+    border: 0;
+    position: relative;
+    
+    &-primary, &-secondary, &-success, &-danger, &-warning, &-info, &-dark {
+	    color: $white;
+	    a, 
+	    .close {
+		    color: $white !important;
+		    text-shadow: none;
+	    }
+    }
+    &-light {
+	    color: $gray-900;
+	    a, 
+	    .close {
+		    color: $gray-900 !important;
+		    text-shadow: none;
+	    }
+    }
+    i[data-notify="icon"]{
+        display: none;
+    }
+    .alert-icon{
+        display: block;
+        float: left;
+        margin-right: $spacer;
+        i {
+	        margin-top: -2px;
+        }
+    }
+    [data-notify="dismiss"]{
+        margin-right: 5px;
+    }
+}
+
+.alert-dismissible .close {
+    padding: $alert-padding-x $alert-padding-y;
+}
+
+

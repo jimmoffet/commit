@@ -1,0 +1,71 @@
+$card-transition:   	transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
+$card-shadow:		    0 6px 10px -4px rgba($black, 0.15);
+
+
+.card {
+	box-shadow: $card-shadow;
+	
+	// If Link
+	&[href] {
+		color: $body-color;
+	}
+	
+	// BG Image
+	&[data-background="image"] {
+	    background-position: center center;
+	    background-size: cover;
+	    &:before {
+		    content: "";
+		    background: rgba($black, 0.4);
+		    position: absolute;
+		    width: 100%;
+		    height: 100%;
+		    top: 0;
+		    left: 0;
+		    z-index: 1;
+		    border-radius: $card-inner-border-radius;
+	    }
+	    * {
+		    z-index: 2;
+		    position: relative;
+	    }
+	}
+	
+	// Plain Card
+	&.card-plain {
+		background: transparent;
+		box-shadow: none;
+		.card-footer {
+			background: transparent;
+			box-shadow: none;
+		}
+	}
+	
+	// Card Groups
+	.card-group & {
+		box-shadow: $card-shadow;
+		.card-footer {
+			border-radius: 0;
+		}
+	}
+	
+	// Card Tabs in Header
+	.card-header-tabs {
+		&.nav-tabs {
+			.nav-link {
+				border: 0;
+				&.active {
+					background: $card-bg;
+				}
+			}
+		}
+	}
+}
+
+// Card Groups
+.card-group {
+	box-shadow: $card-shadow;
+	.card {
+		box-shadow: none;
+	}
+}

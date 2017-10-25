@@ -1,0 +1,80 @@
+// Project specific styles
+
+// NAVBAR
+#main-nav.navbar {
+	transition: $transition-base;
+	&.bg-transparent {
+		padding-top: 30px;
+	}
+}
+
+// HEADER
+header,
+.bg-image {
+	position: relative;
+	height: 100vh;
+	&.tint{
+		&:before {
+		    content: " ";
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    z-index: 2;
+		    background-repeat: repeat-x;
+		    background-image: -webkit-gradient(linear, 100% 0, 0 0, from(transparent), to($body-bg));
+		    background-image: -webkit-linear-gradient(180deg, transparent, $body-bg);
+		    background-image: -moz-linear-gradient(180deg, transparent, $body-bg);
+		    background-image: -o-linear-gradient(180deg, transparent, $body-bg);
+		    background-image: linear-gradient(180deg, transparent, $body-bg)	;
+	    }
+	    &.dark {
+		    &:before {
+			    background-image: -webkit-gradient(linear, 100% 0, 0 0, from(transparent), to(rgba(0,0,0,0.9)));
+			    background-image: -webkit-linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
+			    background-image: -moz-linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
+			    background-image: -o-linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
+			    background-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.9))	;
+		    }
+	    } 
+	}
+	&.full-tint{
+		&:before {
+		    content: " ";
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    z-index: 2;
+		    background: rgba($body-bg,0.5);
+	    }
+	    &.dark {
+		    &:before {
+			    background:rgba(0,0,0,0.5);
+		    }
+	    } 
+	}
+	&.full-bg {
+	    position: relative;
+	    z-index: 1;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-color: $body-bg;
+	}
+	* {
+		z-index: 2;
+	}
+}
+
+.bg-image {
+	height: auto;
+}
+
+
+// FOOTER
+.footer {
+
+}
