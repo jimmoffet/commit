@@ -17,7 +17,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def hello():
 	out = ''
 	try:
-		page_name = 'commitlogin'
+		page_name = 'fancycommitlogin'
 		return render_template('%s.html' % page_name)
 	except:
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
