@@ -1,0 +1,40 @@
+.navbar {
+	&.navbar-transparent {
+		background-color: transparent !important;
+	}
+}
+
+.navbar-dark,
+.navbar-light {
+	@each $color, $value in $theme-colors {
+		&.bg-#{$color} {
+			box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 12px -5px rgba($value,.46)
+		}
+	}
+}
+
+
+.navbar-nav {
+	.nav-item {
+		margin: 0 2px;
+		.nav-link {
+			border-radius: $border-radius-sm;
+			text-transform: uppercase;
+			font-size: $font-size-sm;
+			transition: $transition-base;
+			i {
+				font-size: 1.3rem;
+				position: relative;
+				top: 2px;
+			}
+			&:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+		}
+		&.active {
+			.nav-link {
+				background: rgba(255, 255, 255, 0.1);
+			}
+		}
+	}
+}

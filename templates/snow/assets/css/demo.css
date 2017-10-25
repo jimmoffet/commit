@@ -1,0 +1,38 @@
+.fixed-section {
+    top: 90px;
+    max-height: 80vh;
+    overflow: scroll;
+    position: sticky;
+}
+
+.bd-example {
+    position: relative;
+    padding: 1rem;
+    border: 2px solid #eee;
+}
+
+.bd-example .btn {
+	margin: 0 3px 10px 0;
+}
+.bd-example input {
+	margin: 0 0 10px 0;
+}
+
+.bd-example .navbar {
+	margin: 0 0 10px 0;
+}
+
+.bd-highlight {
+    padding: 1rem;
+    background-color: #eee;
+}
+
+pre.prettyprint {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.snow-example .btn {
+	margin: 0 0 4px 0;
+}

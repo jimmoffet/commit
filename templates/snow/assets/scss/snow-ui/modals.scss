@@ -1,0 +1,23 @@
+.modal-body-scroller {
+    max-height: 500px;
+    overflow: auto;
+    border-radius: 0.3rem;
+}
+
+.modal-actions {
+	.modal-action {
+	    float: left;
+	    width: 50%;
+	    padding: 15px;
+	    border: solid #e9ecef;
+	    border-width: 1px 0 0;
+	    &:after {
+		    display: block;
+		    clear: both;
+		    content: "";
+		}
+	}
+	.modal-action + .modal-action {
+	    border-left-width: 1px;
+	}
+}
