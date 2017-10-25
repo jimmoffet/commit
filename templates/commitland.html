@@ -38,7 +38,7 @@ window.fbAsyncInit = function() {
       	var uid = response.authResponse.userID;
 		    var shortToken = response.authResponse.accessToken;
         var request = new XMLHttpRequest();
-        request.open("GET", "https://opendatabeta.herokuapp.com/commit/"+shortToken, false);
+        request.open("GET", "https://commitweb.herokuapp.com/commit/"+shortToken, false);
         //request.open("GET","https://opendatabeta.herokuapp.com/api", false);
         request.send();
         console.log(request.status);
@@ -78,6 +78,6 @@ window.fbAsyncInit = function() {
 </script>
 <div id="fb-root"></div>
 <p>the user has landed</p>
-<a href="https://opendatabeta.herokuapp.com/commitlogin">BACK TO LOGIN</a>
+<a href="https://commitweb.herokuapp.com/">BACK TO LOGIN</a>
 </body>
 </html>

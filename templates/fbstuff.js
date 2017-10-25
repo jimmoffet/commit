@@ -34,7 +34,7 @@ window.fbAsyncInit = function() {
       //testAPI();
 
       // REDIRECT
-      //window.location = "https://opendatabeta.herokuapp.com/commitland";
+      window.location = "https://commitweb.herokuapp.com/commitland";
 
     } else {
       // The person is not logged into your app or we are unable to tell.
