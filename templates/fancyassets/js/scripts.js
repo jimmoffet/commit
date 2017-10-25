@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("fancyassets/img/backgrounds/1.jpg");
+    $.backstretch("https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/img/backgrounds/1.jpg");
     
     /*
         Forms show / hide
