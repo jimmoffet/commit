@@ -1,0 +1,43 @@
+//
+// Colors
+// --------------------------------------------------
+$gradient-degree:     150deg;
+$primary-color:       theme-color("primary");
+$secondary-color:     theme-color("secondary");
+
+
+//
+// GRADIENT
+// --------------------------------------------------
+.pri-sec-gradient {
+	background: linear-gradient($gradient-degree,$primary-color,$secondary-color);
+}
+.sec-pri-gradient {
+	background: linear-gradient($gradient-degree,$secondary-color,$primary-color);
+}
+.pri-gradient-lighter {
+	background: linear-gradient($gradient-degree,$primary-color,lighten($primary-color,20%));
+}
+.pri-gradient-darker {
+	background: linear-gradient($gradient-degree,$primary-color,darken($primary-color,20%));
+}
+.sec-gradient-lighter {
+	background: linear-gradient($gradient-degree,$secondary-color,lighten($secondary-color,20%));
+}
+.sec-gradient-darker {
+	background: linear-gradient($gradient-degree,$secondary-color,darken($secondary-color,20%));
+}
+.dark-gradient {
+	background: linear-gradient($gradient-degree,$black,$gray-700);
+	color: white !important;
+}
+.light-gradient {
+	background: linear-gradient($gradient-degree,$white,$gray-300);
+	color: $body-color !important;
+}
+.brand-text-gradient {
+	background: -webkit-linear-gradient(left, $primary-color, $secondary-color);
+	background: linear-gradient(left, $primary-color, $secondary-color);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,81 @@
+$section-padding: 80px;
+
+//Section
+.section {
+	padding: $section-padding 0;
+	position: relative;
+	.title {
+		margin: 20px 0;
+	}
+}
+
+//Wrap
+.wrap {
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+    display: table;
+    z-index: 3;
+    .max-width {
+	    max-width: 50%;
+    }
+    &.container {
+	    margin-left: auto;
+	    margin-right: auto;
+    }
+}
+
+// Content
+.content {
+    display: table-cell;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    
+	&.top-center {
+		text-align: center;
+		vertical-align: top;
+		.max-width {
+			margin: 0 auto;
+		}
+	}
+	&.center-center {
+		text-align: center;
+		vertical-align: middle;
+		.max-width {
+			margin: 0 auto;
+		}
+	}
+	&.bottom-center {
+		text-align: center;
+		vertical-align: bottom;
+		.max-width {
+			margin: 0 auto;
+		}
+	}
+	&.top-left {
+		text-align: left;
+		vertical-align: top;
+	}
+	&.center-left {
+		text-align: left;
+		vertical-align: middle;
+	}
+	&.bottom-left {
+		text-align: left;
+		vertical-align: bottom;
+	}
+	&.top-right {
+		text-align: right;
+		vertical-align: top;
+	}
+	&.center-right {
+		text-align: right;
+		vertical-align: middle;
+	}
+	&.bottom-right {
+		text-align: right;
+		vertical-align: bottom;
+	}
+}

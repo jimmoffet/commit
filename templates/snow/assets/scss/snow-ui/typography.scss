@@ -1,0 +1,15 @@
+$shout:                       9vw !default;
+
+.shout {
+    font-size: $shout;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+    font-family: "Permanent Marker", $font-family-sans-serif;
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4 {
+  font-family: $headings-font-family;
+}

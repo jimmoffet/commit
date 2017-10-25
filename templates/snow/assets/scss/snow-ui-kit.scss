@@ -1,0 +1,48 @@
+/*!
+ =========================================================
+ * SNOW UI Kit - v1.1.0
+ =========================================================
+ * Product Page: 
+ * Copyright 2017 Cantusstar (http://www.cantusstar.co.za)
+ =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
+
+// Font Smoothing 
+html, html a, body {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004); 
+}
+
+// Set browser default font size
+html, .material-icons {
+	font-size: 14px;
+}
+
+// Variables & Functions
+@import "bootstrap/functions";
+@import "bootstrap/variables"; 
+
+// Bootstrap
+@import "bootstrap/bootstrap"; 
+
+// Fonts
+@import "font-awesome/font-awesome";
+
+// ARK
+@import "snow-ui/alerts";
+@import "snow-ui/buttons";
+@import "snow-ui/cards";
+@import "snow-ui/colors";
+@import "snow-ui/datepicker";
+@import "snow-ui/forms";
+@import "snow-ui/icons";
+@import "snow-ui/images";  
+@import "snow-ui/modals";
+@import "snow-ui/navbars";
+@import "snow-ui/sections";
+@import "snow-ui/toggles";
+@import "snow-ui/typography"; 
+
+// THEME
+@import "theme";

@@ -1,0 +1,50 @@
+//
+// Icons
+// --------------------------------------------------
+
+$icon-size: 60px;
+
+.icon {
+    max-width: $icon-size;
+	width: $icon-size;
+	height: $icon-size;
+	margin: 0 auto;
+    text-align: center;
+    position: relative;
+    transition: $transition-base;
+	&.icon-circle {
+		border-radius: 50%;
+		background-color: #FFFFFF;
+	}
+	&.icon-square {
+		border-radius: $border-radius;
+		background-color: #FFFFFF;
+	}
+	&.icon-shadow {
+		box-shadow: 0px 9px 30px -6px rgba($gray-900, 0.3);
+	}
+	i {
+		line-height: $icon-size;
+	}
+	&.icon-hover {
+		&:hover {
+			box-shadow: 0px 15px 35px 0px rgba($gray-900, 0.35);
+			transform: translate3d(0, -0.5rem, 0);
+		}
+	}
+}
+
+@each $color, $value in $theme-colors {
+	.icon-#{$color} {
+		box-shadow: 0px 9px 30px -6px rgba($value, 0.3);
+		i {
+			color: $value;
+		}
+		&.icon-hover {
+			&:hover {
+				box-shadow: 0px 15px 35px 0px rgba($value, 0.35);
+				transform: translate3d(0, -0.5rem, 0);
+			}
+		}
+	}
+}
