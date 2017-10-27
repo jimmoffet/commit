@@ -1,12 +1,12 @@
 from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
-from twilio.twiml.messaging_response import MessagingResponse
-from scrape import scrape, ping, people, pLayer, extendToken
+# from twilio.twiml.messaging_response import MessagingResponse
+# from scrape import scrape, ping, people, pLayer, extendToken
 import random
 import threading
 import datetime
 import re
-from twilio.rest import Client
+# from twilio.rest import Client
 from string import punctuation
 
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def getLongToken(shorttoken):
     resp = extendToken(shorttoken)
     longtoken = resp['access_token']
     print(longtoken)
-    
+
     ### save longtoken to db along with uid and whatever else ###
 
     return jsonify(resp)
