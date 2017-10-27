@@ -35,6 +35,7 @@ def getLongToken(shorttoken):
     print(longtoken)
 
     ### save longtoken to db along with uid and whatever else ###
+    
 
     return jsonify(resp)
 
