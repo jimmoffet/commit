@@ -38,8 +38,7 @@ window.fbAsyncInit = function() {
 
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
     }
   }
   // This function is called when someone finishes with the Login
