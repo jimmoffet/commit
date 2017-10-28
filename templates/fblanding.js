@@ -51,7 +51,7 @@ window.fbAsyncInit = function() {
         console.log(request.status);
         console.log(request.statusText);
         console.log(request.response);
-        console.log(request.response.access_token);
+        //console.log(request.response.access_token);
         longToken = request.response.access_token;
         tmpresponse = request.response;
 
@@ -71,32 +71,11 @@ window.fbAsyncInit = function() {
 
   function logoutFacebook()
     {
-      FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-
-            console.log('response is connected, logging user out');
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-
-            //FB.api('/'+uid+'/permissions', 'delete', function(response){});
-            FB.logout(function(response) {
-              // user is now logged out
-              console.log(response);
-            });
-
-            
-            window.location = "https://commitweb.herokuapp.com";
-
-          } else if (response.status === 'not_authorized') {
-            // the user is logged in to Facebook, 
-            // but has not authenticated your app
-            window.location = "https://commitweb.herokuapp.com";
-          } else {
-            // the user isn't logged in to Facebook.
-            window.location = "https://commitweb.herokuapp.com";
-          }
-         });
-
-     }
+      FB.logout(function(response) {
+        // user is now logged out
+        console.log(response);
+        window.location = "https://commitweb.herokuapp.com";
+      });
+    }
 
 
