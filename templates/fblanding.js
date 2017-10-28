@@ -13,11 +13,38 @@ window.fbAsyncInit = function() {
     version    : 'v2.8' // use graph api version 2.8
   });
 
-  FB.getLoginStatus(function(response) {
+  };
+
+    FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
 
-  };
+  function logoutFacebook()
+  {
+      FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            // the user is logged in and has authenticated your
+            // app, and response.authResponse supplies
+            // the user's ID, a valid access token, a signed
+            // request, and the time the access token 
+            // and signed request each expire
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+
+            FB.api('/'+uid+'/permissions', 'delete', function(response){});
+
+            window.location = "https://commitweb.herokuapp.com";
+
+          } else if (response.status === 'not_authorized') {
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+            window.location = "https://commitweb.herokuapp.com";
+          } else {
+            // the user isn't logged in to Facebook.
+            window.location = "https://commitweb.herokuapp.com";
+          }
+         });
+  }
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
