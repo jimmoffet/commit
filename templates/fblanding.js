@@ -13,33 +13,6 @@ window.fbAsyncInit = function() {
     version    : 'v2.8' // use graph api version 2.8
   });
 
-  function logoutFacebook()
-  {
-      FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-            // the user is logged in and has authenticated your
-            // app, and response.authResponse supplies
-            // the user's ID, a valid access token, a signed
-            // request, and the time the access token 
-            // and signed request each expire
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-
-            FB.api('/'+uid+'/permissions', 'delete', function(response){});
-
-            window.location = "https://commitweb.herokuapp.com";
-
-          } else if (response.status === 'not_authorized') {
-            // the user is logged in to Facebook, 
-            // but has not authenticated your app
-            window.location = "https://commitweb.herokuapp.com";
-          } else {
-            // the user isn't logged in to Facebook.
-            window.location = "https://commitweb.herokuapp.com";
-          }
-         });
-  }
-
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
@@ -47,14 +20,7 @@ window.fbAsyncInit = function() {
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-
-
+  
   };
   // END OF ASYNC FB, MAKE CALLS TO FB UP HERE
     // Load the SDK asynchronously
@@ -66,11 +32,6 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-
-
-    
-
-  
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -102,7 +63,40 @@ window.fbAsyncInit = function() {
     }
   }
 
-  
-  // init used to go here
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  function logoutFacebook()
+    {
+      FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+
+            console.log('response is connected, logging user out');
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+
+            //FB.api('/'+uid+'/permissions', 'delete', function(response){});
+            FB.logout(function(response) {
+              // user is now logged out
+              console.log(response);
+            });
+
+            
+            window.location = "https://commitweb.herokuapp.com";
+
+          } else if (response.status === 'not_authorized') {
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+            window.location = "https://commitweb.herokuapp.com";
+          } else {
+            // the user isn't logged in to Facebook.
+            window.location = "https://commitweb.herokuapp.com";
+          }
+         });
+
+     }
 
 
