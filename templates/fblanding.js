@@ -13,12 +13,6 @@ window.fbAsyncInit = function() {
     version    : 'v2.8' // use graph api version 2.8
   });
 
-  };
-
-    FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
   function logoutFacebook()
   {
       FB.getLoginStatus(function(response) {
@@ -45,6 +39,38 @@ window.fbAsyncInit = function() {
           }
          });
   }
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+
+
+  };
+  // END OF ASYNC FB, MAKE CALLS TO FB UP HERE
+    // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+
+    
+
+  
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -76,21 +102,7 @@ window.fbAsyncInit = function() {
     }
   }
 
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+  
   // init used to go here
 
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+
