@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
 # from twilio.twiml.messaging_response import MessagingResponse
-from scrape import scrape, ping, people, pLayer, extendToken
+from scrape import scrape, ping, people, pLayer, extendToken, writeToDB
 import random
 import threading
 import datetime
@@ -35,9 +35,23 @@ def getLongToken(shorttoken):
     print(longtoken)
 
     ### save longtoken to db along with uid and whatever else ###
-    
+    peoples = people()
+    cnt = 0
+	for key, val in peoples.items():
+		cnt += 1
+		if key == longtoken:
+			break
+   	
+	#cnt+1 is 
 
     return jsonify(resp)
+
+@app.route("/positive/<string:message>", methods=["POST", "GET"])
+def write(message):
+
+    resp = writeToDB(message)
+
+    return 'Success!'
 
 @app.route("/api")
 def serve_schedule():

@@ -140,21 +140,6 @@
 	                </a>
 	                <div class="dropdown-menu" aria-labelledby="examplesDropdown">
 	                    <a class="dropdown-item" href="bootstrap/album.html" target="_blank">Album</a>
-	                    <a class="dropdown-item" href="bootstrap/blog.html" target="_blank">Blog</a>
-	                    <a class="dropdown-item" href="bootstrap/carousel.html" target="_blank">Carousel</a>
-	                    <a class="dropdown-item" href="bootstrap/cover.html" target="_blank">Cover</a>
-	                    <a class="dropdown-item" href="bootstrap/dashboard.html" target="_blank">Dashboard</a>
-	                    <a class="dropdown-item" href="bootstrap/grid.html" target="_blank">Grid</a>
-	                    <a class="dropdown-item" href="bootstrap/jumbotron.html" target="_blank">Jumbotron</a>
-	                    <a class="dropdown-item" href="bootstrap/justified-nav.html" target="_blank">Justified Nav</a>
-	                    <a class="dropdown-item" href="bootstrap/narrow-jumbotron.html" target="_blank">Narrow Jumbotron</a>
-	                    <a class="dropdown-item" href="bootstrap/navbar-top-fixed.html" target="_blank">Navbar Top Fixed</a>
-	                    <a class="dropdown-item" href="bootstrap/navbar-top.html" target="_blank">Navbar Top</a>
-	                    <a class="dropdown-item" href="bootstrap/navbar.html" target="_blank">Navbar</a>
-	                    <a class="dropdown-item" href="bootstrap/offcanvas.html" target="_blank">Offcanvas</a>
-	                    <a class="dropdown-item" href="bootstrap/signin.html" target="_blank">Sign In</a>
-	                    <a class="dropdown-item" href="#" onclick="logoutFacebook()">Log Out</a>
-	                    <a class="dropdown-item" href="bootstrap/sticky-footer-navbar.html" target="_blank">Sticky Footer Navbar</a>
 	                    <a class="dropdown-item" href="bootstrap/sticky-footer.html" target="_blank">Sticky Footer</a>
 	                </div>
 	            </li>
@@ -195,7 +180,7 @@
 				    <fieldset>
 			            <form action="">
 			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="i.e. I single-handedly saved democracy today!" required></textarea>
-			              <button type="submit" id="ghost-button" class="ghost-button">SUBMIT</button>
+			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendPositive()">SUBMIT</button>
 			            </form>
 		          	</fieldset>
 		        </div>
@@ -203,6 +188,19 @@
 	        
 		</div>
 	</section>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBLBu2NjxsOpHKMq3Ve09WwyPQOPFxDGJ8",
+	    authDomain: "quickstart-d1c8d.firebaseapp.com",
+	    databaseURL: "https://quickstart-d1c8d.firebaseio.com",
+	    projectId: "quickstart-d1c8d",
+	    storageBucket: "",
+	    messagingSenderId: "973265015752"
+	  };
+	  firebase.initializeApp(config);
+	</script>
 
 	<!-- Core JS -->
     <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/jquery-3.2.1.slim.min.js"></script>
@@ -226,6 +224,8 @@
 	}); 
 	</script>
 	<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblanding.js"></script>
+	<!-- <script src="fblanding.js"></script> -->
+
     
   </body>
 </html>
