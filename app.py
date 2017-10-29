@@ -31,24 +31,15 @@ def render_static(page_name):
 def getLongToken(shorttoken):
 
     resp = extendToken(shorttoken)
-    longtoken = resp['access_token']
-    print(longtoken)
-
-    ### save longtoken to db along with uid and whatever else ###
-	# peoples = people()
-	# cnt = 0
-	# for key, val in peoples.items():
-	# 	cnt += 1
-	# 	if key == longtoken:
-	# 		break	
-	# #cnt+1 is current user, cnt+2 will write new line
+    #longtoken = resp['access_token']
+    #print(longtoken)
 
     return jsonify(resp)
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
-def write(message):
+def writeMessage(message):
 
-    resp = writeToDB(message)
+    resp = writeMessageToDB(message)
 
     return 'Success!'
 
