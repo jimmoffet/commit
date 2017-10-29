@@ -49,7 +49,7 @@ def writeUser(message):
     resp = writeUserToDB(message)
 
     return 'Success!'
-@application.route('/api', methods=["POST"])
+@app.route('/api', methods=["POST"])
 def apiTest():
 
     if request.method == "POST":
