@@ -76,7 +76,7 @@ window.fbAsyncInit = function() {
         var postDict = {'uid':uid, 'longToken':longToken};
 
         $.ajax({
-            url: '/api',
+            url: 'https://commitweb.herokuapp.com/api',
             data: postDict,
             dataType: 'json',
             type: 'POST',
