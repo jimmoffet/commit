@@ -8,6 +8,7 @@ import datetime
 import re
 # from twilio.rest import Client
 from string import punctuation
+import requests
 
 app = Flask(__name__)
 cors = CORS(app)
