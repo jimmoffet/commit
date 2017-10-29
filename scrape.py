@@ -14,6 +14,7 @@ scope = ['https://spreadsheets.google.com/feeds']
 creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 client = gspread.authorize(creds)
 sheet = client.open("commitDB").sheet1
+sheetList = sheet.get_all_values()
 
 def ping(u):
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -39,50 +40,38 @@ def writeToDB(message):
 
     return message
 
-def scrape(u):
+def writeUserToDB(message):
     # use creds to create a client to interact with the Google Drive API
-    scope = ['https://spreadsheets.google.com/feeds']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
-    client = gspread.authorize(creds)
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-    page = requests.get(u)
-    soup = BeautifulSoup(page.content, 'html.parser', from_encoding='utf-8')
-    paragraphs = soup.find_all("p")
+    ### save longtoken to db along with uid and whatever else ###
+    rlen = len(sheetList)
+    clen = len(sheetList[0])
+    peeps = {}
 
-    bigList = []
-
-    for para in paragraphs:
-        para = para.getText()
-        para = para.encode('ascii', 'ignore')
-        para = para.decode('ascii', 'ignore')
-        bigList.append(para)
-
-    culledList = []
+    for row in range(rlen):
+        if row == 0:
+            continue
+        tmp = []
+        for i in range(1,10):
+            tmp.append(sheetList[row][i])
+        peeps['+' + sheetList[row][0]] = tmp
 
     cnt = 0
-
-    week = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-
-    while(True):
+    new = True
+    for key, val in peeps.items():
         cnt += 1
-        if cnt < 4:
-            continue
+        if key == message:
+            new = False
+            break 
+    #cnt+1 is current user, cnt+2 will write new line
+    row = 0
+    if(new):
+        row = cnt+2
+    else:
+        row = cnt+1
+    sheet.update_cell(row, 4, message) # pos message
 
-        mtg = {}
+    return 'success'
 
-        if cnt+6 > len(bigList):
-            break
-
-        for day in week:
-            if day in bigList[cnt]:
-                mtg['date'] = bigList[cnt]
-                mtg['time'] = bigList[cnt+1]
-                mtg['agenda'] = bigList[cnt+2]
-                mtg['location'] = bigList[cnt+5].replace('(',"").replace(')',"")
-                culledList.append(mtg)
-                cnt += 5
-
-    return culledList
 
 # get persistent layer as list of lists
 def pLayer():
