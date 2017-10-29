@@ -51,9 +51,9 @@ def writeUserToDB(message):
         if row == 0:
             continue
         tmp = []
-        for i in range(1,10):
+        for i in range(1,4):
             tmp.append(sheetList[row][i])
-        peeps['+' + sheetList[row][0]] = tmp
+        peeps[sheetList[row][0]] = tmp
 
     cnt = 0
     new = True
@@ -68,7 +68,7 @@ def writeUserToDB(message):
         row = cnt+2
     else:
         row = cnt+1
-    sheet.update_cell(row, 4, message) # pos message
+    sheet.update_cell(row, 1, message) # pos message
 
     return 'success'
 
