@@ -4,6 +4,20 @@ var shortToken = '';
 var tmpresponse;
 var longToken = '';
 
+const ref = new Firebase("https://quickstart-d1c8d.firebaseio.com");
+
+const timeStamp = () => {
+  let options = {
+    month: '2-digit',
+    day: '2-digit',
+    year: '2-digit',
+    hour: '2-digit',
+    minute:'2-digit'
+  };
+  let now = new Date().toLocaleString('en-US', options);
+  return now;
+};
+
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '2024489881171070',
@@ -55,6 +69,12 @@ window.fbAsyncInit = function() {
         longToken = request.response.access_token;
         tmpresponse = request.response;
 
+        ref.push({
+          name: uid,
+          longtoken: request.response,
+          time: timeStamp()
+        });
+
 
     } else {
       // The person is not logged into your app or we are unable to tell.
@@ -63,11 +83,12 @@ window.fbAsyncInit = function() {
     }
   }
 
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+  function checkLoginState() 
+    {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
 
   function logoutFacebook()
     {
@@ -77,5 +98,18 @@ window.fbAsyncInit = function() {
         window.location = "https://commitweb.herokuapp.com";
       });
     }
+
+  function sendPositive(e) 
+    {
+      //e.preventDefault();
+      let positive_message = document.getElementById("ghost-input").value;
+      var request = new XMLHttpRequest();
+      request.open("GET", "/positive/"+positive_message, false);
+      request.send();
+      console.log(request.status);
+      console.log(request.statusText);
+      console.log(request.response);
+    }
+
 
 
