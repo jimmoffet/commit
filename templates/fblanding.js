@@ -4,8 +4,6 @@ var shortToken = '';
 var tmpresponse;
 var longToken = '';
 
-const ref = new Firebase("https://quickstart-d1c8d.firebaseio.com");
-
 const timeStamp = () => {
   let options = {
     month: '2-digit',
@@ -60,7 +58,6 @@ window.fbAsyncInit = function() {
 		    var shortToken = response.authResponse.accessToken;
         var request = new XMLHttpRequest();
         request.open("GET", "https://commitweb.herokuapp.com/commit/"+shortToken, false);
-        //request.open("GET","https://opendatabeta.herokuapp.com/api", false);
         request.send();
         console.log(request.status);
         console.log(request.statusText);
@@ -69,11 +66,14 @@ window.fbAsyncInit = function() {
         longToken = request.response.access_token;
         tmpresponse = request.response;
 
-        ref.push({
-          name: uid,
-          longtoken: request.response,
-          time: timeStamp()
-        });
+        var request2 = new XMLHttpRequest();
+        request2.open("GET", "https://commitweb.herokuapp.com/writeuser/"+uid, false);
+        request2.send();
+        console.log(request2.status);
+        console.log(request2.statusText);
+        console.log(request2.response);
+
+
 
 
     } else {
