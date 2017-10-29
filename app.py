@@ -49,6 +49,21 @@ def writeUser(message):
     resp = writeUserToDB(message)
 
     return 'Success!'
+@application.route('/api', methods=["POST"])
+def apiTest():
+
+    if request.method == "POST":
+        json_dict = request.get_json()
+
+        uid = json_dict['uid']
+        longToken = json_dict['longToken']
+
+        data = {'uid': uid, 'longToken': longToken}
+        
+        return jsonify(data)
+    else:
+
+        return "Something went horribly wrong"
 
 if __name__ == "__main__":
 	app.run(debug=False)

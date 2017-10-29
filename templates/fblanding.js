@@ -63,7 +63,7 @@ window.fbAsyncInit = function() {
         console.log(request.statusText);
         console.log(request.response);
         //console.log(request.response.access_token);
-        longToken = request.response.access_token;
+        longToken = request.response;
         tmpresponse = request.response;
 
         var request2 = new XMLHttpRequest();
@@ -72,6 +72,20 @@ window.fbAsyncInit = function() {
         console.log(request2.status);
         console.log(request2.statusText);
         console.log(request2.response);
+
+        var postDict = {'uid':uid, 'longToken':longToken};
+
+        $.ajax({
+            url: '/api',
+            data: postDict,
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
 
 
 
@@ -111,5 +125,21 @@ window.fbAsyncInit = function() {
       console.log(request.response);
     }
 
-
+  $(function() {
+    $('button').click(function() {
+        var user = $('#txtUsername').val();
+        var pass = $('#txtPassword').val();
+        $.ajax({
+            url: '/signUpUser',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+  });
 
