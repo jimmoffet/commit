@@ -54,12 +54,14 @@ def writeUser(message):
 def apiTest():
 
     if request.method == "POST":
-        json_dict = request.get_json()
+        json_dict = request.get_json(force=True)
 
-        uid = json_dict['uid']
-        longToken = json_dict['longToken']
+        #uid = json_dict['uid']
+        #longToken = json_dict['longToken']
 
-        data = {'uid': uid, 'longToken': longToken}
+        #data = {'uid': uid, 'longToken': longToken}
+
+        data = json_dict
         
         return jsonify(data)
     else:
