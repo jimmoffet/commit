@@ -35,14 +35,13 @@ def getLongToken(shorttoken):
     print(longtoken)
 
     ### save longtoken to db along with uid and whatever else ###
-    peoples = people()
-    cnt = 0
-	for key, val in peoples.items():
-		cnt += 1
-		if key == longtoken:
-			break
-   	
-	#cnt+1 is 
+	# peoples = people()
+	# cnt = 0
+	# for key, val in peoples.items():
+	# 	cnt += 1
+	# 	if key == longtoken:
+	# 		break	
+	# #cnt+1 is current user, cnt+2 will write new line
 
     return jsonify(resp)
 
