@@ -128,19 +128,5 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
-      window.location = "https://commitweb.herokuapp.com/fancycommitlanding2";
-    }
-
-  function sendNegative(e) 
-    {
-      //e.preventDefault();
-      let negative_message = document.getElementById("ghost-input").value;
-      var request = new XMLHttpRequest();
-      request.open("GET", "/negative/"+negative_message, false);
-      request.send();
-      console.log(request.status);
-      console.log(request.statusText);
-      console.log(request.response);
-      window.location = "https://commitweb.herokuapp.com/fancycommitlandingFINAL";
     }
 

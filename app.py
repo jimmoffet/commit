@@ -44,22 +44,31 @@ def writeMessage(message):
 
     return 'Success!'
 
+@app.route("/negative/<string:message>", methods=["POST", "GET"])
+def writeMessage(message):
+
+    resp = writeMessageToDB2(message)
+
+    return 'Success!'
+
 @app.route("/writeuser/<string:message>", methods=["POST", "GET"])
 def writeUser(message):
 
     resp = writeUserToDB(message)
 
     return 'Success!'
+
 @app.route('/api', methods=["POST"])
 def apiTest():
 
     if request.method == "POST":
         json_dict = request.get_json(force=True)
 
-        #uid = json_dict['uid']
-        #longToken = json_dict['longToken']
+        # uid = json_dict['uid']
+        # longToken = json_dict['longToken']
+        # longToken = longToken[access_token]
 
-        #data = {'uid': uid, 'longToken': longToken}
+        # data = {'uid': uid, 'longToken': longToken}
 
         data = json_dict
         
