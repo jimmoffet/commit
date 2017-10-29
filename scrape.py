@@ -10,6 +10,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 app_id = "2024489881171070"
 app_secret = "86339533a5793651f88deea4b2f254c0"
 
+scope = ['https://spreadsheets.google.com/feeds']
+creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+client = gspread.authorize(creds)
+sheet = client.open("commitDB").sheet1
+
 def ping(u):
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     page = requests.get(u)
@@ -22,7 +27,17 @@ def extendToken(short_token):
     u = 'https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&' + 'client_id=' + app_id + '&client_secret=' + app_secret + '&fb_exchange_token=' + short_token
     r = requests.get(u)
     resp = r.json()
+
+
+
     return resp  
+
+def writeToDB(message):
+    # use creds to create a client to interact with the Google Drive API
+    
+    sheet.update_cell(2, 4, message) # pos message
+
+    return message
 
 def scrape(u):
     # use creds to create a client to interact with the Google Drive API
@@ -89,19 +104,19 @@ def people():
     creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
     client = gspread.authorize(creds)
     
-    sheet = client.open("VoteBot App").sheet1
+    sheet = client.open("commitDB").sheet1
     sheetList = sheet.get_all_values()
     rlen = len(sheetList)
     clen = len(sheetList[0])
-    callers = {}
+    peeps = {}
     for row in range(rlen):
         if row == 0:
             continue
         tmp = []
         for i in range(1,10):
             tmp.append(sheetList[row][i])
-        callers['+' + sheetList[row][0]] = tmp
-    return callers
+        peeps['+' + sheetList[row][0]] = tmp
+    return peeps
         
 # peoples = people()
 # print(peoples)
