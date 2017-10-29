@@ -30,31 +30,8 @@ def extendToken(short_token):
     resp = r.json()
     longtoken = resp['access_token']
 
-    rlen = len(sheetList)
-    clen = len(sheetList[0])
-    peeps = {}
-
-    for row in range(rlen):
-        if row == 0:
-            continue
-        tmp = []
-        for i in range(1,4):
-            tmp.append(sheetList[row][i])
-        peeps[sheetList[row][0]] = tmp
-
-    cnt = 0
-    new = True
-    for key, val in peeps.items():
-        cnt += 1
-        if key == message:
-            new = False
-            break 
-    #cnt+1 is current user, cnt+2 will write new line
-    row = 0
-    if(new):
-        row = cnt+2
-    else:
-        row = cnt+1
+    row = 2
+    #row = getRow(uid)
 
     sheet.update_cell(row, 3, longtoken) # pos message
 
@@ -62,31 +39,9 @@ def extendToken(short_token):
 
 def writeMessageToDB(message):
     # use creds to create a client to interact with the Google Drive API
-    rlen = len(sheetList)
-    clen = len(sheetList[0])
-    peeps = {}
 
-    for row in range(rlen):
-        if row == 0:
-            continue
-        tmp = []
-        for i in range(1,4):
-            tmp.append(sheetList[row][i])
-        peeps[sheetList[row][0]] = tmp
-
-    cnt = 0
-    new = True
-    for key, val in peeps.items():
-        cnt += 1
-        if key == message:
-            new = False
-            break 
-    #cnt+1 is current user, cnt+2 will write new line
-    row = 0
-    if(new):
-        row = cnt+2
-    else:
-        row = cnt+1
+    row = 2
+    #row = getRow(uid)
 
     sheet.update_cell(row, 4, message) # pos message
 
@@ -123,6 +78,37 @@ def writeUserToDB(message):
     sheet.update_cell(row, 1, message) # pos message
 
     return 'success'
+
+def getRow(uid):
+
+    rlen = len(sheetList)
+    clen = len(sheetList[0])
+    peeps = {}
+
+    for row in range(rlen):
+        if row == 0:
+            continue
+        tmp = []
+        for i in range(1,4):
+            tmp.append(sheetList[row][i])
+        peeps[sheetList[row][0]] = tmp
+
+    cnt = 0
+    new = True
+    for key, val in peeps.items():
+        cnt += 1
+        if key == uid:
+            new = False
+            break 
+    
+    #cnt+1 is current user, cnt+2 will write new line
+    row = 0
+    if(new):
+        row = cnt+2
+    else:
+        row = cnt+1
+
+    return row
 
 
 # get persistent layer as list of lists
