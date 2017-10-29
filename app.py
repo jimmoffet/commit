@@ -38,14 +38,14 @@ def getLongToken(shorttoken):
     return jsonify(resp)
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
-def writeMessage(message):
+def writePosMessage(message):
 
     resp = writeMessageToDB(message)
 
     return 'Success!'
 
 @app.route("/negative/<string:message>", methods=["POST", "GET"])
-def writeMessage(message):
+def writeNegMessage(message):
 
     resp = writeMessageToDB2(message)
 
