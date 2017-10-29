@@ -47,6 +47,16 @@ def writeMessageToDB(message):
 
     return message
 
+def writeMessageToDB2(message):
+    # use creds to create a client to interact with the Google Drive API
+
+    row = 2
+    #row = getRow(uid)
+
+    sheet.update_cell(row, 5, message) # pos message
+
+    return message
+
 def writeUserToDB(message):
     # use creds to create a client to interact with the Google Drive API
     ### save longtoken to db along with uid and whatever else ###
