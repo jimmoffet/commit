@@ -75,7 +75,7 @@ window.fbAsyncInit = function() {
 
         var postDict = {'uid':uid, 'longToken':longToken};
 
-        
+        var friends;
 
         tagFriendsCall = "/"+ uid +"/taggable_friends";
         
