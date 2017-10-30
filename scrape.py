@@ -29,9 +29,34 @@ def extendToken(short_token):
     r = requests.get(u)
     resp = r.json()
     longtoken = resp['access_token']
+    uid = resp['uid']
 
     row = 2
-    #row = getRow(uid)
+    rlen = len(sheetList)
+    clen = len(sheetList[0])
+    peeps = {}
+
+    for row in range(rlen):
+        if row == 0:
+            continue
+        tmp = []
+        for i in range(1,4):
+            tmp.append(sheetList[row][i])
+        peeps[sheetList[row][0]] = tmp
+
+    cnt = 0
+    new = True
+    for key, val in peeps.items():
+        cnt += 1
+        if key == uid:
+            new = False
+            break 
+    #cnt+1 is current user, cnt+2 will write new line
+    row = 0
+    if(new):
+        row = cnt+2
+    else:
+        row = cnt+1
 
     sheet.update_cell(row, 3, longtoken) # pos message
 
