@@ -1,219 +1,228 @@
 <!DOCTYPE html>
 <html>
-<head>
+
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="bootstrap 4, bootstrap 4 ui kit, bootstrap 4 kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit">
     <meta name="description" content="Start your development with a beautiful Bootstrap 4 UI kit.">
     <meta name="author" content="Cantusstar(cc) Cantusstar, 2017. All Rights Reserved." />
-	
-	<title>SNOW - Bootstrap 4 UI Kit</title>
+
+    <title>SNOW - Bootstrap 4 UI Kit</title>
 
     <!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Permanent+Marker|Material+Icons" rel="stylesheet">
-	
-	<!-- Main CSS -->
-	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/snow-ui-kit.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Permanent+Marker|Material+Icons" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/snow-ui-kit.css" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/ico/favicon.png" />
-    
+
     <!-- DEMO CSS -->
-	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/demo.css" />
+    <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/demo.css" />
 
-	<style>
+    <style>
+      .ghost-label {
+        display: block;
+        font-weight: 300;
+        font-size: 25px;
+        border: 0px;
+        outline: none;
+        color: #4b545f;
+        font-family: Open Sans, Verdana;
+        padding: 10px 15px;
+        margin: 30px 0px;
+      }
 
-		.ghost-label {
-		  display: block;
-		  font-weight:300;
-		  font-size: 25px;
-		  border:0px;
-		  outline: none;
-		  color: #4b545f;
-		  font-family: Open Sans,Verdana;
-		  padding: 10px 15px;
-		  margin: 30px 0px;
-		}
+      fieldset {
+        display: block;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-before: 0em;
+        -webkit-padding-start: 0em;
+        -webkit-padding-end: 0em;
+        -webkit-padding-after: 0em;
+        border: 0px;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        min-width: -webkit-min-content;
+        /* padding: 30px; */
+      }
 
-		fieldset {
-		  display: block;
-		  -webkit-margin-start: 0px;
-		  -webkit-margin-end: 0px;
-		  -webkit-padding-before: 0em;
-		  -webkit-padding-start: 0em;
-		  -webkit-padding-end: 0em;
-		  -webkit-padding-after: 0em;
-		  border: 0px;
-		  border-image-source: initial;
-		  border-image-slice: initial;
-		  border-image-width: initial;
-		  border-image-outset: initial;
-		  border-image-repeat: initial;
-		  min-width: -webkit-min-content;
-		  /* padding: 30px; */
-		}
+      .ghost-input {
+        resize: none;
+        display: block;
+        font-weight: 300;
+        width: 100%;
+        font-size: 25px;
+        border: 0px;
+        outline: none;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #4b545f;
+        background: #fff;
+        font-family: Open Sans, Verdana;
 
-		.ghost-input {
-			resize: none;
-			display: block;
-			font-weight:300;
-			width: 100%;
-			font-size: 25px;
-			border:0px;
-			outline: none;
-			width: 100%;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-			color: #4b545f;
-			background: #fff;
-			font-family: Open Sans,Verdana;
-
-			padding: 10px 0px;
-			/*
+        padding: 10px 0px;
+        /*
 			margin: 30px 0px;
 			*/
-			-webkit-transition: all 0.1s ease-in-out;
-			-moz-transition: all 0.1s ease-in-out;
-			-ms-transition: all 0.1s ease-in-out;
-			-o-transition: all 0.1s ease-in-out;
-			transition: all 0.1s ease-in-out;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -ms-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
 
-			font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
-			font-size: 1.8rem;
-			font-weight: 700;
-			line-height: 1.1;
-		}
-		/*
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      /*
 		.ghost-input:focus {
 		  border-bottom:1px solid #ddd;
 		}
 		*/
-		::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-		  color: #ccc;
-		}
-		::-moz-placeholder { /* Firefox 19+ */
-		  color: #ccc;
-		}
-		:-ms-input-placeholder { /* IE 10+ */
-		  color: #ccc;
-		}
-		:-moz-placeholder { /* Firefox 18- */
-		  color: #ccc;
-		}
 
-		.ghost-button {
-		  background-color: transparent;
-		  border:0px solid #ddd;
-		  font-family: Open Sans,Verdana;
-		  font-size: 25px;
-		  font-weight:900;
-		  text-align:left;
-		}
+      ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #ccc;
+      }
 
-		.ghost-button:hover {
-		  background-color: black;
-		  color:white;
-		}
+      ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #ccc;
+      }
 
-	</style>
-	
+      :-ms-input-placeholder {
+        /* IE 10+ */
+        color: #ccc;
+      }
+
+      :-moz-placeholder {
+        /* Firefox 18- */
+        color: #ccc;
+      }
+
+      .ghost-button {
+        background-color: transparent;
+        border: 0px solid #ddd;
+        font-family: Open Sans, Verdana;
+        font-size: 25px;
+        font-weight: 900;
+        text-align: left;
+      }
+
+      .ghost-button:hover {
+        background-color: black;
+        color: white;
+      }
+    </style>
+
   </head>
+
   <body>
-	  
-	
-	<nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-transparent navbar-dark">
-	    <div class="container">
-	        <a class="navbar-brand" href="index.html" alt="SNOW - Bootstrap 4 UI Kit">
+
+
+    <nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-transparent navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html" alt="SNOW - Bootstrap 4 UI Kit">
 	            COMM!T
 	        </a>
-	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
 	        </button>
-	        
-	        <div class="collapse navbar-collapse" id="mainNav">
-	          <ul class="navbar-nav mx-auto">
-	            <li class="nav-item active"><a class="nav-link" href="index.html">Components</a></li>
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle" href="" id="examplesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item active"><a class="nav-link" href="index.html">Components</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="examplesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                    Bootstrap
 	                </a>
-	                <div class="dropdown-menu" aria-labelledby="examplesDropdown">
-	                    <a class="dropdown-item" href="bootstrap/album.html" target="_blank">Album</a>
-	                    <a class="dropdown-item" href="bootstrap/sticky-footer.html" target="_blank">Sticky Footer</a>
-	                </div>
-	            </li>
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle" href="" id="examplesDropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="dropdown-menu" aria-labelledby="examplesDropdown">
+                <a class="dropdown-item" href="bootstrap/album.html" target="_blank">Album</a>
+                <a class="dropdown-item" href="bootstrap/sticky-footer.html" target="_blank">Sticky Footer</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="examplesDropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                    Examples
 	                </a>
-	                <div class="dropdown-menu" aria-labelledby="examplesDropdown2">
-	                    <a class="dropdown-item" href="landing-page.html">Landing Page</a>
-	                    <a class="dropdown-item" href="profile-page.html">Profile Page</a>
-	                    <a class="dropdown-item" href="starter-template.html">Starter Template</a>
-	                </div>
-	            </li>
-	            <li class="nav-item"><a class="nav-link" href="#" onclick="logoutFacebook()">Log Out</a></li>
-	          </ul>
-	        </div>
-	    </div>
-	</nav>
-	  
-	<header class="parallax full-bg" style="background-color: white">
-		<div class="wrap">
-			<div class="content center-center text-black">
-				<h1 class="shout">Let's Do this!</h1> 
-			</div>
-		</div>
-	</header>
-	
-	<section id="typography" class="section" style="background-color: white; height: 100vh;">
-		<div class="container">
+              <div class="dropdown-menu" aria-labelledby="examplesDropdown2">
+                <a class="dropdown-item" href="landing-page.html">Landing Page</a>
+                <a class="dropdown-item" href="profile-page.html">Profile Page</a>
+                <a class="dropdown-item" href="starter-template.html">Starter Template</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="logoutFacebook()">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-			<div class="title">
-	            <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem"><b>Oh No!<b> What will you say if you don't show up?</h2>
-	            <p style="color:#aaa">Writer's block? Try keeping it simple: "I didn't show up to [to vote] today." If you're getting cold feet, try writing something silly or generic and telling one person what it really means. It makes a difference.</p>
-	        </div>
-	        
-	        <div class="row">
-		        <div class="col-md">
-				    <fieldset>
-			            <form action="">
-			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="i.e. I single-handedly saved democracy today!" required></textarea>
-			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">SUBMIT</button>
-			            </form>
-		          	</fieldset>
-		        </div>
-	        </div>
-	        
-		</div>
-	</section>
+    <header class="parallax full-bg" style="background-color: white">
+      <div class="wrap">
+        <div class="content center-center text-black">
+          <h1 class="shout">Let's Do this!</h1>
+        </div>
+      </div>
+    </header>
 
-	<!-- Core JS -->
+    <section id="typography" class="section" style="background-color: white; height: 100vh;">
+      <div class="container">
+
+        <div class="title">
+          <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem"><b>Oh No!<b> What will you say if you don't show up?</h2>
+          <p style="color:#aaa">Writer's block? Try keeping it simple: "I didn't show up to [to vote] today." If you're getting cold feet, try writing something silly or generic and telling one person what it really means. It makes a difference.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md">
+            <fieldset>
+              <form action="">
+                <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="i.e. I single-handedly saved democracy today!" required></textarea>
+                <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">SUBMIT</button>
+              </form>
+            </fieldset>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Core JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/popper.min.js"></script>
     <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/bootstrap.min.js"></script>
     <!-- Plugins JS -->
     <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/parallax.js"></script>
-	<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/bootstrap-datepicker.min.js"></script>
-	<!-- Snow UI JS -->
+    <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/bootstrap-datepicker.min.js"></script>
+    <!-- Snow UI JS -->
     <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/snow-ui-kit.js"></script>
     <script>
-    	$(document).ready(function(){
-	    $('#ghost-button').hide();
-	    $('#ghost-input').keyup(function(){
-	        if(!$('#ghost-input').val().replace(/^\s+/, "") == "") {
-	          $('#ghost-button').show();
-	        } else {
-	          $('#ghost-button').hide();
-	        }
-	    })
-	}); 
-	</script>
-	<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblanding.js"></script>
-	<!-- for local development -->
-	<!-- <script src="{{ url_for('static', filename='js/fblanding.js') }}"></script> -->
+      $(document).ready(function() {
+        $('#ghost-button').hide();
+        $('#ghost-input').keyup(function() {
+          if (!$('#ghost-input').val().replace(/^\s+/, "") == "") {
+            $('#ghost-button').show();
+          } else {
+            $('#ghost-button').hide();
+          }
+        })
+      });
+    </script>
+    <!-- <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblanding.js"></script> -->
+    <!-- for local development -->
+    <script src="{{ url_for('static', filename='js/fblanding.js') }}"></script>
 
-    
+
   </body>
+
 </html>
