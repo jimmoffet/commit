@@ -5,6 +5,7 @@ var tmpresponse;
 var globalresponse;
 var longToken = '';
 var friends;
+var carleypicurl;
 
 
 window.fbAsyncInit = function() {
@@ -58,9 +59,10 @@ window.fbAsyncInit = function() {
 
         tagFriendsCall = "/"+ uid +"/taggable_friends";
         
+        
         /* make the API call */
         FB.api(
-            "/1422652447849585/taggable_friends",
+            tagFriendsCall,
             function (response) {
               if (response && !response.error) {
                 friends = response;
@@ -73,6 +75,7 @@ window.fbAsyncInit = function() {
 
         longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
         longToken = JSON.parse(longToken).access_token;
+        //carleypicurl = friends.data[14].picture.data.url;
 
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
