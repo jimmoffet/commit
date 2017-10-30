@@ -33,6 +33,7 @@ window.fbAsyncInit = function() {
 
       //testAPI();
 
+
       // REDIRECT
       window.location = "https://commitweb.herokuapp.com/fancycommitlanding";
 
@@ -45,6 +46,10 @@ window.fbAsyncInit = function() {
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
+    FB.login(function(response) {
+      console.log('taggable_friends response below');
+      console.log(response);
+    }, {scope: 'taggable_friends'});
     FB.getLoginStatus(function(response) {
       console.log('getLoginStatus');
       console.log(response);
