@@ -9,6 +9,7 @@ import re
 # from twilio.rest import Client
 from string import punctuation
 import requests
+import datetime
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -66,7 +67,7 @@ def apiTest():
 
         uid = json_dict['uid']
         longToken = json_dict['longToken']
-        timeStamp = json_dict['timeStamp']
+        timeStamp = datetime.datetime.now()
         message1 = ""
         message2 = ""
         stuff = writeAll(uid, longToken, timeStamp, message1, message2)
