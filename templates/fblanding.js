@@ -2,7 +2,9 @@
 var uid = '';
 var shortToken = '';
 var tmpresponse;
+var globalresponse;
 var longToken = '';
+var friends;
 
 const timeStamp = () => {
   let options = {
@@ -66,16 +68,12 @@ window.fbAsyncInit = function() {
         longToken = request.response;
         tmpresponse = request.response;
 
-        var request2 = new XMLHttpRequest();
-        request2.open("GET", "https://commitweb.herokuapp.com/writeuser/"+uid, false);
-        request2.send();
-        console.log(request2.status);
-        console.log(request2.statusText);
-        console.log(request2.response);
-
-        var postDict = {'uid':uid, 'longToken':longToken};
-
-        var friends;
+        // var request2 = new XMLHttpRequest();
+        // request2.open("GET", "https://commitweb.herokuapp.com/writeuser/"+uid, false);
+        // request2.send();
+        // console.log(request2.status);
+        // console.log(request2.statusText);
+        // console.log(request2.response);
 
         tagFriendsCall = "/"+ uid +"/taggable_friends";
         
@@ -85,17 +83,22 @@ window.fbAsyncInit = function() {
             function (response) {
               if (response && !response.error) {
                 friends = response;
+                console.log('got friends')
               } else {
                 console.log('something has gone horribly wrong getting taggable friends')
               }
             }
         );
 
+        longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
+        longToken = JSON.parse(longToken).access_token;
+
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
             data: JSON.stringify({
               "uid":uid,
               "longToken":longToken,
+              "timeStamp":timeStamp,
               "taggable_friends":friends
             }),
             dataType: 'json',
