@@ -46,15 +46,18 @@ window.fbAsyncInit = function() {
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
+
     FB.login(function(response) {
       console.log('taggable_friends response below');
       console.log(response);
     }, {scope: 'taggable_friends'});
+
     FB.getLoginStatus(function(response) {
       console.log('getLoginStatus');
       console.log(response);
       statusChangeCallback(response);
     });
+
   }
 
   // init used to go here
