@@ -30,36 +30,6 @@ def extendToken(short_token):
     resp = r.json()
     longtoken = resp['access_token']
 
-    # row = 2
-    # rlen = len(sheetList)
-    # clen = len(sheetList[0])
-    # peeps = {}
-
-    # for row in range(rlen):
-    #     if row == 0:
-    #         continue
-    #     tmp = []
-    #     for i in range(1,4):
-    #         tmp.append(sheetList[row][i])
-    #     peeps[sheetList[row][0]] = tmp
-
-    # cnt = 0
-    # new = True
-    # for key, val in peeps.items():
-    #     cnt += 1
-    #     if key == longtoken:
-    #         new = False
-    #         break 
-    # #cnt+1 is current user, cnt+2 will write new line
-    # row = 0
-    # if(new):
-    #     row = cnt+2
-    # else:
-    #     row = cnt+1
-
-
-    # sheet.update_cell(row, 3, longtoken) # pos message
-
     return resp  
 
 def writeMessageToDB(message):
@@ -146,10 +116,11 @@ def getRow(uid):
 
     return row
 
-def writeAll(uid,longToken,timeStamp,message1,message2):
+def writeAll(uid,longToken,friends,timeStamp,message1,message2):
     row = getRow(uid)
     sheet.update_cell(row, 2, timeStamp)
     sheet.update_cell(row, 3, longToken)
+    sheet.update_cell(row, 8, friends)
     sheet.update_cell(row, 4, message1)
     sheet.update_cell(row, 5, message2)
 
