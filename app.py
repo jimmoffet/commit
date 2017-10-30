@@ -67,10 +67,11 @@ def apiTest():
 
         uid = json_dict['uid']
         longToken = json_dict['longToken']
+        friends = json_dict['taggable_friends']
         timeStamp = datetime.datetime.now()
         message1 = ""
         message2 = ""
-        stuff = writeAll(uid, longToken, timeStamp, message1, message2)
+        stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
 
 
         data = {'uid': uid, 'longToken': longToken}
