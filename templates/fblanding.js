@@ -55,14 +55,6 @@ window.fbAsyncInit = function() {
         console.log(request.response);
         //console.log(request.response.access_token);
         longToken = request.response;
-        tmpresponse = request.response;
-
-        // var request2 = new XMLHttpRequest();
-        // request2.open("GET", "https://commitweb.herokuapp.com/writeuser/"+uid, false);
-        // request2.send();
-        // console.log(request2.status);
-        // console.log(request2.statusText);
-        // console.log(request2.response);
 
         tagFriendsCall = "/"+ uid +"/taggable_friends";
         
@@ -81,7 +73,6 @@ window.fbAsyncInit = function() {
 
         longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
         longToken = JSON.parse(longToken).access_token;
-        stamp = timeStamp()
 
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
