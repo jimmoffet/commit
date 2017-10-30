@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
 # from twilio.twiml.messaging_response import MessagingResponse
-from scrape import ping, people, pLayer, extendToken, writeMessageToDB, writeUserToDB
+from scrape import ping, people, pLayer, extendToken, writeMessageToDB, writeUserToDB, writeAll
 import random
 import threading
 import datetime
@@ -64,18 +64,20 @@ def apiTest():
     if request.method == "POST":
         json_dict = request.get_json(force=True)
 
-        # uid = json_dict['uid']
-        # longToken = json_dict['longToken']
-        # longToken = longToken[access_token]
+        uid = json_dict['uid']
+        longToken = json_dict['longToken']
+        timeStamp = json_dict['timeStamp']
+        message1 = ""
+        message2 = ""
+        stuff = writeAll(uid, longToken, timeStamp, message1, message2)
 
-        # data = {'uid': uid, 'longToken': longToken}
 
-        data = json_dict
+        data = {'uid': uid, 'longToken': longToken}
         
-        return jsonify(data)
+        return stuff
     else:
 
-        return "Something went horribly wrong"
+        return "Something sent a non-post request to apiTest"
 
 if __name__ == "__main__":
 	app.run(debug=False)

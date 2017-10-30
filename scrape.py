@@ -140,10 +140,20 @@ def getRow(uid):
     row = 0
     if(new):
         row = cnt+2
+        sheet.update_cell(row, 1, uid) # pos message
     else:
         row = cnt+1
 
     return row
+
+def writeAll(uid,longToken,timeStamp,message1,message2):
+    row = getRow(uid)
+    sheet.update_cell(row, 2, timeStamp)
+    sheet.update_cell(row, 3, longToken)
+    sheet.update_cell(row, 4, message1)
+    sheet.update_cell(row, 5, message2)
+
+    return 'writeAll succeeded'
 
 
 # get persistent layer as list of lists
