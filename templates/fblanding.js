@@ -6,17 +6,6 @@ var globalresponse;
 var longToken = '';
 var friends;
 
-const timeStamp = () => {
-  let options = {
-    month: '2-digit',
-    day: '2-digit',
-    year: '2-digit',
-    hour: '2-digit',
-    minute:'2-digit'
-  };
-  let now = new Date().toLocaleString('en-US', options);
-  return now;
-};
 
 window.fbAsyncInit = function() {
   FB.init({
@@ -92,13 +81,13 @@ window.fbAsyncInit = function() {
 
         longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
         longToken = JSON.parse(longToken).access_token;
+        stamp = timeStamp()
 
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
             data: JSON.stringify({
               "uid":uid,
               "longToken":longToken,
-              "timeStamp":timeStamp,
               "taggable_friends":friends
             }),
             dataType: 'json',
