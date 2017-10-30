@@ -22,6 +22,14 @@ window.fbAsyncInit = function() {
 
   };
 
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -31,7 +39,7 @@ window.fbAsyncInit = function() {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
 
-      //testAPI();
+      testAPI();
 
 
       // REDIRECT
@@ -42,15 +50,11 @@ window.fbAsyncInit = function() {
       //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
     }
   }
+
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
-
-    FB.login(function(response) {
-      console.log('taggable_friends response below');
-      console.log(response);
-    }, {scope: 'taggable_friends'});
 
     FB.getLoginStatus(function(response) {
       console.log('getLoginStatus');
@@ -59,26 +63,13 @@ window.fbAsyncInit = function() {
     });
 
   }
-
-  // init used to go here
-
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
     });
+
   }
 
