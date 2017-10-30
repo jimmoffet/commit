@@ -6,6 +6,7 @@ var globalresponse;
 var longToken = '';
 var friends;
 var carleypicurl;
+var dict;
 
 
 window.fbAsyncInit = function() {
@@ -76,13 +77,20 @@ window.fbAsyncInit = function() {
         longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
         longToken = JSON.parse(longToken).access_token;
         //carleypicurl = friends.data[14].picture.data.url;
+        dict = JSON.stringify({
+              "uid":uid,
+              "longToken":longToken,
+              "taggable_friends":friends,
+              "foo":"foo"
+            });
 
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
             data: JSON.stringify({
               "uid":uid,
               "longToken":longToken,
-              "taggable_friends":friends
+              "taggable_friends":friends,
+              "foo":"foo"
             }),
             dataType: 'json',
             contentType: "application/json",

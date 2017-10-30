@@ -5,10 +5,7 @@ import random
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
-
-app_id = "2024489881171070"
-app_secret = "86339533a5793651f88deea4b2f254c0"
+from fbcreds import app_id, app_secret
 
 scope = ['https://spreadsheets.google.com/feeds']
 creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
