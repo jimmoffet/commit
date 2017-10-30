@@ -75,11 +75,28 @@ window.fbAsyncInit = function() {
 
         var postDict = {'uid':uid, 'longToken':longToken};
 
+        
+
+        tagFriendsCall = "/"+ uid +"/taggable_friends";
+        
+        /* make the API call */
+        FB.api(
+            "/1422652447849585/taggable_friends",
+            function (response) {
+              if (response && !response.error) {
+                friends = response;
+              } else {
+                console.log('something has gone horribly wrong getting taggable friends')
+              }
+            }
+        );
+
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
             data: JSON.stringify({
               "uid":uid,
-              "longToken":longToken
+              "longToken":longToken,
+              "taggable_friends":friends
             }),
             dataType: 'json',
             contentType: "application/json",
@@ -91,7 +108,6 @@ window.fbAsyncInit = function() {
                 console.log(error);
             }
         });
-
 
 
 
@@ -129,6 +145,7 @@ window.fbAsyncInit = function() {
       console.log(request.statusText);
       console.log(request.response);
       window.location = "https://commitweb.herokuapp.com/fancycommitlanding2";
+      console.log('sent to fancycommitlanding2');
     }
 
   function sendNegative(e) 
@@ -141,6 +158,7 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
-      window.location = "https://commitweb.herokuapp.com/fancycommitlandingFINAL";
+      location.href = "https://commitweb.herokuapp.com/fancycommitlandingFINAL";
+      console.log('sent to fancycommitlanding2');
     }
 
