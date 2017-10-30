@@ -2,19 +2,12 @@
 var uid = '';
 var shortToken = '';
 var tmpresponse;
+var globalresponse;
 var longToken = '';
+var friends;
+var carleypicurl;
+var dict;
 
-const timeStamp = () => {
-  let options = {
-    month: '2-digit',
-    day: '2-digit',
-    year: '2-digit',
-    hour: '2-digit',
-    minute:'2-digit'
-  };
-  let now = new Date().toLocaleString('en-US', options);
-  return now;
-};
 
 window.fbAsyncInit = function() {
   FB.init({
@@ -64,22 +57,40 @@ window.fbAsyncInit = function() {
         console.log(request.response);
         //console.log(request.response.access_token);
         longToken = request.response;
-        tmpresponse = request.response;
 
-        var request2 = new XMLHttpRequest();
-        request2.open("GET", "https://commitweb.herokuapp.com/writeuser/"+uid, false);
-        request2.send();
-        console.log(request2.status);
-        console.log(request2.statusText);
-        console.log(request2.response);
+        tagFriendsCall = "/"+ uid +"/taggable_friends";
+        
+        
+        /* make the API call */
+        FB.api(
+            tagFriendsCall,
+            function (response) {
+              if (response && !response.error) {
+                friends = response;
+                console.log('got friends')
+              } else {
+                console.log('something has gone horribly wrong getting taggable friends')
+              }
+            }
+        );
 
-        var postDict = {'uid':uid, 'longToken':longToken};
+        longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
+        longToken = JSON.parse(longToken).access_token;
+        //carleypicurl = friends.data[14].picture.data.url;
+        dict = JSON.stringify({
+              "uid":uid,
+              "longToken":longToken,
+              "taggable_friends":friends,
+              "foo":"foo"
+            });
 
         $.ajax({
             url: 'https://commitweb.herokuapp.com/api',
             data: JSON.stringify({
               "uid":uid,
-              "longToken":longToken
+              "longToken":longToken,
+              "taggable_friends":friends,
+              "foo":"foo"
             }),
             dataType: 'json',
             contentType: "application/json",
@@ -91,7 +102,6 @@ window.fbAsyncInit = function() {
                 console.log(error);
             }
         });
-
 
 
 
@@ -128,5 +138,21 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
+      window.location = "https://commitweb.herokuapp.com/fancycommitlanding2";
+      console.log('sent to fancycommitlanding2');
+    }
+
+  function sendNegative(e) 
+    {
+      //e.preventDefault();
+      let negative_message = document.getElementById("ghost-input").value;
+      var request = new XMLHttpRequest();
+      request.open("GET", "/negative/"+negative_message, false);
+      request.send();
+      console.log(request.status);
+      console.log(request.statusText);
+      console.log(request.response);
+      location.href = "https://commitweb.herokuapp.com/fancycommitlandingFINAL";
+      console.log('sent to fancycommitlanding2');
     }
 
