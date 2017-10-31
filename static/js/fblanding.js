@@ -85,7 +85,7 @@ window.fbAsyncInit = function() {
             });
 
         $.ajax({
-            url: 'https://commitweb.herokuapp.com/api',
+            url: '/api',
             data: JSON.stringify({
               "uid":uid,
               "longToken":longToken,
@@ -124,7 +124,7 @@ window.fbAsyncInit = function() {
       FB.logout(function(response) {
         // user is now logged out
         console.log(response);
-        window.location = "https://commitweb.herokuapp.com";
+        window.location = "/";
       });
     }
 
@@ -138,7 +138,7 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
-      window.location = "https://commitweb.herokuapp.com/fancycommitlanding2";
+      window.location = "/fancycommitlanding2";
       console.log('sent to fancycommitlanding2');
     }
 
@@ -152,7 +152,7 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
-      location.href = "https://commitweb.herokuapp.com/fancycommitlandingFINAL";
+      location.href = "/fancycommitlandingFINAL";
       console.log('sent to fancycommitlanding2');
     }
 
