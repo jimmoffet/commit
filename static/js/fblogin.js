@@ -4,6 +4,10 @@ var spinner = document.getElementById("spinner");
 spinner.removeAttribute("style");
 spinner.removeChild(spinner.childNodes[0]);
 }
+// local
+// 196208740925120
+// remote
+// 2024489881171070
 
 window.fbAsyncInit = function() {
   FB.init({

@@ -8,6 +8,10 @@ var friends;
 var carleypicurl;
 var dict;
 
+// local
+// 196208740925120
+// remote
+// 2024489881171070
 
 window.fbAsyncInit = function() {
   FB.init({
