@@ -122,7 +122,7 @@
   <body>
 	  
 	
-	<nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-transparent navbar-dark">
+	<nav id="main-nav" class="navbar fixed-top bg-light navbar-light">
 	    <div class="container">
 	        <a class="navbar-brand" href="index.html" alt="SNOW - Bootstrap 4 UI Kit">
 	            COMM!T
@@ -158,29 +158,22 @@
 	        </div>
 	    </div>
 	</nav>
-	  
-	<header class="parallax full-bg" style="background-color: white">
-		<div class="wrap">
-			<div class="content center-center text-black">
-				<h1 class="shout">Let's Do this!</h1> 
-			</div>
-		</div>
-	</header>
-	
-	<section id="typography" class="section" style="background-color: white; height: 100vh;">
+
+	<header style="background-color: white">
+		<section id="typography" class="section" style="background-color: white; height: 100vh;">
 		<div class="container">
 
 			<div class="title">
-	            <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem">Turn this into sharing screen</h2>
-	            <p style="color:#aaa">Subtext</p>
+	            <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem">What will you say if you don't show up?</h2>
+	            <p style="color:#aaa">Writer's block? Try keeping it simple: "I didn't show up to [to vote] today." If you're getting cold feet, try writing something silly or generic and telling one person what it really means. It makes a difference.</p>
 	        </div>
 	        
 	        <div class="row">
 		        <div class="col-md">
 				    <fieldset>
 			            <form action="">
-			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="i.e. I single-handedly saved democracy today!" required></textarea>
-			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendPositive()">SUBMIT</button>
+			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="i.e. Oh Noes! I didn't make it to the polls today!" required></textarea>
+			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">SUBMIT</button>
 			            </form>
 		          	</fieldset>
 		        </div>
@@ -188,6 +181,7 @@
 	        
 		</div>
 	</section>
+	</header>
 
 	<!-- Core JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
