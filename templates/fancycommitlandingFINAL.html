@@ -116,6 +116,15 @@
 		  color:white;
 		}
 
+		img {
+			border-radius: 50%;
+			border: solid 1px #cde;
+			max-width: 16vw;
+			width: 70px;
+			min-width: 40px;
+			padding:3px;
+		}
+
 	</style>
 	
   </head>
@@ -160,30 +169,48 @@
 	</nav>
 
 	<header style="background-color: white">
-		<section id="typography" class="section" style="background-color: white; height: 100vh;">
+		<section id="typography" class="section" style="background-color: white; padding: 10vh 0">
 		<div class="container">
 
 			<div class="title">
-	            <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem">The network keeping you accountable</h2>
-	            <div class="container">
-	            	<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
-	            	<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
-	            	<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
-	            	<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
-	            	<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
-	            	<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
-            	<div>
-	            <p style="color:#aaa">Writer's block? Try keeping it simple: "I didn't show up to [to vote] today." If you're getting cold feet, try writing something silly or generic and telling one person what it really means. It makes a difference.</p>
+	            <center><h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem; font-weight: 700; margin-top:10%">All eyes on the prize!</h2></center>
 	        </div>
-	        
+
+	        <div class="row" style="height: 28vh; padding: 0px; margin: 0px; display: flex; align-items: center; justify-content: center;">
+		        <div class="col-md" style="min-width: 300px;max-width: 450px; margin: 2vh;padding:0px;">
+		        	
+				    <div class="container" style="border-radius: 50%; display: flex; justify-content: space-between;padding:0px;">
+		            	<div>
+		            		<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p80x80/10289814_565244170257088_4211776831248550214_n.jpg?oh=ac8eb2438bf52ca75b9685f13c22a207&oe=5A672B7D">
+	            		</div>
+		            	<div>
+		            		<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/c2.8.100.100/p111x111/21430497_10210966438579481_2655904693146443291_n.jpg?oh=28249c41da47cd756b637a972d48d6bd&oe=5A790C6A">
+	            		</div>
+	            		<div>
+		            		<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/p320x320/22730312_10159634995945438_3855943472518780012_n.jpg?oh=358b90e2e46aa25d3755d69f8d1288ae&oe=5A70BEEA">
+	            		</div>
+	            		<div>
+		            		<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/c53.0.320.320/p320x320/15380751_10157854892860591_1349201406193524708_n.jpg?oh=684d2105128746017c5388d4737f49b4&oe=5AAC5098">
+	            		</div>
+	            		<div>
+		            		<img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/c349.47.543.543/s320x320/16938747_10155179657864589_8537123774538315268_n.jpg?oh=b27866834c2505d8b603ae2e6a2d9de3&oe=5A76039C">
+	            		</div>
+            		</div>
+
+            		<div>
+            			<p style="color:#456;padding-left:1vw">Jim, Aidi & Jared are also using COMM!T</p>
+		        	</div>
+
+	        	</div>
+	        </div>
+
 	        <div class="row">
 		        <div class="col-md">
-				    <fieldset>
-			            <form action="">
-			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="i.e. Oh Noes! I didn't make it to the polls today!" required></textarea>
-			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">SUBMIT</button>
-			            </form>
-		          	</fieldset>
+				    <center>
+				    	<!-- <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem;">Bring your phone to the polls.</h2> -->
+				    	<h2 style="font-size: 3.3rem;">Don't worry, we'll remind you :)</h2>
+				    	<p style="color:#aaa;margin-top:2vh"><a href="//commitweb.herokuapp.com">Customize Reminders</a></p>
+				    </center>
 		        </div>
 	        </div>
 	        
