@@ -77,6 +77,8 @@ window.fbAsyncInit = function() {
         longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
         longToken = JSON.parse(longToken).access_token;
         //carleypicurl = friends.data[14].picture.data.url;
+
+        
         dict = JSON.stringify({
               "uid":uid,
               "longToken":longToken,
