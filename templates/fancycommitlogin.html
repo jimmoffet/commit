@@ -6,12 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap Login &amp; Register Templates</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-  <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/css/form-elements.css">
-  <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/css/style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Permanent+Marker|Material+Icons" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/snow-ui-kit.css" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/ico/favicon.png" />
+
+  <!-- DEMO CSS -->
+  <link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/demo.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,11 +26,11 @@
   <![endif]-->
 
   <!-- Favicon and touch icons -->
-  <link rel="shortcut icon" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/favicon.png">
+<!--   <link rel="shortcut icon" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/favicon.png">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/apple-touch-icon-144-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/ico/apple-touch-icon-57-precomposed.png"> -->
   <style>
 
       .fill { 
@@ -44,105 +49,95 @@
         color: #fff !important;
       }
 
+      img {
+      border-radius: 50%;
+      border: solid 1px #cde;
+      padding:3px;
+    }
+
   </style>
 </head>
 <body>
 <!-- <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblogin.js"></script>
- --><script src="{{ url_for('static', filename='js/fblogin.js') }}"></script>
+ -->
 
+<!-- Javascript -->
 
+<script src="{{ url_for('static', filename='js/fblogin.js') }}"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- Core JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/popper.min.js"></script>
+<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/bootstrap.min.js"></script>
+<!-- Plugins JS -->
+<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/parallax.js"></script>
+<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/bootstrap-datepicker.min.js"></script>
+<!-- Snow UI JS -->
+<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/snow-ui-kit.js"></script>
 
 <!-- <div id="status"></div> -->
 
 <!-- Top content -->
 
-<div class="top-content">
-  <div class="container">
-          
-        <div class="row" style="margin-bottom:10%">
-            <div class="col-sm-8 col-sm-offset-2 text">
-                <h1>Make our Networks Work for Us</h1>
-            </div>
+  <section id="typography" class="section" style="height: 100%;width:100%;display: flex;align-items: center;justify-content: center;">
+    <div class="container" style="height:100%;padding:0 15px;margin: 0px;display: flex;align-items: center;justify-content: center;">
+
+      <div style="height:100%">
+
+        <div class="row" style="margin:0;text-align: center;">
+          <h1 style="color:#fff">Jared has invited you to...</h1>
         </div>
-        
-        <div class="row register-form">
 
-          <div class="col-sm-6 text">
-              <div class="row">
-                <div class="col-sm-10" style="color:#fff">
-                  <h3 style="color:#fff">You Write it, We Post it, Friends See it</h3>
+        <div class="row" style="display: flex;justify-content: center;padding:15px;margin:0px;">
+          <img src="https://scontent.fbed1-1.fna.fbcdn.net/v/t1.0-1/c2.8.100.100/p111x111/21430497_10210966438579481_2655904693146443291_n.jpg?oh=28249c41da47cd756b637a972d48d6bd&oe=5A790C6A">
+        </div>
 
-                  <p>Tell us what to post if you show up.<br/>Tell us what to post if you don't.<br/>It's that simple.</p>
-                </div>
-              </div>
+        <div class="row" style="display: flex;justify-content: center;padding:0;margin:0px;">
+          <h1 style="font-size: 3.3rem; color:#fff">COMM!T</h1>
+        </div>
 
-            </div>
+        <div class="row" style="margin:0;text-align: center; padding: 25px 0">
 
-            <div class="col-sm-6 text" >
-              <div class="row">
-                  <div 
-                    id="spinner" 
-                    class="col-sm-10 col-sm-offset-2 btn"
-                    style="
-                        background: #4267b2;
-                        border-radius: 5px;
-                        color: white;
-                        height: 40px;
-                        text-align: center;
-                        width: 250px;
-                        margin-top:20px">
-                    Loading
-                  <div
-                  class="fb-login-button btn" 
-                  data-max-rows="1" 
-                  data-size="large" 
-                  data-width="280"
-                  data-button-type="continue_with" 
-                  data-show-faces="true" 
-                  data-use-continue-as="false" 
-                  data-scope="public_profile, publish_actions, user_posts, user_friends"
-                  onlogin="checkLoginState();" 
-                  style="margin-top:20px;">                  
-                  </div>
-                  </div>
-              </div>
-            </div>
-
-            
+            <h3 style="color:#fff">You Write it, We Post it, Friends See it</h3>
 
         </div>
-            
-  </div>
 
-</div>
+        <div class="row" style="margin:0;padding:0;width: 100%;display: flex;justify-content: center;align-items: center;">
+            <div 
+              id="spinner" 
+              style="
+                  background: #4267b2;
+                  border-radius: 5px;
+                  color: white;
+                  height: 40px;
+                  text-align: center;
+                  width: 280px;
+                  margin-top:0px;
+                  display: flex;
+                  justify-content: center;
+                  padding:0;
+                  ">
+              Loading
+              <div
+              class="fb-login-button btn" 
+              data-max-rows="1" 
+              data-size="large" 
+              data-width="280"
+              data-button-type="continue_with" 
+              data-show-faces="true" 
+              data-use-continue-as="false" 
+              data-scope="public_profile, publish_actions, user_posts, user_friends"
+              onlogin="checkLoginState();" 
+              style="margin-top:20px;">                  
+              </div>
+            </div>
+        </div>
 
-
-
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      
-      <div class="col-sm-8 col-sm-offset-2">
-        <div class="footer-border"></div>
-        <p>Do we need <a href="https://commitweb.herokuapp.com" target="_blank">FOOTER</a> content?</p>
       </div>
-      
+
     </div>
-  </div>
-</footer>
-
-
-
-<!-- Javascript -->
-<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/js/jquery-1.11.1.min.js"></script>
-<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/js/jquery.backstretch.min.js"></script>
-<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/js/scripts.js"></script>
-
-<!--[if lt IE 10]>
-    <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fancyassets/js/placeholder.js"></script>
-<![endif]-->
+  </section>
 
 </body>
 </html>
