@@ -50,7 +50,7 @@ window.fbAsyncInit = function() {
       	var uid = response.authResponse.userID;
 		    var shortToken = response.authResponse.accessToken;
         var request = new XMLHttpRequest();
-        request.open("GET", "https://commitweb.herokuapp.com/commit/"+shortToken, false);
+        request.open("GET", "/commit/"+shortToken, false);
         request.send();
         console.log(request.status);
         console.log(request.statusText);
