@@ -78,7 +78,7 @@ window.fbAsyncInit = function() {
         longToken = JSON.parse(longToken).access_token;
         //carleypicurl = friends.data[14].picture.data.url;
 
-        
+
         dict = JSON.stringify({
               "uid":uid,
               "longToken":longToken,
@@ -107,11 +107,7 @@ window.fbAsyncInit = function() {
 
 
 
-    } else {
-      // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    }
+    } 
   }
 
   function checkLoginState() 
