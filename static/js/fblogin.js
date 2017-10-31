@@ -43,7 +43,7 @@ window.fbAsyncInit = function() {
 
 
       // REDIRECT
-      window.location = "https://commitweb.herokuapp.com/fancycommitlanding";
+      window.location = "../../fancycommitlanding";
 
     } else {
       // The person is not logged into your app or we are unable to tell.
