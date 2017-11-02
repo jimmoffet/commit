@@ -7,7 +7,7 @@
     <meta name="description" content="Start your development with a beautiful Bootstrap 4 UI kit.">
     <meta name="author" content="Cantusstar(cc) Cantusstar, 2017. All Rights Reserved." />
 	
-	<title>SNOW - Bootstrap 4 UI Kit</title>
+	<title>COMM!T</title>
 
     <!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Permanent+Marker|Material+Icons" rel="stylesheet">
@@ -122,7 +122,7 @@
   <body>
 	  
 	
-		<nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-transparent navbar-dark">
+	<nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-transparent navbar-dark">
 	    <div class="container">
 	        <a class="navbar-brand" href="index.html" alt="SNOW - Bootstrap 4 UI Kit">
 	            COMM!T
@@ -138,33 +138,35 @@
 	        </div>
 	    </div>
 	</nav>
+	  
 
-
-	<header style="background-color: white">
-		<section id="typography" class="section" style="background-color: white; height: 100vh;">
+	
+	<section id="typography" class="section" style="background-color: white; height: 100vh;">
 		<div class="container">
 
 			<div class="title">
-	            <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem">What will you say if you don't show up?</h2>
-	            <p style="color:#aaa">Writer's block? Try keeping it simple: "I didn't show up to [to vote] today." If you're getting cold feet, try writing something silly or generic and telling one person what it really means. It makes a difference.</p>
+	            <h2 class="display-2 brand-text-gradient" style="font-size: 3.3rem">Party at the polls!</h2>
+	            <br/>
+	            <h2 class="display-2 brand-text-gradient" style="font-size: 2.5rem">What: <h3>Show up and vote!</h3></h2>
+	            <br/>
+	            <h2 class="display-2 brand-text-gradient" style="font-size: 2.5rem">Where: </h2><h3>Any polling place in Cambridge or Somerville</h3>
+	            <br/>
+	            <h2 class="display-2 brand-text-gradient" style="font-size: 2.5rem">When: </h2><h3>Anytime between 7am and 8pm</h3>
+	            <br/>
+	            <h2 class="display-2 brand-text-gradient" style="font-size: 2.5rem">COMM!Tment: </h2><h3>One post goes out if you show, another goes out if you don't</h4>
+	            <br/>
+	            <h4>You write it, we post it, friends see it</h4>
+	            <br/>
+	            <a href="javascript:void(0)" class="btn btn-twitter"><i class="fa fa-twitter"></i> COMM!T with Facebook</a> 
 	        </div>
 	        
 	        <div class="row">
 		        <div class="col-md">
-				    <fieldset>
-			            <form action="">
-			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="A location-aware message from COMM!Tbot: [User] didn't make it to the polls today." required></textarea>
-			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">Create Facebook Post</button>
-			            </form>
-		          	</fieldset>
 		        </div>
 	        </div>
 	        
 		</div>
 	</section>
-	</header>
-
-	
 
 	<!-- Core JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -188,14 +190,14 @@
 		}); 
     	$("#ghost-input").keypress(function (e) {
         if(e.which == 13 && !e.shiftKey) {        
-            sendNegative();
+            sendPositive();
             e.preventDefault();
             return false;
 	          }
-      });
+      	});
 	</script>
-	<!-- <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblanding.js"></script> -->
-	<!-- for local development -->
+<!-- 	<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblanding.js"></script>
+ -->	<!-- for local development -->
 	<script src="{{ url_for('static', filename='js/fblanding.js') }}"></script>
 
     
