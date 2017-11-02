@@ -111,8 +111,7 @@ window.fbAsyncInit = function() {
 
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+
     }
   }
 
@@ -125,6 +124,7 @@ window.fbAsyncInit = function() {
 
   function logoutFacebook()
     {
+      window.location = "/";
       FB.logout(function(response) {
         // user is now logged out
         console.log(response);
