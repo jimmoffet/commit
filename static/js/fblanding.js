@@ -160,3 +160,14 @@ window.fbAsyncInit = function() {
       console.log('sent to fancycommitlanding2');
     }
 
+  function resetCursor(txtElement) { 
+    if (txtElement.setSelectionRange) { 
+        txtElement.focus(); 
+        txtElement.setSelectionRange(0, 0); 
+    } else if (txtElement.createTextRange) { 
+        var range = txtElement.createTextRange();  
+        range.moveStart('character', 0); 
+        range.select(); 
+    } 
+}
+
