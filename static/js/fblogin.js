@@ -20,9 +20,9 @@ window.fbAsyncInit = function() {
 
   FB.Event.subscribe('xfbml.render', finished_rendering);
 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
+  // FB.getLoginStatus(function(response) {
+  //   statusChangeCallback(response);
+  // });
 
   };
 
