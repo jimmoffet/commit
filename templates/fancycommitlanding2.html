@@ -90,21 +90,21 @@
 		}
 		*/
 		::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-		  color: #ccc;
+		  color: #999;
 		}
 		::-moz-placeholder { /* Firefox 19+ */
-		  color: #ccc;
+		  color: #555;
 		}
 		:-ms-input-placeholder { /* IE 10+ */
-		  color: #ccc;
+		  color: #555;
 		}
 		:-moz-placeholder { /* Firefox 18- */
-		  color: #ccc;
+		  color: #555;
 		}
 
 		.ghost-button {
 		  background-color: transparent;
-		  border:0px solid #ddd;
+		  border:0px solid #aaa;
 		  font-family: Open Sans,Verdana;
 		  font-size: 25px;
 		  font-weight:900;
@@ -122,7 +122,7 @@
   <body>
 	  
 	
-		<nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-transparent navbar-dark">
+		<nav id="main-nav" class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
 	    <div class="container">
 	        <a class="navbar-brand" href="index.html" alt="SNOW - Bootstrap 4 UI Kit">
 	            COMM!T
@@ -153,8 +153,8 @@
 		        <div class="col-md">
 				    <fieldset>
 			            <form action="">
-			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="A location-aware message from COMM!Tbot: [User] didn't make it to the polls today." required></textarea>
-			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">Create Facebook Post</button>
+			              <textarea rows="5" type="text" class="ghost-input" id="ghost-input" placeholder="COMM!Tbot says: Jim didn't check in at Party at the Polls today." required></textarea>
+			              <button type="button" id="ghost-button" class="ghost-button" onclick="sendNegative()">Create Post</button>
 			            </form>
 		          	</fieldset>
 		        </div>
