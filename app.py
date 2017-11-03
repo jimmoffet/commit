@@ -23,9 +23,9 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import Users
+from models import User
 
-user = Users('jared')
+user = User('jared', datetime.datetime.now(), 'jrjohns@mit.edu', '3280803892', '508508393', '83082982983', '930290903', '3989809808', 'hi', 'oh no', datetime.datetime.now(), '5000')
 db.session.add(user)
 db.session.commit()
 
