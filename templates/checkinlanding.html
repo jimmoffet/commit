@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="bootstrap 4, bootstrap 4 ui kit, bootstrap 4 kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit">
+    <meta name="description" content="Start your development with a beautiful Bootstrap 4 UI kit.">
+    <meta name="author" content="Cantusstar(cc) Cantusstar, 2017. All Rights Reserved." />
+	
+	<title>SNOW - Bootstrap 4 UI Kit</title>
+
+    <!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Permanent+Marker|Material+Icons" rel="stylesheet">
+	
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/snow-ui-kit.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/ico/favicon.png" />
+    
+    <!-- DEMO CSS -->
+	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/demo.css" />
+
+	<style>
+
+	/* Always set the map height explicitly to define the size of the div
+	 * element that contains the map. */
+	#map {
+	  height: 100%;
+	}
+	/* Optional: Makes the sample page fill the window. */
+	html, body {
+	  height: 100%;
+	  margin: 0;
+	  padding: 0;
+	}
+	#floating-panel {
+	  position: absolute;
+	  top: 10px;
+	  left: 25%;
+	  z-index: 5;
+	  background-color: #fff;
+	  padding: 5px;
+	  border: 1px solid #999;
+	  text-align: center;
+	  font-family: 'Roboto','sans-serif';
+	  line-height: 30px;
+	  padding-left: 10px;
+	}
+	#floating-panel {
+	  position: absolute;
+	  top: 5px;
+	  left: 50%;
+	  margin-left: -180px;
+	  width: 350px;
+	  z-index: 5;
+	  background-color: #fff;
+	  padding: 5px;
+	  border: 1px solid #999;
+	}
+	#latlng {
+	  width: 225px;
+	}
+
+	</style>
+	
+  </head>
+  <body>
+
+	<div id="floating-panel">
+		<div id="results"></div>
+		<!-- <input id="latlng" type="text" value="">
+		<input id="submit" type="button" value="Reverse Geocode">
+		<button onclick="geoFindMe()">Show my location</button>
+		<span id="out"></span> -->
+		<div id="output"></div>
+	</div>
+
+	<div id="map"></div>
+	<!-- Replace the value of the key parameter with your own API key. -->
+	
+	<script>
+	var address;
+	var map;
+	var infowindow;
+	var geocoder;
+	var latlng;
+	var poll;
+
+	function initMap() {
+	  map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 8,
+	    center: {lat: 40.731, lng: -73.997}
+	  });
+	  geocoder = new google.maps.Geocoder;
+	  infowindow = new google.maps.InfoWindow;
+
+	  geoFindMe();
+
+	  // document.getElementById('submit').addEventListener('click', function() {
+	  //   geocodeLatLng(geocoder, map, infowindow);
+	  // });
+
+	}
+
+	function geocodeLatLng(geocoder, map, infowindow, input) {
+	  //var input = document.getElementById('latlng').value;
+	  
+	  var latlngStr = input.split(',', 2);
+	  
+	  latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+	  
+	  geocoder.geocode({'location': latlng}, function(results, status) {
+	    if (status === 'OK') {
+	      if (results[0]) {
+	        map.setZoom(11);
+	        var marker = new google.maps.Marker({
+	          position: latlng,
+	          map: map
+	        });
+	        address = results[0].formatted_address;
+	        lookup(address, renderResults);
+	        infowindow.setContent(results[0].formatted_address + '<br/>' + '<a href="http://commitweb.herokuapp.com">' + 'Check in here!' + '</a>');
+	        infowindow.open(map, marker);
+	      } else {
+	        window.alert('No results found');
+	      }
+	    } else {
+	      window.alert('Geocoder failed due to: ' + status);
+	    }
+	  });
+
+	  map.setCenter(new google.maps.LatLng(latlngStr[0], latlngStr[1]));
+	  output.innerHTML = "";
+	  
+	  var element = document.getElementById("floating-panel");
+	  element.innerHTML = "";
+	  element.outerHTML = "";
+	  delete element;
+	}
+
+	function geoFindMe() {
+	  google.maps.event.trigger(map, 'resize');
+
+	  if (!navigator.geolocation){
+	    window.alert('Geolocation is not supported by your browser');
+	    return;
+	  }
+
+	  function success(position) {
+	    var latitude  = position.coords.latitude;
+	    var longitude = position.coords.longitude;
+	    var latlngstring = latitude + ',' + longitude;
+	    geocodeLatLng(geocoder, map, infowindow, latlngstring); 
+	  }
+
+	  function error() {
+	    //output.innerHTML = "Unable to retrieve your location";
+	    window.alert('Unable to retrieve your location');
+	  }
+
+	  output.innerHTML = "<p>Locating…</p>";
+	  navigator.geolocation.getCurrentPosition(success, error);
+  	}
+
+	  //////////////////////////////////////////////////////////////////////////////////////
+	  //////// BEGIN CIVIC API CALL ////////////////////////////////////////////////////////
+	  //////////////////////////////////////////////////////////////////////////////////////
+
+	  /**
+       * Build and execute request to look up voter info for provided address.
+       * @param {string} address Address for which to fetch voter info.
+       * @param {function(Object)} callback Function which takes the
+       *     response object as a parameter.
+       */
+       function lookup(address, callback) {
+       /**
+         * Election ID for which to fetch voter info.
+         * @type {number}
+         */
+        var electionId = 2000;
+ 
+        /**
+         * Request object for given parameters.
+         * @type {gapi.client.HttpRequest}
+         */
+        var req = gapi.client.request({
+            'path' : '/civicinfo/v2/voterinfo',
+            //'params' : {'electionId' : electionId, 'address' : address}
+            'params' : {'address' : address}
+        });
+       req.execute(callback);
+      }
+
+      /**
+       * Render results in the DOM.
+       * @param {Object} response Response object returned by the API.
+       * @param {Object} rawResponse Raw response from the API.
+       */
+      function renderResults(response, rawResponse) {
+        var el = document.getElementById('results');
+        if (!response || response.error) {
+          //el.appendChild(document.createTextNode('Error while trying to fetch polling place'));
+          window.alert('Error while trying to fetch polling place');
+          return;
+        }
+        var normalizedAddress = response.normalizedInput.line1 + ' ' +
+            response.normalizedInput.city + ', ' +
+            response.normalizedInput.state + ' ' +
+            response.normalizedInput.zip;
+        if (response.pollingLocations.length > 0) {
+          var pollingLocation = response.pollingLocations[0].address;
+          var pollingAddress = pollingLocation.locationName + ', ' +
+              pollingLocation.line1 + ' ' +
+              pollingLocation.city + ', ' +
+              pollingLocation.state + ' ' +
+              pollingLocation.zip;
+          var pollingAddressOnly = pollingLocation.line1 + ' ' +
+              pollingLocation.city + ', ' +
+              pollingLocation.state + ' ' +
+              pollingLocation.zip;
+          //var normEl = document.createElement('strong');
+          //normEl.appendChild(document.createTextNode('Nearest Polling Place: '));
+          //el.appendChild(normEl);
+          //el.appendChild(document.createTextNode(pollingAddress));
+          poll = pollingAddressOnly;
+        } else {
+          //el.appendChild(document.createTextNode('Could not find polling place for ' + normalizedAddress));
+          window.alert('Could not find polling place for ' + normalizedAddress);
+        }
+
+        var marker2 = new google.maps.Marker({
+          position: latlng,
+          map: map
+        });
+        infowindow.setContent('Nearest Polling Place: ' + poll + '<br/>' + '<a href="http://commitweb.herokuapp.com/fancycommitFINAL">' + 'Check in here!' + '</a>');
+        infowindow.open(map, marker2);
+
+      }
+
+      /**
+       * Initialize the API client and make a request.
+       */
+      function load() {
+        gapi.client.setApiKey('AIzaSyAdvT0QnZpY1_IE4K_V8y56zLQZLLkXsD4');
+        //lookup('1263 Pacific Ave. Kansas City KS', renderResults);
+        //lookup(address, renderResults);
+      }
+    </script>
+	 
+	  
+	}
+
+	</script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdvT0QnZpY1_IE4K_V8y56zLQZLLkXsD4&callback=initMap">
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=load"></script>
+
+	
+
+	<!-- Core JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/popper.min.js"></script>
+    <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/core/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/parallax.js"></script>
+	<script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/plugins/bootstrap-datepicker.min.js"></script>
+	<!-- Snow UI JS -->
+    <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/js/snow-ui-kit.js"></script>
+
+	<!-- <script src="https://s3.us-east-2.amazonaws.com/commitwebapp/fblanding.js"></script> -->
+	<!-- for local development -->
+	<!-- <script src="{{ url_for('static', filename='js/fblanding.js') }}"></script> -->
+
+    
+  </body>
+</html>
