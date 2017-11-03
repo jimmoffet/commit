@@ -10,10 +10,24 @@ import re
 from string import punctuation
 import requests
 import datetime
+from flask_sqlalchemy import SQLAlchemy
+import os
+
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+# database config
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+from models import Users
+
+user = Users('jared')
+db.session.add(user)
+db.session.commit()
 
 @app.route("/")
 def hello():
@@ -75,7 +89,7 @@ def apiTest():
 
 
         data = {'uid': uid, 'longToken': longToken}
-        
+
         return stuff
     else:
 
