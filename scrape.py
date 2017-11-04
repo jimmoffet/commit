@@ -29,6 +29,43 @@ def extendToken(short_token):
 
     return resp  
 
+def getUserFromRef(refcode):
+    #requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+    name = getRow(refcode);
+    #name = sheetList[row][1]
+    return name
+
+def getRow(uid):
+
+    rlen = len(sheetList)
+    clen = len(sheetList[0])
+    peeps = {}
+    cnt = 0
+    namerow = 0
+    new = True
+
+    for row in range(rlen):
+        if row == 0:
+            continue
+        cnt += 1
+        zerocell = sheetList[row][0]
+        print "uid zerocell",uid,zerocell
+        if str(uid) == str(zerocell):
+            print "uid zerocell",uid,zerocell
+            new = False
+            print "new is ",new
+            break
+        
+    if(new):
+        row = cnt+2
+        #sheet.update_cell(row, 2, "unknown user") # pos message
+        name = "Team COMM!T"
+    else:
+        row = cnt
+        name = sheetList[row][1]
+
+    return name
+
 def writeMessageToDB(message):
     # use creds to create a client to interact with the Google Drive API
 
@@ -81,39 +118,16 @@ def writeUserToDB(message):
 
     return 'success'
 
-def getRow(uid):
 
-    rlen = len(sheetList)
-    clen = len(sheetList[0])
-    peeps = {}
 
-    for row in range(rlen):
-        if row == 0:
-            continue
-        tmp = []
-        for i in range(1,4):
-            tmp.append(sheetList[row][i])
-        peeps[sheetList[row][0]] = tmp
+def writeAll(json_dict):
+    uid = json_dict['uid']
+    longToken = json_dict['longToken']
+    friends = ''
+    timeStamp = datetime.datetime.now()
+    message1 = ""
+    message2 = ""
 
-    cnt = 0
-    new = True
-    for key, val in peeps.items():
-        cnt += 1
-        if key == uid:
-            new = False
-            break 
-    
-    #cnt+1 is current user, cnt+2 will write new line
-    row = 0
-    if(new):
-        row = cnt+2
-        sheet.update_cell(row, 1, uid) # pos message
-    else:
-        row = cnt+1
-
-    return row
-
-def writeAll(uid,longToken,friends,timeStamp,message1,message2):
     row = getRow(uid)
     sheet.update_cell(row, 2, timeStamp)
     sheet.update_cell(row, 3, longToken)
