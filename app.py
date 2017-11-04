@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
 # from twilio.twiml.messaging_response import MessagingResponse
-from scrape import ping, people, pLayer, extendToken, writeMessageToDB, writeUserToDB, writeAll
+from scrape import ping, people, pLayer, extendToken, writeMessageToDB, writeUserToDB, writeAll, getUserFromRef
 import random
 import threading
 import datetime
@@ -33,7 +33,7 @@ db.session.commit()
 def hello():
 	out = ''
 	try:
-		page_name = 'fancycommitlogin'
+		page_name = 'login'
 		return render_template('%s.html' % page_name)
 	except:
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
@@ -51,6 +51,16 @@ def getLongToken(shorttoken):
     #print(longtoken)
 
     return jsonify(resp)
+
+@app.route("/r/<string:refcode>", methods=["POST", "GET"])
+def getUserFromRefcode(refcode):
+
+    if refcode:
+        name = getUserFromRef(refcode)
+    else:
+        name = "Team COMM!T"
+    
+    return render_template('commit.html', referring_user=name, my_list=[0,1,2,3,4,5])
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
 def writePosMessage(message):
@@ -85,12 +95,13 @@ def apiTest():
         timeStamp = datetime.datetime.now()
         message1 = ""
         message2 = ""
-        stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
-
+        #stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
+        success = writeAll(json_dict)
 
         data = {'uid': uid, 'longToken': longToken}
+        
+        return success
 
-        return stuff
     else:
 
         return "Something sent a non-post request to apiTest"
