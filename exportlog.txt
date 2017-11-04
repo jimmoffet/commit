@@ -1,5 +1,7 @@
-export DATABASE_URL="postgresql://localhost/commit"
+export DATABASE_URL="postgresql://postgres:carleybaer@localhost:5432/commit"
 export APP_SETTINGS=config.DevelopmentConfig
 
 querying db docs: http://flask-sqlalchemy.pocoo.org/2.3/queries/
 postgresql+flask setup: https://realpython.com/blog/python/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+
+postico
