@@ -27,44 +27,59 @@ from models import User
 
 # user = User('jared', datetime.datetime.now(), 'jrjohns@mit.edu', '3280803892', '508508393', '83082982983', '930290903', '3989809808', 'hi', 'oh no', datetime.datetime.now(), '5000')
 
-# user = User('jared')
-# user.email = 'jrjohns@mit.edu'
-# db.session.add(user)
-# db.session.commit()
 
 
 @app.route("/")
 def hello():
 	out = ''
 	try:
-		page_name = 'login'
-		return render_template('%s.html' % page_name)
+		name = 'TEAM COMM!T'
+		return render_template('login.html', referring_user=name)
 	except:
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
 		return out
+
+@app.route("/initialize", methods=["POST", "GET"])
+def initdb():
+	user = User('TEAM COMMIT')
+	user.email = 'jimmoffet@gmail.com'
+	db.session.add(user)
+	db.session.commit()
+	return 'success'
 
 @app.route('/<string:page_name>/')
 def render_static(page_name):
     return render_template('%s.html' % page_name)
 
-@app.route("/commit/<string:shorttoken>", methods=["POST", "GET"])
-def getLongToken(shorttoken):
-
-    resp = extendToken(shorttoken)
-    #longtoken = resp['access_token']
-    #print(longtoken)
-
-    return jsonify(resp)
-
 @app.route("/r/<string:refcode>", methods=["POST", "GET"])
-def getUserFromRefcode(refcode):
+def renderLogin(refcode):
 
     if refcode:
-        name = getUserFromRef(refcode)
+        refcode = refcode
     else:
-        name = "Team COMM!T"
+        refcode = 0
 
-    return render_template('commit.html', referring_user=name, my_list=[0,1,2,3,4,5])
+    return render_template('login.html', refcode=refcode)
+
+@app.route("/commit/<string:refcode>", methods=["POST", "GET"])
+def renderCommit(refcode):
+
+    if refcode:
+        name = User.query.get(refcode).name
+    else:
+        name = "TEAM COMM!T"
+
+    return render_template('commit.html', referring_user=name, refcode=refcode)
+
+@app.route("/share/<string:refcode>", methods=["POST", "GET"])
+def renderShare(refcode):
+
+    if refcode:
+        name = User.query.get(refcode).name
+    else:
+        name = "TEAM COMM!T"
+
+    return render_template('share.html', referring_user=name, refcode=refcode)
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
 def writePosMessage(message):
@@ -117,15 +132,15 @@ def createUser():
         json_dict = request.get_json(force=True)
 
         name = json_dict['name']
-        user = new User(name)
+        user = User(name)
 
         user.email = json_dict['email']
-        user.phone = json_dict['sms']
-        user.fbId = json_dict['fbid']
-        user.twId = json_dict['twid']
-        user.fbToken = json_dict['fbtoken']
-        user.twToken = json_dict['twtoken']
-        user.referringUser = json_dict['ref_user']
+        user.phone = json_dict['phone']
+        user.fbId = json_dict['fbId']
+        user.twId = json_dict['twId']
+        user.fbToken = json_dict['fbToken']
+        user.twToken = json_dict['twToken']
+        user.referringUser = json_dict['referringUser']
 
         # ref_name = User.query.get(ref_user)
 
@@ -138,7 +153,7 @@ def createUser():
 
         db.session.add(user)
         db.session.commit()
-        
+
 
 
         return "Success message"
