@@ -10,10 +10,24 @@ import re
 from string import punctuation
 import requests
 import datetime
+from flask_sqlalchemy import SQLAlchemy
+import os
+
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+# database config
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+from models import User
+
+user = User('jared', datetime.datetime.now(), 'jrjohns@mit.edu', '3280803892', '508508393', '83082982983', '930290903', '3989809808', 'hi', 'oh no', datetime.datetime.now(), '5000')
+db.session.add(user)
+db.session.commit()
 
 @app.route("/")
 def hello():
@@ -84,10 +98,10 @@ def apiTest():
         #stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
         success = writeAll(json_dict)
 
-
         data = {'uid': uid, 'longToken': longToken}
         
         return success
+
     else:
 
         return "Something sent a non-post request to apiTest"
