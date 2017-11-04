@@ -33,7 +33,7 @@
                 font-size:2.8rem;
                 margin-top:60px;
             }
-            
+
         }
 
         .footer.copyright{
@@ -127,19 +127,19 @@
                         <div class="header text-center" >
                             <h1 class="title title-up">COMM!TTED</h1>
                             <h2>Now Spread Some Civic Love!</h2>
-                            <h2><small>Do for others what<br />Referral User did for you!</small></h2>
-                            
+                            <h2><small>Do for others what<br />{{referring_user}} did for you!</small></h2>
+
                         </div>
                         <div class="content">
                             <div class="textarea-container">
-                                
+
                                 <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="1" onclick="this.focus();this.select()" readonly="readonly">https://commit.vote/r/1234</textarea>
                                 <img src="../static/img/copychain.png" id="linkcopy"/>
                             </div>
                             <br />
                             <br />
                             <div class="social-line" style="margin-bottom:30px">
-                                
+
                                 <a href="#pablo" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
                                     <i class="fa fa-twitter"></i>
                                 </a>
@@ -203,14 +203,14 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, Designed and Coded by
-                    <a href="https://www.google.com" target="_blank">Jared</a> and 
+                    <a href="https://www.google.com" target="_blank">Jared</a> and
                     <a href="https://www.jamesdavidmoffet.com" target="_blank">Jim</a>.
                 </div>
             </div>
         </footer>
     </div>
     <script>
-        
+
         $("#linkcopy").click(function(){
             $("#reflink").select();
             document.execCommand('copy');
