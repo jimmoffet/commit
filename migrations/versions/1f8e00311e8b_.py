@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: 50eb215c90d9
+Revision ID: 1f8e00311e8b
 Revises: None
-Create Date: 2017-11-04 15:32:43.247586
+Create Date: 2017-11-04 17:51:04.185972
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '50eb215c90d9'
+revision = '1f8e00311e8b'
 down_revision = None
 
 from alembic import op
@@ -30,8 +30,8 @@ def upgrade():
     sa.Column('negativeMessage', sa.String(), nullable=True),
     sa.Column('triggerDate', sa.DateTime(), nullable=True),
     sa.Column('distFromPoll', sa.String(), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.Column('referringUser', sa.String(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
