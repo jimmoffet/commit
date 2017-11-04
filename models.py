@@ -18,20 +18,10 @@ class User(db.Model):
     negativeMessage = db.Column(db.String(), nullable=True)
     triggerDate = db.Column(db.DateTime(), nullable=True)
     distFromPoll = db.Column(db.String(), nullable=True)
+    referringUser = db.Column(db.String())
 
-    def __init__(self, name, date, email, phone, twId, fbId, fbToken, twToken, positiveMessage, negativeMessage, triggerDate, distFromPoll):
+    def __init__(self, name):
         self.name = name
-        self.date = date
-        self.email = email
-        self.phone = phone
-        self.twId = twId
-        self.fbId = fbId
-        self.fbToken = fbToken
-        self.twToken = twToken
-        self.positiveMessage = positiveMessage
-        self.negativeMessage = negativeMessage
-        self.triggerDate = triggerDate
-        self.distFromPoll = distFromPoll
 
     def __repr__(self):
         return '<id {}>'.format(self.id)

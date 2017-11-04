@@ -198,7 +198,10 @@
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+          // document.getElementById("email").className += " has-danger"
+          if (event.keyCode === 13 && event.target.value.match(mailformat)) {
+            debugger
             console.log('triggered on enter key');
             document.getElementById("emailnameinput").setAttribute("style", "display: flex;");
             document.querySelector("[name='emailname']").focus();
