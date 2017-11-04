@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/now/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../static/now/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Profile Page - Now Ui Kit by Creative Tim</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../static/now/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../static/now/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../static/now/assets/css/demo.css" rel="stylesheet" />
+</head>
+
+<style>
+    html, body {height: 100%;}
+
+    a.btn {
+      box-sizing: border-box;
+      box-shadow: none;
+      letter-spacing: 5px;
+      font-size: 3.2rem;
+      font-weight: 700;
+      max-width: 100%;
+      width:400px;
+      border: solid 4px transparent;
+      border-image: -moz-linear-gradient(15deg, rgba(4, 24, 244, 0.2), rgba(224, 23, 3, 0.6));
+      border-image: -webkit-linear-gradient(15deg, rgba(4, 24, 244, 0.2), rgba(224, 23, 3, 0.6));
+      border-image: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9));
+      border-image-slice: 1;
+      -webkit-text-fill-color: transparent;
+      background: -moz-linear-gradient(45deg,  #11e8bb, #8200c9); /* FF3.6-15 */
+      background: -webkit-linear-gradient(45deg,  #11e8bb, #8200c9); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9)); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      -webkit-background-clip: text;
+    }
+
+    .btn-modal {
+
+      -webkit-background-clip: none;
+    }
+
+    @media screen and (max-width: 576px) {
+            .footer nav {
+                width:100%;
+                text-align: center;
+            }
+            .footer.copyright {
+                width:100%;
+                text-align: center;
+            }
+        }
+
+        .footer.copyright{
+             text-align: right;
+        }
+
+        .page-header[filter-color="orange"] {
+            background: rgba(44, 44, 44, 0.2);
+            background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+            background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+            background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+            background: linear-gradient(15deg, rgba(4, 24, 244, 0.2), rgba(224, 23, 3, 0.6));
+        }
+
+        #navigation {
+            background-position-x: 30%;
+        }
+
+
+</style>
+
+<body class="profile-page sidebar-collapse">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="#" rel="tooltip" title="Designed and coded by Jared and Jim" data-placement="bottom" target="_blank">
+                    COMM!T
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <!-- <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../static/now/assets/img/blurred-image-1.jpg"> -->
+            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../static/img/voting_bg_blur.jpg" style="background-position: 30%;">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Back to COMM!T</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:jmoffet@mit.edu">Have an issue?</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <div class="wrapper"  style="height: 100%;">
+        <div class="page-header page-header-small" filter-color="orange">
+            <!-- <div class="page-header-image" data-parallax="true" style="background-image: url('../static/now/assets/img/bg5.jpg');"> -->
+                <div class="page-header-image" data-parallax="true" style="background-image: url(../static/img/voting_bg.jpg);">
+            </div>
+            <div class="container">
+                <div class="content-center">
+                    <!-- <div class="photo-container">
+                        <img src="../static/now/assets/img/ryan.jpg" alt="">
+                    </div>
+                    <h4 class="title">Referring User</h4>
+                    <p class="category" style="color:rgba(255, 255, 255, 0.99)">Has invited you to COMM!T</p> -->
+                    <!-- <h4 class="category" style="color:rgba(255, 255, 255, 0.99)">COMM!T works because y</h4> -->
+                    <h4 class="category" style="color:white">COMM!T works by letting</h4>
+                    <h2 class="title" style="margin: 12px 0;">{{referring_user}}</h2>
+                    <h4 class="category" style="color:white;margin-top:0;">know if you checked in<br/>on election day</h4>
+                    <p class="category" data-toggle="modal" data-target="#myModal"  style="color:rgba(255, 255, 255, 0.5)">customize messages</p>
+                    <div class="content" style="display: flex;justify-content:space-evenly;max-width: 320px;">
+                        <div class="social-description" style="width:65px;margin: 15px 0 0;">
+                            <h2 id="hours"></h2>
+                            <p>Hours</p>
+                        </div>
+                        <div class="social-description" style="width:65px;margin: 15px 0 0;">
+                            <h2 id="minutes"></h2>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="social-description" style="width:65px;margin: 15px 0 0;">
+                            <h2 id="seconds"></h2>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" style="padding:20px 0;min-height: calc(100% - 650px);">
+            <div class="container">
+                <!-- <div class="button-container">
+                    <a href="#button" class="btn btn-primary btn-round btn-lg">A Button?</a>
+                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div> -->
+                <h3 class="title">Don't Worry, <br />We'll Remind You :)</h3>
+                <p class="category" data-toggle="modal" data-target="#myModal2" style="color:#789">customize reminders</p>
+                <center><a class="btn btn-commit" href="/share" role="button">COMM!T</a></center>
+                <!-- <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</h5> -->
+                
+            </div>
+        </div>
+    
+        <footer class="footer">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="http://viral.media.mit.edu/">
+                                MIT Media Lab
+                            </a>
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, Designed and Coded by
+                    <a href="https://www.google.com" target="_blank">Jared</a> and 
+                    <a href="https://www.jamesdavidmoffet.com" target="_blank">Jim</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Sart Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center" style="padding: 60px 24px 0 24px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up" style="text-align:left;width:100%">What to say when you show up?</h4>
+                    </div>
+                    <div class="modal-body" style="padding-top:0">
+                        <div class="textarea-container">
+                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, [USERNAME] just showed up at the polls. Score one more for democracy!</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-modal">Nice Button</button> -->
+                        <div style="float:left;line-height:30px;"></div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="float:right">SAVE</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center" style="padding: 60px 24px 0 24px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up"  style="text-align:left;width:100%">What to say when you don't?</h4>
+                    </div>
+                    <div class="modal-body" style="padding-top:0">
+                        <div class="textarea-container">
+                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, Oh No! [USERNAME] didn't show up at the polls today.</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-modal">Nice Button</button> -->
+                        <div style="float:left;line-height:30px;"></div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="float:right">SAVE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+        <!-- Sart Modal -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center" style="padding: 60px 24px 0 24px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up" style="text-align:left;width:100%">BUILD OUT REMINDER DIALOG</h4>
+                    </div>
+                    <div class="modal-body" style="padding-top:0">
+                        <div class="textarea-container">
+                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >TBD...</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-modal">Nice Button</button> -->
+                        <div style="float:left;line-height:30px;"></div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="float:right">SAVE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Nov 7, 2017 7:00:00").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+            
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            hours = hours + (days*24);
+            
+            // Output the result in an element with id="demo"
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+            
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("hours").innerHTML = "0";
+                document.getElementById("minutes").innerHTML = "0";
+                document.getElementById("seconds").innerHTML = "0";
+            }
+        }, 1000);
+
+        // $('#myModal').modal('hide');
+
+    </script>
+</body>
+<!--   Core JS Files   -->
+<script src="../static/now/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="../static/now/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../static/now/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="../static/now/assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="../static/now/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="../static/now/assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+<script src="../static/now/assets/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+
+</html>
