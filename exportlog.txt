@@ -8,3 +8,9 @@ $ export FLASK_APP=app.py
 $ export DATABASE_URL="postgresql://localhost/commit"
 $ export APP_SETTINGS=config.DevelopmentConfig
 $ python -m flask run
+
+database commands
+$ python manage.py db init # initialize db
+$ python manage.py db migrate # run migrations
+$ python manage.py db upgrade # add tables
+$ python manage.py db downgrade # drop tables
