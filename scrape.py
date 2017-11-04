@@ -49,11 +49,11 @@ def getRow(uid):
             continue
         cnt += 1
         zerocell = sheetList[row][0]
-        print "uid zerocell",uid,zerocell
+        #print "uid zerocell",uid,zerocell
         if str(uid) == str(zerocell):
-            print "uid zerocell",uid,zerocell
+            #print "uid zerocell",uid,zerocell
             new = False
-            print "new is ",new
+            #print "new is ",new
             break
         
     if(new):
