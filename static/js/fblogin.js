@@ -26,6 +26,8 @@ window.fbAsyncInit = function() {
 
   };
 
+
+
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -35,9 +37,11 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+
+
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback2');
+    console.log('running statusChangeCallback');
     console.log(response);
 
     if (response.status === 'connected') {
@@ -47,12 +51,17 @@ window.fbAsyncInit = function() {
 
 
       // REDIRECT
-      window.location = "../../fancycommitevent";
+      //window.location = "../../fancycommitevent";
+      
+
+
+      return [name,longToken,email]
 
     } else {
       // The person is not logged into your app or we are unable to tell.
       //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
-      window.location = "../../fancycommitevent";
+      //window.location = "../../fancycommitevent";
+      console.log('not connected!');
     }
   }
 
@@ -77,4 +86,62 @@ window.fbAsyncInit = function() {
     });
 
   }
+
+
+
+function fbLogin(){
+    var name = '';
+    var email = '';
+    var phone = '';
+    var fbId = '';
+    var twId = '';
+    var fbToken = '';
+    var twToken = '';
+    var referringUser = '';
+
+    FB.login(function(response) {
+          if (response.authResponse) {
+
+             console.log('Welcome!  Fetching your information.... ');
+
+             name = response.authResponse;
+             email = response.authResponse;
+             fbid = response.authResponse;
+             fbToken = response.authResponse;
+
+             FB.api('/me', function(response) {
+               console.log('Good to see you, ' + response.name + '.');
+             });
+
+             $.ajax({
+                url: '/api',
+                data: JSON.stringify({
+                  "name":name,
+                  "email":email,
+                  "phone":phone,
+                  "fbId":fbId,
+                  "twId":twId,
+                  "fbToken":fbToken,
+                  "twToken":twToken,
+                  "referringUser":referringUser
+                }),
+                dataType: 'json',
+                contentType: "application/json",
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+
+          } else {
+           console.log('User cancelled login or did not fully authorize.');
+          }
+    }, {scope: 'public_profile,email'});
+
+
+
+}
 
