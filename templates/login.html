@@ -67,7 +67,10 @@
     </style>
   </head>
 
-  <body class="login-page sidebar-collapse">
+
+<body class="login-page sidebar-collapse">
+    <script src="{{ url_for('static', filename='js/fblogin.js') }}"></script>
+
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
@@ -112,7 +115,9 @@
                   <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
                                     <i class="fa fa-twitter"></i>
                                 </a>
-                  <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-google btn-icon btn-lg btn-round">
+
+                                <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-google btn-icon btn-lg btn-round" onclick="fbLogin()">
+
                                     <i class="fa fa-google-plus"></i>
                                 </a>
                   <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-facebook btn-icon btn-lg btn-round">
@@ -195,43 +200,87 @@
       </footer>
     </div>
     <script>
-      document.getElementById("email")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-          // document.getElementById("email").className += " has-danger"
-          if (event.keyCode === 13 && event.target.value.match(mailformat)) {
-            debugger
-            console.log('triggered on enter key');
-            document.getElementById("emailnameinput").setAttribute("style", "display: flex;");
-            document.querySelector("[name='emailname']").focus();
-          }
+
+
+        var name = '';
+        var email = '';
+        var phone = '';
+        var fbId = '';
+        var twId = '';
+        var fbToken = '';
+        var twToken = '';
+        var referringUser = '';
+
+        document.getElementById("email")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                console.log('triggered on enter key');
+                // this.value??
+                email = document.getElementById("email").value;
+                document.getElementById("emailnameinput").setAttribute("style", "display: flex;");
+                document.querySelector("[name='emailname']").focus();
+            }
         });
-      document.getElementById("sms")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          if (event.keyCode === 13) {
-            console.log('triggered on enter key');
-            document.getElementById("smsnameinput").setAttribute("style", "display: flex;");
-            document.querySelector("[name='smsname']").focus();
-          }
+        document.getElementById("sms")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                phone = document.getElementById("sms").value;
+                console.log('triggered on enter key');
+                document.getElementById("smsnameinput").setAttribute("style", "display: flex;");
+                document.querySelector("[name='smsname']").focus();
+            }
         });
-      document.getElementById("emailname")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          if (event.keyCode === 13) {
-            console.log('triggered on enter key');
-            window.location = "/commit";
-          }
+        document.getElementById("emailname")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                name = document.getElementById("emailname").value;
+                
+                postUser();
+                console.log('triggered on enter key');
+                window.location = "/commit";
+            }
         });
-      document.getElementById("smsname")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          if (event.keyCode === 13) {
-            console.log('triggered on enter key');
-            window.location = "/commit";
-          }
+        document.getElementById("smsname")
+            .addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                name = document.getElementById("smsname").value;
+                console.log('triggered on enter key');
+                postUser();
+                window.location = "/commit";
+            }
         });
+
+        function postUser(){   
+            $.ajax({
+                url: '/api',
+                data: JSON.stringify({
+                  "name":name,
+                  "email":email,
+                  "phone":phone,
+                  "fbId":fbId,
+                  "twId":twId,
+                  "fbToken":fbToken,
+                  "twToken":twToken,
+                  "referringUser":referringUser
+                }),
+                dataType: 'json',
+                contentType: "application/json",
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+
+
     </script>
   </body>
   <!--   Core JS Files   -->

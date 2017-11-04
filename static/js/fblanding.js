@@ -78,6 +78,7 @@ window.fbAsyncInit = function() {
             }
         );
 
+        //longToken = request.response;
         longToken = longToken.replace(/(\r\n|\n|\r)/gm,"");
         longToken = JSON.parse(longToken).access_token;
         //carleypicurl = friends.data[14].picture.data.url;

@@ -110,5 +110,38 @@ def apiTest():
 
         return "Something sent a non-post request to apiTest"
 
+@app.route('/createuser', methods=["POST"])
+def createUser():
+
+    if request.method == "POST":
+        json_dict = request.get_json(force=True)
+
+        name = json_dict['name']
+        user = new User(name)
+
+        user.email = json_dict['email']
+        user.phone = json_dict['sms']
+        user.fbId = json_dict['fbid']
+        user.twId = json_dict['twid']
+        user.fbToken = json_dict['fbtoken']
+        user.twToken = json_dict['twtoken']
+        user.referringUser = json_dict['ref_user']
+
+        # ref_name = User.query.get(ref_user)
+
+        user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
+        user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
+
+        user.date = datetime.datetime.now()
+
+        user.triggerDate = datetime.datetime(2018, 11, 7, 07, 00)
+
+        db.session.add(user)
+        db.session.commit()
+        
+
+
+        return "Success message"
+
 if __name__ == "__main__":
 	app.run(debug=False)
