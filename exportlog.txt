@@ -1,7 +1,17 @@
-export DATABASE_URL="postgresql://postgres:carleybaer@localhost:5432/commit"
-export APP_SETTINGS=config.DevelopmentConfig
 
 querying db docs: http://flask-sqlalchemy.pocoo.org/2.3/queries/
 postgresql+flask setup: https://realpython.com/blog/python/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
 
-postico
+
+commands to start flask
+$ . venv/bin/activate
+$ export FLASK_APP=app.py
+$ export DATABASE_URL="postgresql://localhost/commit"
+$ export APP_SETTINGS=config.DevelopmentConfig
+$ python -m flask run
+
+database commands
+$ python manage.py db init # initialize db
+$ python manage.py db migrate # run migrations
+$ python manage.py db upgrade # add tables
+$ python manage.py db downgrade # drop tables
