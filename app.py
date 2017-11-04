@@ -149,7 +149,7 @@ def createUser():
 
         user.date = datetime.datetime.now()
 
-        user.triggerDate = datetime.datetime(2018, 11, 7, 07, 00)
+        user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
 
         db.session.add(user)
         db.session.commit()
