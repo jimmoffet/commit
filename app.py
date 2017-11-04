@@ -26,8 +26,12 @@ db = SQLAlchemy(app)
 from models import User
 
 # user = User('jared', datetime.datetime.now(), 'jrjohns@mit.edu', '3280803892', '508508393', '83082982983', '930290903', '3989809808', 'hi', 'oh no', datetime.datetime.now(), '5000')
+
+# user = User('jared')
+# user.email = 'jrjohns@mit.edu'
 # db.session.add(user)
 # db.session.commit()
+
 
 @app.route("/")
 def hello():
@@ -59,7 +63,7 @@ def getUserFromRefcode(refcode):
         name = getUserFromRef(refcode)
     else:
         name = "Team COMM!T"
-    
+
     return render_template('commit.html', referring_user=name, my_list=[0,1,2,3,4,5])
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
@@ -99,7 +103,7 @@ def apiTest():
         success = writeAll(json_dict)
 
         data = {'uid': uid, 'longToken': longToken}
-        
+
         return success
 
     else:
