@@ -173,7 +173,7 @@ def createUser():
 		db.session.add(user)
 		db.session.commit()
 
-	return user.id
+	return str(user.id)
 
 if __name__ == "__main__":
 	app.run(debug=False)
