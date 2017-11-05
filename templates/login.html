@@ -179,11 +179,11 @@
             </form>
           </div>
 
-          
+
 
         </div>
 
-        
+
 
       </div>
 
@@ -250,9 +250,9 @@
           if (event.keyCode === 13) {
             name = document.getElementById("emailname").value;
 
-            postUser();
+            let userId = postUser();
             console.log('triggered on enter key');
-            window.location = "/commit/{{refcode}}";
+            window.location = `/commit/{{refcode}}?${userId}`;
           }
         });
       document.getElementById("smsname")
@@ -261,13 +261,13 @@
           if (event.keyCode === 13) {
             name = document.getElementById("smsname").value;
             console.log('triggered on enter key');
-            postUser();
-            window.location = "/commit/{{refcode}}";
+            let userId = postUser();
+            window.location = `/commit/{{refcode}}?${userId}`;
           }
         });
 
       function postUser() {
-        $.ajax({
+        let userId = $.ajax({
           url: '/createuser',
           data: JSON.stringify({
             "name": name,
@@ -289,6 +289,7 @@
             console.log(error);
           }
         });
+        return userId;
       }
     </script>
   </body>

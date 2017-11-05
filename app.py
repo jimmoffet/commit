@@ -62,11 +62,14 @@ def renderLogin(refcode):
 def renderCommit(refcode):
 
     if refcode:
-        name = User.query.get(refcode).name
+		refcode, userId = refcode.split('?')
+		name = User.query.get(refcode).name
     else:
         name = "TEAM COMM!T"
+		refcode = 0
+		userId = 0
 
-    return render_template('commit.html', referring_user=name, refcode=refcode, current_user=currentUser)
+    return render_template('commit.html', referring_user=name, refcode=refcode, current_user=userId)
 
 @app.route("/share/<string:refcode>", methods=["POST", "GET"])
 def renderShare(refcode):
@@ -170,9 +173,7 @@ def createUser():
 		db.session.add(user)
 		db.session.commit()
 
-		currentUser = user.id
-
-	return "Success message"
+	return user.id
 
 if __name__ == "__main__":
 	app.run(debug=False)
