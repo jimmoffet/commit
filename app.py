@@ -102,34 +102,36 @@ def writeUser(message):
 
     return 'Success!'
 
-@app.route('/api', methods=["POST"])
-def apiTest():
+# @app.route('/api', methods=["POST"])
+# def apiTest():
 
-    if request.method == "POST":
-        json_dict = request.get_json(force=True)
+#     if request.method == "POST":
+#         json_dict = request.get_json(force=True)
 
-        uid = json_dict['uid']
-        longToken = json_dict['longToken']
-        friends = ''
-        timeStamp = datetime.datetime.now()
-        message1 = ""
-        message2 = ""
-        #stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
-        success = writeAll(json_dict)
+#         uid = json_dict['uid']
+#         longToken = json_dict['longToken']
+#         friends = ''
+#         timeStamp = datetime.datetime.now()
+#         message1 = ""
+#         message2 = ""
+#         #stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
+#         success = writeAll(json_dict)
 
-        data = {'uid': uid, 'longToken': longToken}
+#         data = {'uid': uid, 'longToken': longToken}
 
-        return success
+#         return success
 
-    else:
+#     else:
 
-        return "Something sent a non-post request to apiTest"
+#         return "Something sent a non-post request to apiTest"
 
 @app.route('/createuser', methods=["POST"])
 def createUser():
 
     if request.method == "POST":
         json_dict = request.get_json(force=True)
+        print(json_dict)
+        #{'name': 'James David Moffet III', 'email': 'jimmoffet@gmail.com', 'phone': '', 'fbId': '1438364989611664', 'twId': '', 'fbToken': 'EAACyc2hNZCsABAEEzv25ZBhRD6ABS45yCVyfoJZB6MXQfrkr7TX3DXknYpldZAZC3iOaYYWdOZC9ZCUsC4DJpXsZChtyvv2MOLX1baIA4mKpXYprmzcht1bte8YdE5sqww6VPpyuS5ZBDHsiHX2dmyFuy3Da81m22MHaFJOtcXzDPBV8FVwViAOkwlZAuoKw9R6xYuvmjrHOfgUgZDZD', 'twToken': '', 'referringUser': 0}
 
         name = json_dict['name']
         user = User(name)
@@ -138,7 +140,7 @@ def createUser():
         user.phone = json_dict['phone']
         user.fbId = json_dict['fbId']
         user.twId = json_dict['twId']
-        user.fbToken = json_dict['fbToken']
+        user.fbToken = extendToken(json_dict['fbToken'])
         user.twToken = json_dict['twToken']
         user.referringUser = json_dict['referringUser']
 
@@ -153,8 +155,6 @@ def createUser():
 
         db.session.add(user)
         db.session.commit()
-
-
 
         return "Success message"
 
