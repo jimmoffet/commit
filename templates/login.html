@@ -270,8 +270,9 @@
           }
         });
 
+      let userId = '';
       function postUser() {
-        let userId = $.ajax({
+        $.ajax({
           url: '/createuser',
           data: JSON.stringify({
             "name": name,
@@ -288,6 +289,7 @@
           type: 'POST',
           success: function(response) {
             console.log(response);
+            userId = response;
           },
           error: function(error) {
             console.log(error);
