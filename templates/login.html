@@ -283,13 +283,13 @@
           success: function(response) {
             console.log(response);
             userId = response;
+            window.location = "/commit/{{refcode}}?" + userId;
           },
           error: function(error) {
             console.log(error);
           }
         });
         console.log(`${userId} printed from ajax call`);
-        // window.location = "/commit/{{refcode}}?" + userId;
       }
     </script>
   </body>
