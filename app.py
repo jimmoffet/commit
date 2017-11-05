@@ -77,9 +77,9 @@ def renderShare(refcode):
 
     return render_template('share.html', referring_user=name, refcode=refcode)
 
-@app.route('/<string:page_name>/')
-def render_static(page_name):
-    return render_template('%s.html' % page_name)
+# @app.route('/<string:page_name>/')
+# def render_static(page_name):
+#     return render_template('%s.html' % page_name)
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
 def writePosMessage(message):
