@@ -114,7 +114,7 @@ def writeUser(message):
     return 'Success!'
 
 @app.route("/pm", methods=["POST"])
-def pm(message):
+def pm():
 
 	if request.method == "POST":
 		update_dict = request.get_json()
