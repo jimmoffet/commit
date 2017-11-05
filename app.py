@@ -112,7 +112,7 @@ def writeUser(message):
 def pm(message):
 
 	if request.method == "POST":
-    	json_dict = request.get_json(force=True)
+    	json_dict = request.get_json()
 
     return 'Success!'
 
