@@ -77,6 +77,11 @@ def renderShare(refcode):
 
     return render_template('share.html', referring_user=name, refcode=refcode)
 
+@app.route("/privacy", methods=["POST", "GET"])
+def renderPrivacy(refcode):
+
+
+    return render_template('privacy.html')
 # @app.route('/<string:page_name>/')
 # def render_static(page_name):
 #     return render_template('%s.html' % page_name)
