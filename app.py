@@ -80,7 +80,7 @@ def renderShare(refcode):
 		data = refcode.split('A')
 		refcode = data[0]
 		userId = data[1]
-        name = User.query.get(refcode).name
+		name = User.query.get(refcode).name
     else:
         name = "TEAM COMM!T"
 
