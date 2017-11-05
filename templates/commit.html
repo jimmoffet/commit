@@ -166,7 +166,7 @@
                             <p>Seconds</p>
                         </div>
                     </div>
-                    <center><a class="btn btn-commit" href="/share/{{refcode}}" role="button">COMM!T</a></center>
+                    <center><a class="btn btn-commit" href="/share/{{refcode}}A{{current_user}}" role="button">COMM!T</a></center>
                 </div>
             </div>
         </div>
@@ -257,7 +257,7 @@
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-modal">Nice Button</button> -->
                         <div style="float:left;line-height:30px;"></div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="float:right">SAVE</button>
+                        <button type="button" class="btn btn-danger" onclick="hideNeg()" style="float:right">SAVE</button>
                     </div>
                 </div>
             </div>
@@ -328,9 +328,44 @@
         }, 1000);
 
         function hidePos() {
+          $.ajax({
+            url: '/pm',
+            data: JSON.stringify({
+              "user": {{current_user}},
+              "positiveMessage": document.querySelector('#reflink').value
+            }),
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            success: function(response) {
+              console.log(response);
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
             $('#myModal').modal('hide');
-            console.log({{current_user}});
             $('#myModalneg').modal('show');
+        }
+
+        function hideNeg() {
+          $.ajax({
+            url: '/nm',
+            data: JSON.stringify({
+              "user": {{current_user}},
+              "negativeMessage": document.querySelector('#reflink').value
+            }),
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            success: function(response) {
+              console.log(response);
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+            $('#myModalneg').modal('hide');
         }
 
 
