@@ -175,7 +175,7 @@ def createUser():
         db.session.add(user)
         db.session.commit()
 
-		print user
+		print(user)
 
         return "Success message"
 
