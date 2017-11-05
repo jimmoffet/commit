@@ -1,9 +1,9 @@
-var finished_rendering = function() {
-console.log("finished rendering plugins");
-var spinner = document.getElementById("spinner");
-spinner.removeAttribute("style");
-spinner.removeChild(spinner.childNodes[0]);
-}
+// var finished_rendering = function() {
+// console.log("finished rendering plugins");
+// var spinner = document.getElementById("spinner");
+// spinner.removeAttribute("style");
+// spinner.removeChild(spinner.childNodes[0]);
+// }
 // local
 // 196208740925120
 // remote
@@ -18,7 +18,7 @@ window.fbAsyncInit = function() {
     version    : 'v2.8' // use graph api version 2.8
   });
 
-  FB.Event.subscribe('xfbml.render', finished_rendering);
+  // FB.Event.subscribe('xfbml.render', finished_rendering);
 
   // FB.getLoginStatus(function(response) {
   //   statusChangeCallback(response);

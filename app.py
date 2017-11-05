@@ -34,14 +34,14 @@ def hello():
 	out = ''
 	try:
 		name = 'TEAM COMM!T'
-		return render_template('login.html', referring_user=name)
+		return render_template('login.html', referring_user=name, refcode=0)
 	except:
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
 		return out
 
 @app.route("/initialize", methods=["POST", "GET"])
 def initdb():
-	user = User('TEAM COMMIT')
+	user = User('TEAM COMM!T')
 	user.email = 'jimmoffet@gmail.com'
 	db.session.add(user)
 	db.session.commit()
