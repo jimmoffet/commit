@@ -19,12 +19,14 @@ def ping(u):
     return page
 
 def extendToken(short_token):
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+    # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     # app_id = ''
     # app_secret = ''
     u = 'https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&' + 'client_id=' + app_id + '&client_secret=' + app_secret + '&fb_exchange_token=' + short_token
     r = requests.get(u)
+    print(r)
     resp = r.json()
+    print(resp)
     longtoken = resp['access_token']
     print(resp['access_token'])
     #{'access_token': 'EAACyc2hNZCsABAA7t8mRlg3ADekZBTHZA1fw5misTnwczPZBftobR9pTSXrlih9zYi775vaPdjgZABpHYehX927sNZCBsOwatTW5rZANIZCCucsK52oZCiATT9r6Wl3sTTaMAzObXgh75Ft3lbr7jLtXemqgt0bZCp9ruiD2ZAzyksVSgZDZD', 'token_type': 'bearer', 'expires_in': 5179108}
