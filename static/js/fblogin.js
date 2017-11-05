@@ -151,7 +151,7 @@ function fbLogin(ref){
               });
 
              
-              
+              window.location= '/commit/'+ref;
 
           } else {
            console.log('User cancelled login or did not fully authorize.');
