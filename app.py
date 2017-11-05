@@ -61,10 +61,10 @@ def renderLogin(refcode):
 @app.route("/commit/<string:refcode>", methods=["POST", "GET"])
 def renderCommit(refcode):
 
-    if refcode:
+	if refcode:
 		refcode, userId = refcode.split('?')
 		name = User.query.get(refcode).name
-    else:
+	else:
 		name = "TEAM COMM!T"
 		refcode = 0
 		userId = 0
