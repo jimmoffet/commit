@@ -35,9 +35,9 @@
       border-image: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9));
       border-image-slice: 1;
       -webkit-text-fill-color: transparent;
-      background: -moz-linear-gradient(45deg,  #11e8bb, #8200c9); 
-      background: -webkit-linear-gradient(45deg,  #11e8bb, #8200c9); 
-      background: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9)); 
+      background: -moz-linear-gradient(45deg,  #11e8bb, #8200c9);
+      background: -webkit-linear-gradient(45deg,  #11e8bb, #8200c9);
+      background: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9));
       -webkit-background-clip: text;
     }*/
 
@@ -53,7 +53,7 @@
       border: solid 4px white;
       border-image-slice: 1;
       -webkit-background-clip: text;
-      
+
     }
 
     .btn-modal {
@@ -76,7 +76,7 @@
         a.btn {
           padding:0;
           margin:0;
-          
+
         }
         .section{
             padding: 0px;
@@ -237,7 +237,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <div class="modal fade" id="myModalneg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -261,12 +261,12 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
 
 
-        
+
         <!--  End Modal -->
         <!-- Sart Modal -->
         <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -329,6 +329,7 @@
 
         function hidePos() {
             $('#myModal').modal('hide');
+            console.log({{current_user}})
             $('#myModalneg').modal('show');
         }
 
