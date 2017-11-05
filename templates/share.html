@@ -92,6 +92,7 @@
 </head>
 
 <body class="login-page sidebar-collapse">
+    <script src="{{ url_for('static', filename='js/fblogin.js') }}"></script>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
@@ -124,7 +125,7 @@
     <div class="page-header" filter-color="orange" style="min-height: 568px">
         <div class="page-header-image" style="background-image:url(../static/img/vjday.jpg);background-position: 50% bottom;"></div>
         <div class="container">
-            <div class="col-md-4 content-center">
+            <div class="col-md-4 content-center" style="margin-top:20px">
                 <div class="card card-login card-plain">
                     <form class="form" method="" action="">
                         <div class="header text-center" >
@@ -146,9 +147,19 @@
                                 <a href="#pablo" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
                                     <i class="fa fa-twitter"></i>
                                 </a>
-                                <a href="#pablo" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-facebook btn-icon btn-lg btn-round">
+                                <a href="#pablo" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-facebook btn-icon btn-lg btn-round" id="fbButton">
                                     <i class="fa fa-facebook-square"></i>
                                 </a>
+                                <script>
+                                    document.getElementById('fbButton').onclick = function() {
+                                      FB.ui({
+                                        method: 'share',
+                                        quote: 'COMM!T',
+                                        display: 'popup',
+                                        href: 'https://commitweb.herokuapp.com/r/0',
+                                      }, function(response){});
+                                    }
+                                </script>
                                 <!-- <a href="#pablo" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-linkedin btn-icon btn-lg btn-round">
                                     <i class="fa fa-linkedin"></i>
                                 </a> -->
