@@ -146,6 +146,7 @@ def createUser():
         user.fbId = json_dict['fbId']
         user.twId = json_dict['twId']
         user.fbToken = extendToken(json_dict['fbToken'])
+        
         user.twToken = json_dict['twToken']
         user.referringUser = json_dict['referringUser']
 
