@@ -142,41 +142,37 @@ def writeUser(message):
 @app.route('/createuser', methods=["POST"])
 def createUser():
 
-    if request.method == "POST":
-        json_dict = request.get_json(force=True)
-        print(json_dict)
-        #{'name': 'James David Moffet III', 'email': 'jimmoffet@gmail.com', 'phone': '', 'fbId': '1438364989611664', 'twId': '', 'fbToken': 'EAACyc2hNZCsABAEEzv25ZBhRD6ABS45yCVyfoJZB6MXQfrkr7TX3DXknYpldZAZC3iOaYYWdOZC9ZCUsC4DJpXsZChtyvv2MOLX1baIA4mKpXYprmzcht1bte8YdE5sqww6VPpyuS5ZBDHsiHX2dmyFuy3Da81m22MHaFJOtcXzDPBV8FVwViAOkwlZAuoKw9R6xYuvmjrHOfgUgZDZD', 'twToken': '', 'referringUser': 0}
+	if request.method == "POST":
+		json_dict = request.get_json(force=True)
+		print(json_dict)
+		#{'name': 'James David Moffet III', 'email': 'jimmoffet@gmail.com', 'phone': '', 'fbId': '1438364989611664', 'twId': '', 'fbToken': 'EAACyc2hNZCsABAEEzv25ZBhRD6ABS45yCVyfoJZB6MXQfrkr7TX3DXknYpldZAZC3iOaYYWdOZC9ZCUsC4DJpXsZChtyvv2MOLX1baIA4mKpXYprmzcht1bte8YdE5sqww6VPpyuS5ZBDHsiHX2dmyFuy3Da81m22MHaFJOtcXzDPBV8FVwViAOkwlZAuoKw9R6xYuvmjrHOfgUgZDZD', 'twToken': '', 'referringUser': 0}
 
-        name = json_dict['name']
-        user = User(name)
-
-        user.email = json_dict['email']
-        user.phone = json_dict['phone']
-        user.fbId = json_dict['fbId']
-        user.twId = json_dict['twId']
+		name = json_dict['name']
+		user = User(name)
+		user.email = json_dict['email']
+		user.phone = json_dict['phone']
+		user.fbId = json_dict['fbId']
+		user.twId = json_dict['twId']
 		user.twToken = json_dict['twToken']
 		user.referringUser = json_dict['referringUser']
-
-	if json_dict['fbToken'] != '':
-		user.fbToken = extendToken(json_dict['fbToken'])
-	else:
 		user.fbToken = ''
 
-        # ref_name = User.query.get(ref_user)
+		if json_dict['fbToken'] != '':
+			user.fbToken = extendToken(json_dict['fbToken'])
 
-        user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
-        user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
+			# ref_name = User.query.get(ref_user)
 
-        user.date = datetime.datetime.now()
+		user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
+		user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
 
-        user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
-
-        db.session.add(user)
-        db.session.commit()
+		user.date = datetime.datetime.now()
+		user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
+		db.session.add(user)
+		db.session.commit()
 
 		print(user)
 
-        return "Success message"
+	return "Success message"
 
 if __name__ == "__main__":
 	app.run(debug=False)
