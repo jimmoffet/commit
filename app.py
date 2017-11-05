@@ -108,13 +108,13 @@ def writeUser(message):
 
     return 'Success!'
 
-@app.route("/pm", methods=["POST"])
-def pm(message):
-
-	if request.method == "POST":
-    	json_dict = request.get_json()
-
-    return 'Success!'
+# @app.route("/pm", methods=["POST"])
+# def pm(message):
+#
+# 	if request.method == "POST":
+#     	json_dict = request.get_json()
+#
+#     return 'Success!'
 
 # @app.route('/api', methods=["POST"])
 # def apiTest():
