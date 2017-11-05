@@ -8,7 +8,7 @@
     <meta property="og:title" content="COMM!T" />
     <meta property="og:description" content="COMM!T let's friends help friends follow through" />
     <meta property="og:image" content="https://commitweb.herokuapp.com/static/img/vjday.jpg" />
-    
+
     <link rel="apple-touch-icon" sizes="76x76" href="../static/now/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../static/now/assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -159,14 +159,14 @@
                         <div class="content">
                             <div class="textarea-container">
 
-                                <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="1" onclick="this.focus();this.select()" readonly="readonly">https://commit.vote/r/1234</textarea>
+                                <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="1" onclick="this.focus();this.select()" readonly="readonly">https://commit.vote/r/{{current_user}}</textarea>
                                 <img src="../static/img/copychain.png" id="linkcopy"/>
                             </div>
                             <br />
                             <br />
                             <div class="social-line" style="margin-bottom:30px">
 
-                                <a style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round" href='http://twitter.com/intent/tweet?url=https%3A//commit.vote/r/0&amp;text=I%20love%20Guerilla%20Labs%21&amp;hashtags=AwesomeWebDesign' >
+                                <a style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round" href='http://twitter.com/intent/tweet?url=https%3A//commit.vote/r/{{current_user}}&amp;text=I%20love%20Guerilla%20Labs%21&amp;hashtags=AwesomeWebDesign' >
                                     <i class="fa fa-twitter"></i>
                                 </a>
                                 <a href="#pablo" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-facebook btn-icon btn-lg btn-round" id="fbButton">
@@ -178,7 +178,7 @@
                                         method: 'share',
                                         quote: 'COMM!T',
                                         display: 'popup',
-                                        href: 'https://commitweb.herokuapp.com/r/0',
+                                        href: 'https://commitweb.herokuapp.com/r/{{current_user}}',
                                       }, function(response){});
                                     }
                                 </script>
