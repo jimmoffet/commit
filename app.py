@@ -63,7 +63,7 @@ def renderCommit(refcode):
 
 	if refcode:
 		print(refcode)
-		data = refcode.split('?')
+		data = refcode.split('A')
 		print(data)
 		# refcode = data[0]
 		# userId = data[1]
