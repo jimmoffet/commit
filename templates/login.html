@@ -249,12 +249,8 @@
           event.preventDefault();
           if (event.keyCode === 13) {
             name = document.getElementById("emailname").value;
-
-            let userId = postUser();
             console.log('triggered on enter key');
-            userId.toString();
-            console.log(`${userId} printed from keyup`);
-            window.location = "/commit/{{refcode}}?" + userId;
+            postUser();
           }
         });
       document.getElementById("smsname")
@@ -263,10 +259,7 @@
           if (event.keyCode === 13) {
             name = document.getElementById("smsname").value;
             console.log('triggered on enter key');
-            let userId = postUser();
-            userId.toString();
-            console.log(`${userId} printed from keyup`);
-            window.location = "/commit/{{refcode}}?" + userId;
+            postUser();
           }
         });
 
@@ -296,7 +289,7 @@
           }
         });
         console.log(`${userId} printed from ajax call`);
-        return userId;
+        window.location = "/commit/{{refcode}}?" + userId;
       }
     </script>
   </body>
