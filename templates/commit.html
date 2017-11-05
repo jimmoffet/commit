@@ -331,7 +331,7 @@
           $.ajax({
             url: '/pm',
             data: JSON.stringify({
-              "user": {{current_user}}
+              "user": {{current_user}},
               "positiveMessage": document.querySelector('#reflink').innerHTML
             }),
             dataType: 'json',
