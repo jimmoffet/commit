@@ -21,7 +21,7 @@
 <style>
     html, body {height: 100%;}
 
-    a.btn {
+    /*a.btn {
       box-sizing: border-box;
       box-shadow: none;
       letter-spacing: 5px;
@@ -35,10 +35,25 @@
       border-image: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9));
       border-image-slice: 1;
       -webkit-text-fill-color: transparent;
-      background: -moz-linear-gradient(45deg,  #11e8bb, #8200c9); /* FF3.6-15 */
-      background: -webkit-linear-gradient(45deg,  #11e8bb, #8200c9); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9)); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      background: -moz-linear-gradient(45deg,  #11e8bb, #8200c9); 
+      background: -webkit-linear-gradient(45deg,  #11e8bb, #8200c9); 
+      background: linear-gradient(15deg, rgba(4, 24, 244, 0.9), rgba(224, 23, 3, 0.9)); 
       -webkit-background-clip: text;
+    }*/
+
+    a.btn {
+      box-sizing: border-box;
+      box-shadow: none;
+      letter-spacing: 5px;
+      font-size: 3.2rem;
+      font-weight: 700;
+      max-width: 100%;
+      width: 400px;
+      color: white;
+      border: solid 4px white;
+      border-image-slice: 1;
+      -webkit-background-clip: text;
+      
     }
 
     .btn-modal {
@@ -47,31 +62,43 @@
     }
 
     @media screen and (max-width: 576px) {
-            .footer nav {
-                width:100%;
-                text-align: center;
-            }
-            .footer.copyright {
-                width:100%;
-                text-align: center;
-            }
+        .footer nav {
+          width: 100%;
+          text-align: center;
+        }
+        .footer.copyright {
+          width: 100%;
+          text-align: center;
+        }
+        .footer {
+          padding: 2% 0;
+        }
+        a.btn {
+          padding:0;
+          margin:0;
+          
+        }
+        .section{
+            padding: 0px;
         }
 
-        .footer.copyright{
-             text-align: right;
-        }
+      }
 
-        .page-header[filter-color="orange"] {
-            background: rgba(44, 44, 44, 0.2);
-            background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
-            background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
-            background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
-            background: linear-gradient(15deg, rgba(4, 24, 244, 0.2), rgba(224, 23, 3, 0.6));
-        }
+    .footer.copyright{
+         text-align: right;
+    }
 
-        #navigation {
-            background-position-x: 30%;
-        }
+    .page-header[filter-color="orange"] {
+        background: rgba(44, 44, 44, 0.2);
+        background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+        background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+        background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+        background: linear-gradient(15deg, rgba(4, 24, 244, 0.2), rgba(224, 23, 3, 0.6));
+    }
+
+    #navigation {
+        background-position-x: 30%;
+    }
 
 
 </style>
@@ -108,12 +135,13 @@
     <!-- End Navbar -->
 
     <div class="wrapper"  style="height: 100%;">
-        <div class="page-header page-header-small" filter-color="orange">
+
+        <div class="page-header page-header-small" filter-color="orange" style="min-height: 530px">
             <!-- <div class="page-header-image" data-parallax="true" style="background-image: url('../static/now/assets/img/bg5.jpg');"> -->
                 <div class="page-header-image" data-parallax="true" style="background-image: url(../static/img/voting_bg.jpg);">
             </div>
             <div class="container">
-                <div class="content-center">
+                <div class="content-center" style="margin-top:10px">
                     <!-- <div class="photo-container">
                         <img src="../static/now/assets/img/ryan.jpg" alt="">
                     </div>
@@ -138,9 +166,11 @@
                             <p>Seconds</p>
                         </div>
                     </div>
+                    <center><a class="btn btn-commit" href="/share/{{refcode}}" role="button">COMM!T</a></center>
                 </div>
             </div>
         </div>
+
         <div class="section" style="padding:20px 0;min-height: calc(100% - 650px);">
             <div class="container">
                 <!-- <div class="button-container">
@@ -154,7 +184,7 @@
                 </div> -->
                 <h3 class="title">Don't Worry, <br />We'll Remind You :)</h3>
                 <p class="category" data-toggle="modal" data-target="#myModal2" style="color:#789">customize reminders</p>
-                <center><a class="btn btn-commit" href="/share/{{refcode}}" role="button">COMM!T</a></center>
+                <!-- <center><a class="btn btn-commit" href="/share/{{refcode}}" role="button">COMM!T</a></center> -->
                 <!-- <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</h5> -->
 
             </div>
