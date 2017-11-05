@@ -118,7 +118,24 @@ def pm():
 
 	if request.method == "POST":
 		update_dict = request.get_json()
-		print(update_dict)
+		userId = update_dict['user']
+		positiveMessage = update_dict['positiveMessage']
+		user = User.query.get(userId)
+		user.positiveMessage = positiveMessage
+		db.session.commit()
+
+	return 'Success!'
+
+@app.route("/nm", methods=["POST"])
+def nm():
+
+	if request.method == "POST":
+		update_dict = request.get_json()
+		userId = update_dict['user']
+		negativeMessage = update_dict['negativeMessage']
+		user = User.query.get(userId)
+		user.negativeMessage = negativeMessage
+		db.session.commit()
 
 	return 'Success!'
 
