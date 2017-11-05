@@ -252,7 +252,7 @@
 
             let userId = postUser();
             console.log('triggered on enter key');
-            window.location = `/commit/{{refcode}}?${userId}`;
+            window.location = "/commit/{{refcode}}?" + userId;
           }
         });
       document.getElementById("smsname")
@@ -262,7 +262,7 @@
             name = document.getElementById("smsname").value;
             console.log('triggered on enter key');
             let userId = postUser();
-            window.location = `/commit/{{refcode}}?${userId}`;
+            window.location = "/commit/{{refcode}}?" + userId;
           }
         });
 
