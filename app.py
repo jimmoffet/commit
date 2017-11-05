@@ -61,14 +61,12 @@ def renderLogin(refcode):
 @app.route("/commit/<string:refcode>", methods=["POST", "GET"])
 def renderCommit(refcode):
 
-	print currentUser
-
     if refcode:
         name = User.query.get(refcode).name
     else:
         name = "TEAM COMM!T"
 
-    return render_template('commit.html', referring_user=name, refcode=refcode, current_user=currentUser)
+    return render_template('commit.html', referring_user=name, refcode=refcode)
 
 @app.route("/share/<string:refcode>", methods=["POST", "GET"])
 def renderShare(refcode):
