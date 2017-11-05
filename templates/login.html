@@ -35,6 +35,9 @@
           width: 100%;
           text-align: center;
         }
+        .footer {
+          padding: 2% 0;
+        }
       }
 
       .footer.copyright {
@@ -68,7 +71,7 @@
   </head>
 
 
-  <body class="login-page sidebar-collapse">
+  <body class="login-page sidebar-collapse" style="height:100%">
     <script src="{{ url_for('static', filename='js/fblogin.js') }}"></script>
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="{{ url_for('static', filename='js/glogin.js') }}"></script> -->
@@ -102,10 +105,10 @@
     </nav>
     <!-- End Navbar -->
 
-    <div class="page-header" filter-color="orange" >
+    <div class="page-header" filter-color="orange" style="min-height:650px">
       <div class="page-header-image" style="background-image:url(../static/img/selmasky.jpg);background-position: 30% bottom;"></div>
       <div class="container">
-        <div class="col-md-4 content-center" style="margin-top:60px">
+        <div class="col-md-4 content-center" style="margin-top:20px">
           <div class="card card-login card-plain">
             <form class="form" method="" action="" >
               <div class="header text-center">
@@ -175,7 +178,13 @@
               </div>
             </form>
           </div>
+
+          
+
         </div>
+
+        
+
       </div>
 
       <footer class="footer">
