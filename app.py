@@ -154,12 +154,10 @@ def createUser():
         user.phone = json_dict['phone']
         user.fbId = json_dict['fbId']
         user.twId = json_dict['twId']
-
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
 		else:
 			user.fbToken = ''
-
         user.twToken = json_dict['twToken']
         user.referringUser = json_dict['referringUser']
 
