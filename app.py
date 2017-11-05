@@ -77,11 +77,14 @@ def renderCommit(refcode):
 def renderShare(refcode):
 
     if refcode:
+		data = refcode.split('A')
+		refcode = data[0]
+		userId = data[1]
         name = User.query.get(refcode).name
     else:
         name = "TEAM COMM!T"
 
-    return render_template('share.html', referring_user=name, refcode=refcode)
+    return render_template('share.html', referring_user=name, refcode=refcode, current_user=userId)
 
 @app.route("/privacy", methods=["POST", "GET"])
 def renderPrivacy(refcode):
