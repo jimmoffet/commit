@@ -15,8 +15,8 @@ var dict;
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '196208740925120',
-    cookie     : true,  // enable cookies to allow the server to access 
+    appId      : '2024489881171070',
+    cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
@@ -29,7 +29,7 @@ window.fbAsyncInit = function() {
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
-  
+
   };
   // END OF ASYNC FB, MAKE CALLS TO FB UP HERE
     // Load the SDK asynchronously
@@ -63,8 +63,8 @@ window.fbAsyncInit = function() {
         longToken = request.response;
 
         tagFriendsCall = "/"+ uid +"/taggable_friends";
-        
-        
+
+
         /* make the API call */
         FB.api(
             tagFriendsCall,
@@ -116,7 +116,7 @@ window.fbAsyncInit = function() {
     }
   }
 
-  function checkLoginState() 
+  function checkLoginState()
     {
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
@@ -133,7 +133,7 @@ window.fbAsyncInit = function() {
       });
     }
 
-  function sendPositive(e) 
+  function sendPositive(e)
     {
       //e.preventDefault();
       let positive_message = document.getElementById("ghost-input").value;
@@ -147,7 +147,7 @@ window.fbAsyncInit = function() {
       console.log('sent to fancycommitlanding2');
     }
 
-  function sendNegative(e) 
+  function sendNegative(e)
     {
       //e.preventDefault();
       let negative_message = document.getElementById("ghost-input").value;
@@ -161,14 +161,13 @@ window.fbAsyncInit = function() {
       console.log('sent to fancycommitlanding2');
     }
 
-  function resetCursor(txtElement) { 
-    if (txtElement.setSelectionRange) { 
-        txtElement.focus(); 
-        txtElement.setSelectionRange(0, 0); 
-    } else if (txtElement.createTextRange) { 
-        var range = txtElement.createTextRange();  
-        range.moveStart('character', 0); 
-        range.select(); 
-    } 
+  function resetCursor(txtElement) {
+    if (txtElement.setSelectionRange) {
+        txtElement.focus();
+        txtElement.setSelectionRange(0, 0);
+    } else if (txtElement.createTextRange) {
+        var range = txtElement.createTextRange();
+        range.moveStart('character', 0);
+        range.select();
+    }
 }
-

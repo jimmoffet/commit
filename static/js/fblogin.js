@@ -11,8 +11,8 @@
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '196208740925120',
-    cookie     : true,  // enable cookies to allow the server to access 
+    appId      : '2024489881171070',
+    cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
@@ -52,7 +52,7 @@ window.fbAsyncInit = function() {
 
       // REDIRECT
       //window.location = "../../fancycommitevent";
-      
+
 
 
       return [name,longToken,email]
@@ -108,10 +108,10 @@ function fbLogin(ref){
              console.log(response.authResponse.accessToken);
              fbToken = response.authResponse.accessToken;
              fbId = response.authResponse.userID;
-             
+
 
              FB.api('/'+fbId+"?fields=name,email", function(response) {
-              
+
                console.log('Good to see you, ' + response.name + '.');
                console.log(response);
                name = response.name;
@@ -147,11 +147,11 @@ function fbLogin(ref){
                   }
                 });
 
-                 
+
               });
 
-             
-              
+
+
 
           } else {
            console.log('User cancelled login or did not fully authorize.');
@@ -161,4 +161,3 @@ function fbLogin(ref){
 
 
 }
-
