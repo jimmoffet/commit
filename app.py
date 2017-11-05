@@ -156,7 +156,7 @@ def createUser():
         user.phone = json_dict['phone']
         user.fbId = json_dict['fbId']
         user.twId = json_dict['twId']
-		
+
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
 		else:
@@ -177,7 +177,7 @@ def createUser():
         db.session.add(user)
         db.session.commit()
 
-		currentUser = user.id
+		print user
 
         return "Success message"
 
