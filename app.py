@@ -84,7 +84,7 @@ def renderShare(refcode):
 	else:
 		name = "TEAM COMM!T"
 
-    return render_template('share.html', referring_user=name, refcode=refcode, current_user=userId)
+	return render_template('share.html', referring_user=name, refcode=refcode, current_user=userId)
 
 @app.route("/privacy", methods=["POST", "GET"])
 def renderPrivacy(refcode):
