@@ -25,6 +25,7 @@ db = SQLAlchemy(app)
 
 from models import User
 
+currentUser = 0
 # user = User('jared', datetime.datetime.now(), 'jrjohns@mit.edu', '3280803892', '508508393', '83082982983', '930290903', '3989809808', 'hi', 'oh no', datetime.datetime.now(), '5000')
 
 
@@ -60,12 +61,14 @@ def renderLogin(refcode):
 @app.route("/commit/<string:refcode>", methods=["POST", "GET"])
 def renderCommit(refcode):
 
+	print currentUser
+
     if refcode:
         name = User.query.get(refcode).name
     else:
         name = "TEAM COMM!T"
 
-    return render_template('commit.html', referring_user=name, refcode=refcode)
+    return render_template('commit.html', referring_user=name, refcode=refcode, current_user=currentUser)
 
 @app.route("/share/<string:refcode>", methods=["POST", "GET"])
 def renderShare(refcode):
@@ -107,6 +110,14 @@ def writeUser(message):
 
     return 'Success!'
 
+@app.route("/pm", methods=["POST"])
+def pm(message):
+
+	if request.method == "POST":
+    	json_dict = request.get_json(force=True)
+
+    return 'Success!'
+
 # @app.route('/api', methods=["POST"])
 # def apiTest():
 
@@ -145,8 +156,12 @@ def createUser():
         user.phone = json_dict['phone']
         user.fbId = json_dict['fbId']
         user.twId = json_dict['twId']
-        user.fbToken = extendToken(json_dict['fbToken'])
-        
+		
+		if json_dict['fbToken'] != '':
+			user.fbToken = extendToken(json_dict['fbToken'])
+		else:
+			user.fbToken = ''
+
         user.twToken = json_dict['twToken']
         user.referringUser = json_dict['referringUser']
 
@@ -161,6 +176,8 @@ def createUser():
 
         db.session.add(user)
         db.session.commit()
+
+		currentUser = user.id
 
         return "Success message"
 
