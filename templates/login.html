@@ -253,6 +253,7 @@
             let userId = postUser();
             console.log('triggered on enter key');
             userId.toString();
+            console.log(`${userId} printed from keyup`);
             window.location = "/commit/{{refcode}}?" + userId;
           }
         });
@@ -264,6 +265,7 @@
             console.log('triggered on enter key');
             let userId = postUser();
             userId.toString();
+            console.log(`${userId} printed from keyup`);
             window.location = "/commit/{{refcode}}?" + userId;
           }
         });
@@ -291,6 +293,7 @@
             console.log(error);
           }
         });
+        console.log(`${userId} printed from ajax call`);
         return userId;
       }
     </script>
