@@ -62,9 +62,10 @@ def renderLogin(refcode):
 def renderCommit(refcode):
 
 	if refcode:
-		data = refcode.split('?')
-		refcode = data[0]
-		userId = data[1]
+		print(refcode)
+		# data = refcode.split('?')
+		# refcode = data[0]
+		# userId = data[1]
 		name = User.query.get(refcode).name
 	else:
 		name = "TEAM COMM!T"
