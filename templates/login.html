@@ -35,6 +35,9 @@
           width: 100%;
           text-align: center;
         }
+        .footer {
+          padding: 2% 0;
+        }
       }
 
       .footer.copyright {
@@ -68,10 +71,10 @@
   </head>
 
 
-  <body class="login-page sidebar-collapse">
+  <body class="login-page sidebar-collapse" style="height:100%">
     <script src="{{ url_for('static', filename='js/fblogin.js') }}"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="{{ url_for('static', filename='js/glogin.js') }}"></script>
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="{{ url_for('static', filename='js/glogin.js') }}"></script> -->
 
 
     <!-- Navbar -->
@@ -102,26 +105,26 @@
     </nav>
     <!-- End Navbar -->
 
-    <div class="page-header" filter-color="orange" style="max-height: none">
+    <div class="page-header" filter-color="orange" style="min-height:650px">
       <div class="page-header-image" style="background-image:url(../static/img/selmasky.jpg);background-position: 30% bottom;"></div>
       <div class="container">
-        <div class="col-md-4 content-center">
+        <div class="col-md-4 content-center" style="margin-top:20px">
           <div class="card card-login card-plain">
-            <form class="form" method="" action="">
+            <form class="form" method="" action="" >
               <div class="header text-center">
                 <h1 class="title title-up">COMM!T</h1>
                 <h2>Vote Nov. 7th</h2>
                 <h2><small>How should we remind you to check in?</small></h2>
                 <div class="social-line" style="margin-bottom:30px">
 
-                  <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                  <!-- <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
                                     <i class="fa fa-twitter"></i>
                                 </a>
 
                   <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-google btn-icon btn-lg btn-round">
 
                                     <i class="fa fa-google-plus"></i>
-                                </a>
+                                </a> -->
                   <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-facebook btn-icon btn-lg btn-round" onclick="fbLogin({{refcode}})">
                                     <i class="fa fa-facebook-square"></i>
                                 </a>
@@ -155,7 +158,7 @@
                                 </span>
                   <input type="text" id="smsname" name="smsname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
                 </div>
-                <a class="btn btn-primary btn-round" href="/commit" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                <a class="btn btn-primary btn-round" href="/commit/{{refcode}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
                                 <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
                             </a>
 
@@ -175,8 +178,15 @@
               </div>
             </form>
           </div>
+
+          
+
         </div>
+
+        
+
       </div>
+
       <footer class="footer">
         <div class="container">
           <nav>
@@ -200,6 +210,7 @@
           </div>
         </div>
       </footer>
+
     </div>
     <script>
       var name = '';

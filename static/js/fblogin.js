@@ -150,7 +150,8 @@ function fbLogin(ref){
 
               });
 
-
+             
+              window.location= '/commit/'+ref;
 
 
           } else {
