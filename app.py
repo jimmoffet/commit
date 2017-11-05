@@ -62,7 +62,9 @@ def renderLogin(refcode):
 def renderCommit(refcode):
 
 	if refcode:
-		refcode, userId = refcode.split('?')
+		data = refcode.split('A')
+		refcode = data[0]
+		userId = data[1]
 		name = User.query.get(refcode).name
 	else:
 		name = "TEAM COMM!T"
@@ -74,12 +76,15 @@ def renderCommit(refcode):
 @app.route("/share/<string:refcode>", methods=["POST", "GET"])
 def renderShare(refcode):
 
-    if refcode:
-        name = User.query.get(refcode).name
-    else:
-        name = "TEAM COMM!T"
+	if refcode:
+		data = refcode.split('A')
+		refcode = data[0]
+		userId = data[1]
+		name = User.query.get(refcode).name
+	else:
+		name = "TEAM COMM!T"
 
-    return render_template('share.html', referring_user=name, refcode=refcode)
+	return render_template('share.html', referring_user=name, refcode=refcode, current_user=userId)
 
 @app.route("/privacy", methods=["POST", "GET"])
 def renderPrivacy(refcode):
@@ -111,13 +116,31 @@ def writeUser(message):
 
     return 'Success!'
 
-# @app.route("/pm", methods=["POST"])
-# def pm(message):
-#
-# 	if request.method == "POST":
-#     	json_dict = request.get_json()
-#
-#     return 'Success!'
+@app.route("/pm", methods=["POST"])
+def pm():
+
+	if request.method == "POST":
+		update_dict = request.get_json()
+		userId = update_dict['user']
+		positiveMessage = update_dict['positiveMessage']
+		user = User.query.get(userId)
+		user.positiveMessage = positiveMessage
+		db.session.commit()
+
+	return 'Success!'
+
+@app.route("/nm", methods=["POST"])
+def nm():
+
+	if request.method == "POST":
+		update_dict = request.get_json()
+		userId = update_dict['user']
+		negativeMessage = update_dict['negativeMessage']
+		user = User.query.get(userId)
+		user.negativeMessage = negativeMessage
+		db.session.commit()
+
+	return 'Success!'
 
 # @app.route('/api', methods=["POST"])
 # def apiTest():
