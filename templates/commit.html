@@ -257,7 +257,7 @@
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-modal">Nice Button</button> -->
                         <div style="float:left;line-height:30px;"></div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="float:right">SAVE</button>
+                        <button type="button" class="btn btn-danger" onclick="hideNeg()" style="float:right">SAVE</button>
                     </div>
                 </div>
             </div>
@@ -328,9 +328,29 @@
         }, 1000);
 
         function hidePos() {
+          $.ajax({
+            url: '/pm',
+            data: JSON.stringify({
+              "user": {{current_user}}
+              "positiveMessage": document.querySelector('#reflink').innerHTML
+            }),
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            success: function(response) {
+              console.log(response);
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
             $('#myModal').modal('hide');
-            console.log({{current_user}});
             $('#myModalneg').modal('show');
+        }
+
+        function hideNeg() {
+          console.log({{current_user}});
+            $('#myModalneg').modal('hide');
         }
 
 
