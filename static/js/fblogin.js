@@ -89,7 +89,7 @@ window.fbAsyncInit = function() {
 
 
 
-function fbLogin(){
+function fbLogin(ref){
     var name = '';
     var email = '';
     var phone = '';
@@ -97,44 +97,61 @@ function fbLogin(){
     var twId = '';
     var fbToken = '';
     var twToken = '';
-    var referringUser = '';
+    var referringUser = ref;
 
     FB.login(function(response) {
           if (response.authResponse) {
 
              console.log('Welcome!  Fetching your information.... ');
+             console.log(response.authResponse);
+             console.log('access token is ');
+             console.log(response.authResponse.accessToken);
+             fbToken = response.authResponse.accessToken;
+             fbId = response.authResponse.userID;
+             
 
-             name = response.authResponse;
-             email = response.authResponse;
-             fbid = response.authResponse;
-             fbToken = response.authResponse;
-
-             FB.api('/me', function(response) {
+             FB.api('/'+fbId+"?fields=name,email", function(response) {
+              
                console.log('Good to see you, ' + response.name + '.');
-             });
+               console.log(response);
+               name = response.name;
+               email = response.email;
 
-             $.ajax({
-                url: '/api',
-                data: JSON.stringify({
-                  "name":name,
-                  "email":email,
-                  "phone":phone,
-                  "fbId":fbId,
-                  "twId":twId,
-                  "fbToken":fbToken,
-                  "twToken":twToken,
-                  "referringUser":referringUser
-                }),
-                dataType: 'json',
-                contentType: "application/json",
-                type: 'POST',
-                success: function(response) {
+               console.log('begin');
+               console.log(name);
+               console.log(email);
+               console.log(fbId);
+               console.log(fbToken);
+               console.log('end');
+
+                $.ajax({
+                  url: '/createuser',
+                  data: JSON.stringify({
+                    "name": name,
+                    "email": email,
+                    "phone": phone,
+                    "fbId": fbId,
+                    "twId": twId,
+                    "fbToken": fbToken,
+                    "twToken": twToken,
+                    "referringUser": referringUser
+                  }),
+                  dataType: 'json',
+                  contentType: "application/json",
+                  type: 'POST',
+                  success: function(response) {
                     console.log(response);
-                },
-                error: function(error) {
+                  },
+                  error: function(error) {
                     console.log(error);
-                }
-            });
+                  }
+                });
+
+                 
+              });
+
+             
+              
 
           } else {
            console.log('User cancelled login or did not fully authorize.');

@@ -26,8 +26,10 @@ def extendToken(short_token):
     r = requests.get(u)
     resp = r.json()
     longtoken = resp['access_token']
+    print(resp['access_token'])
+    #{'access_token': 'EAACyc2hNZCsABAA7t8mRlg3ADekZBTHZA1fw5misTnwczPZBftobR9pTSXrlih9zYi775vaPdjgZABpHYehX927sNZCBsOwatTW5rZANIZCCucsK52oZCiATT9r6Wl3sTTaMAzObXgh75Ft3lbr7jLtXemqgt0bZCp9ruiD2ZAzyksVSgZDZD', 'token_type': 'bearer', 'expires_in': 5179108}
 
-    return resp  
+    return longtoken
 
 def getUserFromRef(refcode):
     #requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
