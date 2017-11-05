@@ -332,7 +332,7 @@
             url: '/pm',
             data: JSON.stringify({
               "user": {{current_user}},
-              "positiveMessage": document.querySelector('#reflink').innerHTML
+              "positiveMessage": document.querySelector('#reflink').value
             }),
             dataType: 'json',
             contentType: "application/json",
@@ -349,7 +349,22 @@
         }
 
         function hideNeg() {
-          console.log({{current_user}});
+          $.ajax({
+            url: '/nm',
+            data: JSON.stringify({
+              "user": {{current_user}},
+              "negativeMessage": document.querySelector('#reflink').value
+            }),
+            dataType: 'json',
+            contentType: "application/json",
+            type: 'POST',
+            success: function(response) {
+              console.log(response);
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
             $('#myModalneg').modal('hide');
         }
 
