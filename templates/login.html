@@ -254,7 +254,7 @@
             console.log('triggered on enter key');
             userId.toString();
             console.log(`${userId} printed from keyup`);
-            // window.location = "/commit/{{refcode}}?" + userId;
+            window.location = "/commit/{{refcode}}?" + userId;
           }
         });
       document.getElementById("smsname")
@@ -266,11 +266,11 @@
             let userId = postUser();
             userId.toString();
             console.log(`${userId} printed from keyup`);
-            // window.location = "/commit/{{refcode}}?" + userId;
+            window.location = "/commit/{{refcode}}?" + userId;
           }
         });
 
-      let userId = '';
+      let userId = 'steven';
       function postUser() {
         $.ajax({
           url: '/createuser',
