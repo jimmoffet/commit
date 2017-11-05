@@ -65,11 +65,11 @@ def renderCommit(refcode):
 		refcode, userId = refcode.split('?')
 		name = User.query.get(refcode).name
     else:
-        name = "TEAM COMM!T"
+		name = "TEAM COMM!T"
 		refcode = 0
 		userId = 0
 
-    return render_template('commit.html', referring_user=name, refcode=refcode, current_user=userId)
+	return render_template('commit.html', referring_user=name, refcode=refcode, current_user=userId)
 
 @app.route("/share/<string:refcode>", methods=["POST", "GET"])
 def renderShare(refcode):
