@@ -131,11 +131,22 @@
                 </div>
               </div>
               <div class="content">
-                <div class="pull-right">
+                <div >
                   <h6>
-                    <a href="#" data-toggle="modal" data-target="#expModal" class="link">How does this work?</a>
+                    <a href="#" style="font-size: 1.0rem" data-toggle="modal" data-target="#expModal" class="link">How does this work?</a>
+                  </h6>
+                  <h6>
+                    <a href="#" style="font-size: 1.0rem" data-toggle="modal" data-target="#nonvoterModal" class="link">I can't vote here!</a>
                   </h6>
                 </div>
+
+                <div id="smsparent" class="input-group form-group-no-border input-lg">
+                  <span class="input-group-addon" id="smsspan" style="background-color: rgba(255,255,255,0.2);">
+                                    <i class="now-ui-icons ui-1_bell-53" ></i>
+                                </span>
+                  <input type="text" id="sms" class="form-control" style="background-color: rgba(255,255,255,0.2);" placeholder="SMS...">
+                </div>
+
                 <div id="emailparent" class="input-group form-group-no-border input-lg">
                   <span class="input-group-addon" id="emailspan" style="background-color: rgba(255,255,255,0.2);">
                                     <i class="now-ui-icons ui-1_email-85" ></i>
@@ -143,12 +154,8 @@
                   <input type="text" id="email" class="form-control" style="background-color: rgba(255,255,255,0.2)" placeholder="EMAIL...">
                 </div>
                 
-                <div id="smsparent" class="input-group form-group-no-border input-lg">
-                  <span class="input-group-addon" id="smsspan" style="background-color: rgba(255,255,255,0.2);">
-                                    <i class="now-ui-icons ui-1_bell-53" ></i>
-                                </span>
-                  <input type="text" id="sms" class="form-control" style="background-color: rgba(255,255,255,0.2);" placeholder="SMS...">
-                </div>
+                
+
                 <!-- Bring Back with Javascript -->
                 <div id="nameparent" class="input-group form-group-no-border input-lg" style="display:none">
                   <span class="input-group-addon" id="emailnamespan" style="background-color: rgba(255,255,255,0.2);border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;">
@@ -234,7 +241,7 @@
                     </div>
                     <div class="modal-body" style="padding-top:0;padding-bottom:0;">
                         <p style="font-size: 0.8rem; margin:0;">
-                            We'll send you a link to check in that will confirm your location, one when the polls open and a couple more throughout the day. When you check in, we'll send a message to {{refname}} and you'll get the same notification for anyone who COMM!Ts with the link you'll receive. If you don't check in near a polling place, we'll send a simple message to {{refname}} that says we didn't see you. The check-in link has a back-up plan for absentee voters and GPS issues. You can customize the messages that will be sent when you check in (or don't) through the "customize messages" link below this pop-up. Now, go for it!
+                            We'll send you a link to check in that will confirm your location, one when the polls open and a couple more throughout the day. When you check in, we'll send a message to {{refname}} and you'll get the same notification for anyone who COMM!Ts with the link you'll receive. If you don't check in near a polling place, we'll send a simple message to {{refname}} that says we didn't see you. The check-in link has a back-up plan for absentee voters and GPS issues. You can customize the messages that will be sent when you check in (or don't) through the "customize messages" link after you sign in. Now, go for it!
                             <br>
                             <br>
                             -Team COMM!T
@@ -242,7 +249,7 @@
                     </div>
                     <div class="modal-footer">
                         <div style="float:left;line-height:30px;"></div>
-                        <button href="#" data-toggle="modal" onclick="nonVoter()" class="btn btn-link btn-primary " style="text-align: center;font-size: 0.9rem">Not Eligible To Vote, But Want to Help?</button>
+                        <button href="#" data-toggle="modal" onclick="nonVoter()" class="btn btn-link btn-primary " style="text-align: center;font-size: 0.9rem">But I can't vote here!</button>
                     </div>
                 </div>
             </div>
