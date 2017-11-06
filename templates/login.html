@@ -222,6 +222,9 @@
       var twToken = '';
       var referringUser = 0;
       referringUser = {{refcode}};
+      const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      const phone10 = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      const phone11 = /^\(?([0-9]{1})[-. ]?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
@@ -238,7 +241,6 @@
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
           email = document.getElementById("email").value;
           if (event.keyCode === 13 && email.match(mailformat)) {
             console.log('triggered on enter key');
@@ -251,9 +253,8 @@
       document.getElementById("sms")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          const phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
           phone = document.getElementById("sms").value;
-          if (event.keyCode === 13 && phone.match(phoneno)) {
+          if (event.keyCode === 13 && phone.match(phone10) || phone.match(phone11)) {
             phone = document.getElementById("sms").value;
             console.log('triggered on enter key');
             document.getElementById("smsnameinput").setAttribute("style", "display: flex;");
@@ -263,7 +264,9 @@
       document.getElementById("emailname")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          email = document.getElementById("email").value;
+          name = document.querySelector("#emailname").value;
+          if (event.keyCode === 13 && name !== '' && email.match(mailformat)) {
             name = document.getElementById("emailname").value;
             console.log('triggered on enter key');
             postUser();
@@ -272,7 +275,9 @@
       document.getElementById("smsname")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          phone = document.getElementById("sms").value;
+          name = document.querySelector("#smsname").value;
+          if (event.keyCode === 13 && name !== '' && phone.match(phone10) || phone.match(phone11)) {
             name = document.getElementById("smsname").value;
             console.log('triggered on enter key');
             postUser();
