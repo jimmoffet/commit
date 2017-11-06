@@ -53,14 +53,14 @@ def sendSMS(from_num):
     test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
     # print('Found +17733541500')
     # print(from_num)
-    if test < now:
-        message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
 
-        ### need to add row to subscriber list so we can update the correct row
+    message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
 
-        sheet.update_cell(subscriber[5], 12, now)
-        sheet.update_cell(subscriber[5], 13, now)
-        cnt += 1
+    ### need to add row to subscriber list so we can update the correct row
+
+    sheet.update_cell(subscriber[5], 12, now)
+    sheet.update_cell(subscriber[5], 13, now)
+    cnt += 1
 
     print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
     return page
