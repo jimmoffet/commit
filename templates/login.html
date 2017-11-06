@@ -238,10 +238,12 @@
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          email = document.getElementById("email").value;
+          if (event.keyCode === 13 && email.match(mailformat)) {
             console.log('triggered on enter key');
-            // this.value??
             email = document.getElementById("email").value;
+            // this.value??
             document.getElementById("emailnameinput").setAttribute("style", "display: flex;");
             document.querySelector("[name='emailname']").focus();
           }
@@ -249,7 +251,9 @@
       document.getElementById("sms")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          const phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+          phone = document.getElementById("sms").value;
+          if (event.keyCode === 13 && phone.match(phoneno)) {
             phone = document.getElementById("sms").value;
             console.log('triggered on enter key');
             document.getElementById("smsnameinput").setAttribute("style", "display: flex;");
