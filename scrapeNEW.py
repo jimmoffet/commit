@@ -56,13 +56,15 @@ def sendSMS(from_num,name):
     #test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
     # print('Found +17733541500')
     # print(from_num)
-
-    message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
-
-
-
-    print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
-    return "Success"
+    
+    try:
+        message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
+    except Exception as e:
+        print(e)
+        return e
+    else:
+        print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
+        return "Success"
 
 # def getUserFromRef(refcode):
 #     #requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
