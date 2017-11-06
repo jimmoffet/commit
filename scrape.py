@@ -93,7 +93,7 @@ def sendSMS(from_num):
 #             new = False
 #             #print "new is ",new
 #             break
-        
+
 #     if(new):
 #         row = cnt+2
 #         #sheet.update_cell(row, 2, "unknown user") # pos message
@@ -145,7 +145,7 @@ def sendSMS(from_num):
 #         cnt += 1
 #         if key == message:
 #             new = False
-#             break 
+#             break
 #     #cnt+1 is current user, cnt+2 will write new line
 #     row = 0
 #     if(new):
@@ -195,7 +195,7 @@ def sendSMS(from_num):
 #     scope = ['https://spreadsheets.google.com/feeds']
 #     creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 #     client = gspread.authorize(creds)
-    
+
 #     sheet = client.open("commitDB").sheet1
 #     sheetList = sheet.get_all_values()
 #     rlen = len(sheetList)
@@ -209,10 +209,7 @@ def sendSMS(from_num):
 #             tmp.append(sheetList[row][i])
 #         peeps['+' + sheetList[row][0]] = tmp
 #     return peeps
-        
+
 # peoples = people()
 # print(peoples)
 # print('Done!')
-
-
-
