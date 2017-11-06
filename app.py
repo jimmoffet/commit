@@ -182,12 +182,17 @@ def createUser():
 		user.twId = json_dict['twId']
 		user.twToken = json_dict['twToken']
 		user.referringUser = json_dict['referringUser']
+		refname = User.query.get(json_dict['referringUser']).name
 		user.fbToken = ''
 
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
 
-			# ref_name = User.query.get(ref_user)
+		if json_dict['phone'] != '':
+			phone = json_dict['phone']
+			if phone[0] != 1:
+				phone = '1'+phone
+			sendSMS(phone,refname)
 
 		user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
 		user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
