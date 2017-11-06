@@ -81,10 +81,11 @@ def renderLogin(refcode):
 
     if refcode:
         refcode = refcode
+        refname = User.query.get(refcode).name
     else:
         refcode = 0
 
-    return render_template('login.html', refcode=refcode)
+    return render_template('login.html', refcode=refcode, refname=refname)
 
 @app.route("/commit/<string:refcode>", methods=["POST", "GET"])
 def renderCommit(refcode):
