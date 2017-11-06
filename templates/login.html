@@ -114,7 +114,7 @@
               <div class="header text-center">
                 <h1 class="title title-up">COMM!T</h1>
                 <h2>Vote Nov. 7th</h2>
-                <h5>{{refname}} has invited you to COMM!T. How should we remind you to check in</h5>
+                <h5>{{referring_user}} has invited you to COMM!T. How should we remind you to check in</h5>
                 <div class="social-line" style="margin-bottom:20px">
 
                   <!-- <a href="#pablo" style="opacity: 0.9;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
@@ -232,18 +232,40 @@
                         </button>
                         <h5 style="text-align:left;width:100%">You check in at your polling place.</h5>
                     </div>
-                    <div class="modal-body" style="padding-top:0">
-                        <p style="font-size: 0.8rem">
-                            We'll send you a link to check in that will confirm your location, one when the polls open and a couple more throughout the day. When you check in, we'll send a message to {{refname}} and you'll get the same notification for anyone who COMM!Ts with the link you'll receive. If you don't check in near a polling place, we'll send a simple message to {{refname}} that says we didn't see you. The check-in link has a back-up plan for absentee voters and GPS issues. You can customize the messages that will be sent when you check in (or don't) through the "customize messages" link below this pop-up. Now, go for it!
+                    <div class="modal-body" style="padding-top:0;padding-bottom:0;">
+                        <p style="font-size: 0.8rem; margin:0;">
+                            We'll send you a link to check in that will confirm your location, one when the polls open and a couple more throughout the day. When you check in, we'll send a message to {{referring_user}} and you'll get the same notification for anyone who COMM!Ts with the link you'll receive. If you don't check in near a polling place, we'll send a simple message to {{referring_user}} that says we didn't see you. The check-in link has a back-up plan for absentee voters and GPS issues. You can customize the messages that will be sent when you check in (or don't) through the "customize messages" link below this pop-up. Now, go for it!
                             <br>
                             <br>
                             -Team COMM!T
                         </p>
                     </div>
-                    <!-- <div class="modal-footer">
+                    <div class="modal-footer">
                         <div style="float:left;line-height:30px;"></div>
-                        <button href="commit.vote/altlogin" class="btn btn-link btn-primary " style="text-align: center">Not Eligible, But Want to Spread the Word?</button>
-                    </div> -->
+                        <button data-toggle="modal" onclick="nonVoter()" class="btn btn-link btn-primary " style="text-align: center;font-size: 0.9rem">Not Eligible To Vote, But Want to Help?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+        <!-- Start Modal -->
+        <div class="modal fade" id="nonvoterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center" style="padding: 60px 24px 0 24px;">
+                        <button type="button" class="close" data-dismiss="modal" data-toggle="modal"  aria-hidden="true" >
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 style="text-align:left;width:100%">Sign-up anyway!</h5>
+                    </div>
+                    <div class="modal-body" style="padding-top:0;">
+                        <p style="font-size: 0.8rem;">
+                            The check-in reminder we send will have a special link for non-eligible voters that will tell {{referring_user}} how many people you got to COMM!T. On behalf of America, Team COMM!T thanks you for your generosity :)
+                            <br>
+                            <br>
+                            -Team COMM!T
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -251,6 +273,12 @@
 
 
     <script>
+      function nonVoter() {
+        $('#expModal').modal('hide')
+        $('#nonvoterModal').modal('show')
+      }
+
+
       var name = '';
       var email = '';
       var phone = '';
