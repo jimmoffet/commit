@@ -63,7 +63,7 @@ def sendit():
 
 		if user.email != '':
 			msg = Message('Hello from TEAM COMM!T', sender = 'teamcommitapp@gmail.com', recipients = [user.email])
-			msg.html = render_template('COMM!T Template.html', name=user.name, referring_user=referring_user.name)
+			msg.html = render_template('COMM!T Template.html', name=user.name, referring_user=referring_user.name, ref_link='https://commit.vote/r/' + str(user.id))
 			mail.send(msg)
 
 	return "Sent"
