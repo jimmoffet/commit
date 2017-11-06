@@ -41,12 +41,12 @@ def extendToken(short_token):
 
     return longtoken
 
-def sendSMS(from_num,name):
+def sendSMS(from_num,refname,uid):
     ### get phone number
 
     cnt=1
 
-    reminder = "COMM!Tbot says, You're committed! We'll let "+name+" know if you checked in on election day. We'll send you a reminder with a check-in link when the polls open and another at noon."
+    reminder = "COMM!Tbot says, You're committed! We'll let "+refname+" know when you check in at the polls tomorrow (or if you don't). We'll send you a few location-aware check-in reminders until you check in. Do for others what "+refname+" is doing for you with your COMM!T link: "+"http://www.commit.vote/r/"+uid
 
     from_num = '+'+from_num
 

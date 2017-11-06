@@ -81,10 +81,11 @@ def renderLogin(refcode):
 
     if refcode:
         refcode = refcode
+        refname = User.query.get(refcode).name
     else:
         refcode = 0
 
-    return render_template('login.html', refcode=refcode)
+    return render_template('login.html', refcode=refcode, refname=refname)
 
 @app.route("/commit/<string:refcode>", methods=["POST", "GET"])
 def renderCommit(refcode):
@@ -217,11 +218,7 @@ def createUser():
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
 
-		if json_dict['phone'] != '':
-			phone = json_dict['phone']
-			if phone[0] != 1:
-				phone = '1'+phone
-			sendSMS(phone,refname)
+		
 
 		user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
 		user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
@@ -230,6 +227,12 @@ def createUser():
 		user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
 		db.session.add(user)
 		db.session.commit()
+
+		if json_dict['phone'] != '':
+			phone = json_dict['phone']
+			if phone[0] != 1:
+				phone = '1'+phone
+			sendSMS(phone,refname,str(user.id))
 
 	return str(user.id)
 

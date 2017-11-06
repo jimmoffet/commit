@@ -6,7 +6,7 @@
     <meta property="og:url" content="https://commit.vote" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="COMM!T" />
-    <meta property="og:description" content="COMM!T let's friends help friends follow through" />
+    <meta property="og:description" content="Feeling over-connected and under-committed? COMM!T let's friends help friends follow through" />
     <meta property="og:image" content="https://commitweb.herokuapp.com/static/img/vjday.jpg" />
 
     <link rel="apple-touch-icon" sizes="76x76" href="../static/now/assets/img/apple-icon.png">
@@ -160,13 +160,13 @@
                             <div class="textarea-container">
 
                                 <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="1" onclick="this.focus();this.select()" readonly="readonly">https://commit.vote/r/{{current_user}}</textarea>
-                                <img src="../static/img/copychain.png" id="linkcopy"/>
+                                <a href="#"><img src="../static/img/copychain.png" id="linkcopy"/></a>
                             </div>
                             <br />
                             <br />
                             <div class="social-line" style="margin-bottom:30px">
 
-                                <a style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round" href='http://twitter.com/intent/tweet?url=https%3A//commit.vote/r/{{current_user}}&amp;text=I%20made%20a%20public%20COMM!TMENT%20to%20vote.%20https://www.commit.vote/r/{{current_user}}' >
+                                <a style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round" href='http://twitter.com/intent/tweet?url=http%3A//commit.vote/r/{{current_user}}&amp;text=I%20made%20a%20public%20COMM!TMENT%20to%20vote.' >
                                     <i class="fa fa-twitter"></i>
                                 </a>
                                 <a href="#" style="opacity: 1;margin:0 7px;" class="btn btn-neutral btn-facebook btn-icon btn-lg btn-round" id="fbButton">
@@ -178,7 +178,7 @@
                                         method: 'share',
                                         quote: 'I made a public COMM!TMENT to vote! http://commit.vote/r/{{current_user}}',
                                         display: 'popup',
-                                        href: 'https://commitweb.herokuapp.com/r/{{current_user}}',
+                                        href: 'https://www.commit.vote/r/{{current_user}}',
                                       }, function(response){});
                                     }
                                 </script>
