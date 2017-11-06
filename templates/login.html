@@ -97,7 +97,7 @@
                         <a class="nav-link" href="#">Back to COMM!T</a>
                     </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="mailto:jmoffet@mit.edu">Have an issue?</a>
+              <a class="nav-link" href="mailto:teamcommitapp@gmail.com">Have an issue?</a>
             </li>
           </ul>
         </div>
@@ -179,7 +179,7 @@
                         </div> -->
               <div class="pull-right">
                 <h6>
-                                <a href="mailto:jmoffet@mit.edu" class="link">Need Help?</a>
+                                <a href="mailto:teamcommitapp@gmail.com" class="link">Need Help?</a>
                             </h6>
               </div>
             </form>
@@ -425,6 +425,7 @@
           success: function(response) {
             console.log(response);
             userId = response;
+            emailUser(userId)
             window.location = "/commit/{{refcode}}A" + userId;
           },
           error: function(error) {
@@ -432,6 +433,23 @@
           }
         });
         console.log(`${userId} printed from ajax call`);
+      }
+      function emailUser(userId) {
+        $.ajax({
+          url: '/mail',
+          data: JSON.stringify({
+            "user": userId
+          }),
+          dataType: 'json',
+          contentType: "application/json",
+          type: 'POST',
+          success: function(response) {
+            console.log(response);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
       }
     </script>
   </body>
