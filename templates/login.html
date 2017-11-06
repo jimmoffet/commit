@@ -133,31 +133,32 @@
               <div class="content">
 
                 <div id="emailparent" class="input-group form-group-no-border input-lg">
-                  <span class="input-group-addon" style="background-color: rgba(255,255,255,0.2);">
+                  <span class="input-group-addon" id="emailspan" style="background-color: rgba(255,255,255,0.2);">
                                     <i class="now-ui-icons ui-1_email-85" ></i>
                                 </span>
-                  <input type="text" id="email" class="form-control" style="background-color: rgba(255,255,255,0.2);" placeholder="EMAIL...">
+                  <input type="text" id="email" class="form-control" style="background-color: rgba(255,255,255,0.2)" placeholder="EMAIL...">
                 </div>
-                <!-- Bring Back with Javascript -->
-                <div class="input-group form-group-no-border input-lg" id="emailnameinput" style="display:none">
-                  <span class="input-group-addon" style="background-color: rgba(255,255,255,0.2);">
-                                        <i class="now-ui-icons text_caps-small"></i>
-                                    </span>
-                  <input type="text" id="emailname" name="emailname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
-                </div>
+                
                 <div id="smsparent" class="input-group form-group-no-border input-lg">
-                  <span class="input-group-addon" style="background-color: rgba(255,255,255,0.2);">
+                  <span class="input-group-addon" id="smsspan" style="background-color: rgba(255,255,255,0.2);">
                                     <i class="now-ui-icons ui-1_bell-53" ></i>
                                 </span>
                   <input type="text" id="sms" class="form-control" style="background-color: rgba(255,255,255,0.2);" placeholder="SMS...">
                 </div>
                 <!-- Bring Back with Javascript -->
-                <div class="input-group form-group-no-border input-lg" id="smsnameinput" style="display:none">
-                  <span class="input-group-addon" style="background-color: rgba(255,255,255,0.2);">
+                <div id="nameparent" class="input-group form-group-no-border input-lg" style="display:none">
+                  <span class="input-group-addon" id="emailnamespan" style="background-color: rgba(255,255,255,0.2);border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                  <input type="text" id="emailname" name="emailname" style="background-color: rgba(255,255,255,0.2);border-right: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;" placeholder="Name..." class="form-control" />
+                </div>
+                <!-- Bring Back with Javascript -->
+                <!-- <div id="smsnameparent" class="input-group form-group-no-border input-lg" style="display:none">
+                  <span class="input-group-addon" id="smsnamespan" style="background-color: rgba(255,255,255,0.2);">
                                     <i class="now-ui-icons text_caps-small"></i>
                                 </span>
                   <input type="text" id="smsname" name="smsname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
-                </div>
+                </div> -->
                 <div class="input-group form-group-no-border input-lg" id="submit" style="display:none">
                   <a class="btn btn-primary btn-round" onclick="postUser()" style="width: 320px;height: 46px;opacity: 0.9;text-align: center; font-size:12px;padding-top:15px">
                     <i class="now-ui-icons" style></i>SUBMIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -230,78 +231,181 @@
       const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       const phone10 = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
       const phone11 = /^\(?([0-9]{1})[-. ]?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      var namevalid = false;
+      // var smsnamevalid = false;
+      var emailvalid = false;
+      var smsvalid = false;
+
+      String.prototype.trim = function() {
+        return this.replace(/^\s+|\s+$/g,"");
+      }
+
+      // document.getElementById("email")
+      //   .addEventListener("keyup", function(event) {
+      //     event.preventDefault();
+      //     document.querySelector("#smsparent").setAttribute('style', 'display: none;');
+      //     }
+      //   );
+      // document.getElementById("sms")
+      //   .addEventListener("keyup", function(event) {
+      //     event.preventDefault();
+      //     document.querySelector("#emailparent").setAttribute('style', 'display: none;');
+      //     }
+      //   );
 
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          document.querySelector("#smsparent").setAttribute('style', 'display: none;');
-          }
-        );
-      document.getElementById("sms")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          document.querySelector("#emailparent").setAttribute('style', 'display: none;');
-          }
-        );
-      document.getElementById("email")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
           email = document.getElementById("email").value;
+
+          if (email === "") {
+            document.querySelector("#smsparent").setAttribute('style', 'display: flex;');
+          } else {
+            document.querySelector("#smsparent").setAttribute('style', 'display: none;');
+            document.querySelector("#nameparent").setAttribute('style', 'display: flex;');
+          }
+
+          document.getElementById("emailspan").setAttribute("style", "border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+          document.getElementById("email").setAttribute("style", "border-right: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+          var emailvalid = false;
+
+          if (email.match(mailformat)) {
+            document.getElementById("emailspan").setAttribute("style", "border-left: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+            document.getElementById("email").setAttribute("style", "border-right: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+            document.getElementById("nameparent").setAttribute("style", "display: flex;");
+            var emailvalid = true;
+            if (namevalid === true && emailvalid === true){
+              document.getElementById("submit").setAttribute("style", "display: flex;");
+            }
+          } else {
+            document.getElementById("submit").setAttribute("style", "display: none;");
+          }
+          
+          
           if (event.keyCode === 13 && email.match(mailformat)) {
+            
             console.log('triggered on enter key');
             email = document.getElementById("email").value;
             // this.value??
-            document.getElementById("emailnameinput").setAttribute("style", "display: flex;");
+            document.getElementById("nameparent").setAttribute("style", "display: flex;");
             document.querySelector("[name='emailname']").focus();
           }
         });
+
       document.getElementById("sms")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
           phone = document.getElementById("sms").value;
+
+          if (phone === "") {
+            document.querySelector("#emailparent").setAttribute('style', 'display: flex;');
+          } else {
+            document.querySelector("#emailparent").setAttribute('style', 'display: none;');
+            document.querySelector("#nameparent").setAttribute('style', 'display: none;');
+          }
+
+          document.getElementById("smsspan").setAttribute("style", "border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+          document.getElementById("sms").setAttribute("style", "border-right: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+          var smsvalid = false;
+
+          if (phone.match(phone10) || phone.match(phone11)) {
+            document.getElementById("smsspan").setAttribute("style", "border-left: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+            document.getElementById("sms").setAttribute("style", "border-right: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+            document.getElementById("nameparent").setAttribute("style", "display: flex;");
+            var smsvalid = true;
+            if (namevalid === true && smsvalid === true){
+              document.getElementById("submit").setAttribute("style", "display: flex;");
+            }
+          } else {
+            document.getElementById("submit").setAttribute("style", "display: none;");
+          }
+
           if (event.keyCode === 13 && phone.match(phone10) || phone.match(phone11)) {
             phone = document.getElementById("sms").value;
             console.log('triggered on enter key');
-            document.getElementById("smsnameinput").setAttribute("style", "display: flex;");
-            document.querySelector("[name='smsname']").focus();
+            document.getElementById("nameparent").setAttribute("style", "display: flex;");
+            document.querySelector("[name='emailname']").focus();
           }
         });
+
       document.getElementById("emailname")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
           email = document.getElementById("email").value;
           name = document.querySelector("#emailname").value;
+
+          if (name === "") {
+            namevalid = false;
+            document.getElementById("submit").setAttribute("style", "display: none;");
+            document.getElementById("emailnamespan").setAttribute("style", "border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+            document.getElementById("emailname").setAttribute("style", "border-right: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+            console.log('kill submit')
+            console.log(namevalid)
+          } else {
+            namevalid = true;
+            console.log(namevalid)
+            document.getElementById("submit").setAttribute("style", "display: flex;");
+            document.getElementById("emailnamespan").setAttribute("style", "border-left: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+            document.getElementById("emailname").setAttribute("style", "border-right: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+          }
+
+          
           if (event.keyCode === 13 && name !== '' && email.match(mailformat)) {
-            ocument.getElementById("submit").setAttribute("style", "display: flex;");
+            document.getElementById("submit").setAttribute("style", "display: flex;");
+            name = document.getElementById("emailname").value;
+            console.log('triggered on enter key');
+            postUser();
+          } else if (event.keyCode === 13 && name !== '' && namevalid && phone.match(phone10) || phone.match(phone11)) {
+            document.getElementById("submit").setAttribute("style", "display: flex;");
             name = document.getElementById("emailname").value;
             console.log('triggered on enter key');
             postUser();
           }
-        });
-      document.getElementById("smsname")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          phone = document.getElementById("sms").value;
-          name = document.querySelector("#smsname").value;
-          if (event.keyCode === 13 && name !== '' && phone.match(phone10) || phone.match(phone11)) {
-            document.getElementById("submit").setAttribute("style", "display: flex;");
-            name = document.getElementById("smsname").value;
-            console.log('triggered on enter key');
-            postUser();
-          }
-        });
-      document.getElementById("emailname")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          document.getElementById("submit").setAttribute("style", "display: flex;");
-        });
-      document.getElementById("smsname")
-        .addEventListener("keyup", function(event) {
-          event.preventDefault();
-          document.getElementById("submit").setAttribute("style", "display: flex;");
+
         });
 
+      // document.getElementById("smsname")
+      //   .addEventListener("keyup", function(event) {
+      //     event.preventDefault();
+      //     phone = document.getElementById("sms").value;
+      //     name = document.querySelector("#emailname").value;
+
+      //     if (name === "") {
+      //       namevalid = false;
+      //       document.getElementById("submit").setAttribute("style", "display: none;");
+      //       document.getElementById("emailnamespan").setAttribute("style", "border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+      //       document.getElementById("emailname").setAttribute("style", "border-right: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;");
+      //       console.log('kill submit')
+      //       console.log(namevalid)
+      //     } else {
+      //       namevalid = true;
+      //       console.log(namevalid)
+      //       document.getElementById("submit").setAttribute("style", "display: flex;");
+      //       document.getElementById("emailnamespan").setAttribute("style", "border-left: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+      //       document.getElementById("emailname").setAttribute("style", "border-right: 1px solid green;border-top: 1px solid green;border-bottom: 1px solid green;");
+      //     }
+
+      //     if (event.keyCode === 13 && name !== '' && phone.match(phone10) || phone.match(phone11) && smsvalid === true) {
+      //       document.getElementById("submit").setAttribute("style", "display: flex;");
+      //       name = document.getElementById("emailname").value;
+      //       console.log('triggered on enter key');
+      //       postUser();
+      //     }
+      //   });
+
+      // document.getElementById("emailname")
+      //   .addEventListener("keyup", function(event) {
+      //     event.preventDefault();
+      //     document.getElementById("submit").setAttribute("style", "display: flex;");
+      //   });
+      // document.getElementById("smsname")
+      //   .addEventListener("keyup", function(event) {
+      //     event.preventDefault();
+      //     document.getElementById("submit").setAttribute("style", "display: flex;");
+      //   });
+
       let userId = 'steven';
+
       function postUser() {
         $.ajax({
           url: '/createuser',
