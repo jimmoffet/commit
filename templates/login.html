@@ -159,12 +159,12 @@
                   <input type="text" id="smsname" name="smsname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
                 </div>
                 <div class="input-group form-group-no-border input-lg" id="submit" style="display:none">
-                  <a class="btn btn-primary btn-round" onclick="postUser()" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
-                    <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUBMIT
+                  <a class="btn btn-primary btn-round" onclick="postUser()" style="width: 320px;height: 46px;opacity: 0.9;text-align: center; font-size:12px;padding-top:15px">
+                    <i class="now-ui-icons" style></i>SUBMIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </a>
-                  <!-- <a class="btn btn-primary btn-round" href="/commit/{{refcode}}A{{current_user}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                  <!-- <a class="btn btn-primary btn-round" onclick="postUser()" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
                   <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
-                </a> -->
+                  </a> -->
                 </div>
 
               </div>
@@ -272,6 +272,7 @@
           email = document.getElementById("email").value;
           name = document.querySelector("#emailname").value;
           if (event.keyCode === 13 && name !== '' && email.match(mailformat)) {
+            ocument.getElementById("submit").setAttribute("style", "display: flex;");
             name = document.getElementById("emailname").value;
             console.log('triggered on enter key');
             postUser();
@@ -283,6 +284,7 @@
           phone = document.getElementById("sms").value;
           name = document.querySelector("#smsname").value;
           if (event.keyCode === 13 && name !== '' && phone.match(phone10) || phone.match(phone11)) {
+            document.getElementById("submit").setAttribute("style", "display: flex;");
             name = document.getElementById("smsname").value;
             console.log('triggered on enter key');
             postUser();
