@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
 # from twilio.twiml.messaging_response import MessagingResponse
 from scrape import ping, people, pLayer, extendToken, writeMessageToDB, writeUserToDB, writeAll, getUserFromRef
+from scrapeNEW import sendSMS
 import random
 import threading
 import datetime

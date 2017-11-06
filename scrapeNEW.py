@@ -43,26 +43,24 @@ def extendToken(short_token):
 def sendSMS(from_num):
     ### get phone number
 
-    cnt = 0
-    for subscriber in subscriber_list:
-        from_num = '+'+subscriber[0]
-        now = datetime.datetime.now()
-        now = now.replace(second=0, microsecond=0)
-        if len(subscriber[1]) < 2:
-            lastsent = now - datetime.timedelta(days=7)
-            lastsent = lastsent.replace(second=0, microsecond=0)
+    from_num = '+'+subscriber[0]
+    now = datetime.datetime.now()
+    now = now.replace(second=0, microsecond=0)
+    if len(subscriber[1]) < 2:
+        lastsent = now - datetime.timedelta(days=7)
+        lastsent = lastsent.replace(second=0, microsecond=0)
 
-        test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
-        # print('Found +17733541500')
-        # print(from_num)
-        if test < now:
-            message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
+    test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
+    # print('Found +17733541500')
+    # print(from_num)
+    if test < now:
+        message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
 
-            ### need to add row to subscriber list so we can update the correct row
+        ### need to add row to subscriber list so we can update the correct row
 
-            sheet.update_cell(subscriber[5], 12, now)
-            sheet.update_cell(subscriber[5], 13, now)
-            cnt += 1
+        sheet.update_cell(subscriber[5], 12, now)
+        sheet.update_cell(subscriber[5], 13, now)
+        cnt += 1
 
     print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
     return page
