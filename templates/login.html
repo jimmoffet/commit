@@ -158,9 +158,14 @@
                                 </span>
                   <input type="text" id="smsname" name="smsname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
                 </div>
-                <!-- <a class="btn btn-primary btn-round" href="/commit/{{refcode}}A{{current_user}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
-                                <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
-                            </a> -->
+                <div class="input-group form-group-no-border input-lg" id="submit" style="display:none">
+                  <a class="btn btn-primary btn-round" onclick="postUser()" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                    <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUBMIT
+                  </a>
+                  <!-- <a class="btn btn-primary btn-round" href="/commit/{{refcode}}A{{current_user}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                  <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
+                </a> -->
+                </div>
 
               </div>
               <!-- <div class="footer text-center">
@@ -282,6 +287,16 @@
             console.log('triggered on enter key');
             postUser();
           }
+        });
+      document.getElementById("emailname")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          document.getElementById("submit").setAttribute("style", "display: flex;");
+        });
+      document.getElementById("smsname")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          document.getElementById("submit").setAttribute("style", "display: flex;");
         });
 
       let userId = 'steven';
