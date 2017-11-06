@@ -90,6 +90,9 @@ window.fbAsyncInit = function() {
 
 
 function fbLogin(ref){
+
+    console.log('ref at beginning');
+    console.log(ref);
     var name = '';
     var email = '';
     var phone = '';
@@ -98,6 +101,7 @@ function fbLogin(ref){
     var fbToken = '';
     var twToken = '';
     var referringUser = ref;
+    var uid = '';
 
     FB.login(function(response) {
           if (response.authResponse) {
@@ -141,24 +145,52 @@ function fbLogin(ref){
                   type: 'POST',
                   success: function(response) {
                     console.log(response);
+                    uid = response;
+                    emailUser();
                   },
                   error: function(error) {
                     console.log(error);
+                    alert('Failed to create user. Notify Team COMM!T at teamcommitapp@gmail.com');
                   }
                 });
 
 
               });
 
+             function emailUser(){  
+              function emailUser(userId) {
+                $.ajax({
+                  url: '/mail',
+                  data: JSON.stringify({
+                    "user": uid
+                  }),
+                  dataType: 'json',
+                  contentType: "application/json",
+                  type: 'POST',
+                  success: function(response) {
+                    console.log(response);
+                    window.location= '/commit/'+ref+"A"+uid;
+                  },
+                  error: function(error) {
+                    console.log(error);
+                    window.location= '/commit/'+ref+"A"+uid;
+                  }
+                });
 
-              window.location= '/commit/'+ref;
+
+              
+             }
+              
 
 
           } else {
            console.log('User cancelled login or did not fully authorize.');
+           console.log('ref at end');
+           console.log(ref);
           }
     }, {scope: 'public_profile,email'});
 
-
+  console.log('ref at end');
+  console.log(ref);
 
 }
