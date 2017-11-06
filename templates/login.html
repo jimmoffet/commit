@@ -158,9 +158,14 @@
                                 </span>
                   <input type="text" id="smsname" name="smsname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
                 </div>
-                <!-- <a class="btn btn-primary btn-round" href="/commit/{{refcode}}A{{current_user}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
-                                <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
-                            </a> -->
+                <div class="input-group form-group-no-border input-lg" id="submit" style="display:none">
+                  <a class="btn btn-primary btn-round" onclick="postUser()" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                    <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUBMIT
+                  </a>
+                  <!-- <a class="btn btn-primary btn-round" href="/commit/{{refcode}}A{{current_user}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                  <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
+                </a> -->
+                </div>
 
               </div>
               <!-- <div class="footer text-center">
@@ -222,6 +227,9 @@
       var twToken = '';
       var referringUser = 0;
       referringUser = {{refcode}};
+      const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      const phone10 = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      const phone11 = /^\(?([0-9]{1})[-. ]?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
@@ -238,10 +246,11 @@
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          email = document.getElementById("email").value;
+          if (event.keyCode === 13 && email.match(mailformat)) {
             console.log('triggered on enter key');
-            // this.value??
             email = document.getElementById("email").value;
+            // this.value??
             document.getElementById("emailnameinput").setAttribute("style", "display: flex;");
             document.querySelector("[name='emailname']").focus();
           }
@@ -249,7 +258,8 @@
       document.getElementById("sms")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          phone = document.getElementById("sms").value;
+          if (event.keyCode === 13 && phone.match(phone10) || phone.match(phone11)) {
             phone = document.getElementById("sms").value;
             console.log('triggered on enter key');
             document.getElementById("smsnameinput").setAttribute("style", "display: flex;");
@@ -259,7 +269,9 @@
       document.getElementById("emailname")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          email = document.getElementById("email").value;
+          name = document.querySelector("#emailname").value;
+          if (event.keyCode === 13 && name !== '' && email.match(mailformat)) {
             name = document.getElementById("emailname").value;
             console.log('triggered on enter key');
             postUser();
@@ -268,11 +280,23 @@
       document.getElementById("smsname")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
-          if (event.keyCode === 13) {
+          phone = document.getElementById("sms").value;
+          name = document.querySelector("#smsname").value;
+          if (event.keyCode === 13 && name !== '' && phone.match(phone10) || phone.match(phone11)) {
             name = document.getElementById("smsname").value;
             console.log('triggered on enter key');
             postUser();
           }
+        });
+      document.getElementById("emailname")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          document.getElementById("submit").setAttribute("style", "display: flex;");
+        });
+      document.getElementById("smsname")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          document.getElementById("submit").setAttribute("style", "display: flex;");
         });
 
       let userId = 'steven';
