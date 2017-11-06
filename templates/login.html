@@ -132,7 +132,7 @@
               </div>
               <div class="content">
 
-                <div class="input-group form-group-no-border input-lg">
+                <div id="emailparent" class="input-group form-group-no-border input-lg">
                   <span class="input-group-addon" style="background-color: rgba(255,255,255,0.2);">
                                     <i class="now-ui-icons ui-1_email-85" ></i>
                                 </span>
@@ -145,7 +145,7 @@
                                     </span>
                   <input type="text" id="emailname" name="emailname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
                 </div>
-                <div class="input-group form-group-no-border input-lg">
+                <div id="smsparent" class="input-group form-group-no-border input-lg">
                   <span class="input-group-addon" style="background-color: rgba(255,255,255,0.2);">
                                     <i class="now-ui-icons ui-1_bell-53" ></i>
                                 </span>
@@ -158,9 +158,9 @@
                                 </span>
                   <input type="text" id="smsname" name="smsname" style="background-color: rgba(255,255,255,0.2);" placeholder="Name..." class="form-control" />
                 </div>
-                <a class="btn btn-primary btn-round" href="/commit/{{refcode}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
+                <!-- <a class="btn btn-primary btn-round" href="/commit/{{refcode}}A{{current_user}}" style="width: 320px;height: 46px;opacity: 0.9;text-align: left; font-size:12px;padding-top:15px">
                                 <i class="now-ui-icons business_badge"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEBUG PASSTHROUGH LOGIN...
-                            </a>
+                            </a> -->
 
               </div>
               <!-- <div class="footer text-center">
@@ -223,6 +223,18 @@
       var referringUser = 0;
       referringUser = {{refcode}};
 
+      document.getElementById("email")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          document.querySelector("#smsparent").setAttribute('style', 'display: none;');
+          }
+        );
+      document.getElementById("sms")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          document.querySelector("#emailparent").setAttribute('style', 'display: none;');
+          }
+        );
       document.getElementById("email")
         .addEventListener("keyup", function(event) {
           event.preventDefault();
