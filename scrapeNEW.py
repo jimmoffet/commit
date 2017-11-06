@@ -8,6 +8,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from fbcreds import app_id, app_secret
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
+import datetime
 
 # Find these values at https://twilio.com/user/account
 account_sid = "AC3e1252b3f55741e9dfeb3fb4ef66d88e"
@@ -40,30 +41,28 @@ def extendToken(short_token):
 
     return longtoken
 
-def sendSMS(from_num):
+def sendSMS(from_num,name):
     ### get phone number
 
-    from_num = '+'+subscriber[0]
-    now = datetime.datetime.now()
-    now = now.replace(second=0, microsecond=0)
-    if len(subscriber[1]) < 2:
-        lastsent = now - datetime.timedelta(days=7)
-        lastsent = lastsent.replace(second=0, microsecond=0)
+    cnt=1
 
-    test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
+    reminder = "COMM!Tbot says, You're committed! We'll let "+name+" know if you checked in on election day. We'll send you a reminder with a check-in link when the polls open and another at noon."
+
+    from_num = '+'+from_num
+
+    # now = datetime.datetime.now()
+    # now = now.replace(second=0, microsecond=0)
+
+    #test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
     # print('Found +17733541500')
     # print(from_num)
 
     message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
 
-    ### need to add row to subscriber list so we can update the correct row
 
-    sheet.update_cell(subscriber[5], 12, now)
-    sheet.update_cell(subscriber[5], 13, now)
-    cnt += 1
 
     print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
-    return page
+    return "Success"
 
 # def getUserFromRef(refcode):
 #     #requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
