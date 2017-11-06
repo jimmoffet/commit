@@ -47,7 +47,7 @@ def hello():
 	out = ''
 	try:
 		name = 'TEAM COMM!T'
-		return render_template('login.html', referring_user=name, refcode=0)
+		return render_template('login.html', refname=name, refcode=0)
 	except:
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
 		return out
