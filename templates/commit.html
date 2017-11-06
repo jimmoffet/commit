@@ -166,6 +166,7 @@
                             <p>Seconds</p>
                         </div>
                     </div>
+                    <p class="category" data-toggle="modal" data-target="#expModal" style="color:rgba(255, 255, 255, 0.9); text-decoration:underline;">How does this work?</p>
                     <center><a class="btn btn-commit" href="/share/{{refcode}}A{{current_user}}" role="button">COMM!T</a></center>
                 </div>
             </div>
@@ -227,7 +228,7 @@
                     </div>
                     <div class="modal-body" style="padding-top:0">
                         <div class="textarea-container">
-                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, [USERNAME] just showed up at the polls. Score one more for democracy!</textarea>
+                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, [USER] just showed up at the polls. Score one more for democracy!</textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -251,7 +252,7 @@
                     </div>
                     <div class="modal-body" style="padding-top:0">
                         <div class="textarea-container">
-                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, Oh No! [USERNAME] didn't show up at the polls today.</textarea>
+                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, Oh No! [USER] didn't show up at the polls today.</textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -259,6 +260,42 @@
                         <div style="float:left;line-height:30px;"></div>
                         <button type="button" class="btn btn-danger" onclick="hideNeg()" style="float:right">SAVE</button>
                     </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="expModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center" style="padding: 60px 24px 0 24px;">
+                        <button type="button" class="close" data-dismiss="modal" data-toggle="modal"  aria-hidden="true" >
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 style="text-align:left;width:100%">You check in at your polling place.</h5>
+                    </div>
+                    <div class="modal-body" style="padding-top:0">
+                        <p style="font-size: 0.8rem">
+                            We'll send you a link to check in that will confirm your location, when the polls open and another at noon. When you check in, we'll send a message to {{referring_user}} and give them a chance to share what you accomplished together. Likewise, you'll get the same notification for anyone who COMM!Ts with the link you'll receive. If you don't check in near a polling place, we'll send a simple message to {{referring_user}} that says we didn't see you. The check-in link has a back-up plan for absentee voters and GPS issues. You can customize the messages that will be sent when you check in (or don't) through the "customize messages" link below this pop-up. Now, go for it!
+                            <br>
+                            <br>
+                            -Team COMM!T
+
+
+
+                        </p>
+                    </div>
+
+                    <!-- <div class="modal-body" style="padding-top:0">
+                        <div class="textarea-container">
+                            <textarea class="form-control" id="reflink" placeholder="Here can be your nice text" rows="3" >COMM!Tbot says, [USERNAME] just showed up at the polls. Score one more for democracy!</textarea>
+                        </div>
+                    </div> -->
+                    <!-- <div class="modal-footer">
+
+                        <div style="float:left;line-height:30px;"></div>
+                        <button type="button" class="btn btn-danger" onclick="hidePos()" style="float:right">SAVE</button>
+                    </div> -->
                 </div>
             </div>
 
