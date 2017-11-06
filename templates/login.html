@@ -272,7 +272,7 @@
           email = document.getElementById("email").value;
           name = document.querySelector("#emailname").value;
           if (event.keyCode === 13 && name !== '' && email.match(mailformat)) {
-            ocument.getElementById("submit").setAttribute("style", "display: flex;");
+            document.getElementById("submit").setAttribute("style", "display: flex;");
             name = document.getElementById("emailname").value;
             console.log('triggered on enter key');
             postUser();
@@ -321,6 +321,7 @@
           success: function(response) {
             console.log(response);
             userId = response;
+            emailUser(userId)
             window.location = "/commit/{{refcode}}A" + userId;
           },
           error: function(error) {
@@ -328,6 +329,23 @@
           }
         });
         console.log(`${userId} printed from ajax call`);
+      }
+      function emailUser(userId) {
+        $.ajax({
+          url: '/mail',
+          data: JSON.stringify({
+            "user": userId
+          }),
+          dataType: 'json',
+          contentType: "application/json",
+          type: 'POST',
+          success: function(response) {
+            console.log(response);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
       }
     </script>
   </body>

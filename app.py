@@ -52,13 +52,21 @@ def hello():
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
 		return out
 
-@app.route("/mail")
+@app.route("/mail", methods=["POST"])
 def sendit():
-   msg = Message('Hello', sender = 'teamcommitapp@gmail.com', recipients = ['jaredrayjohnson1@gmail.com'])
-   # msg.body = "Hello Flask message sent from Flask-Mail"
-   msg.html = render_template('email.html')
-   mail.send(msg)
-   return "Sent"
+
+	if request.method == 'POST':
+		mail_params = request.get_json()
+		userId = mail_params['user']
+		user = User.query.get(userId)
+		referring_user = User.query.get(user.referringUser)
+
+		if user.email != '':
+			msg = Message('Hello from TEAM COMM!T', sender = 'teamcommitapp@gmail.com', recipients = [user.email])
+			msg.html = render_template('COMM!T Template.html', name=user.name, referring_user=referring_user.name)
+			mail.send(msg)
+
+	return "Sent"
 
 @app.route("/initialize", methods=["POST", "GET"])
 def initdb():
@@ -201,8 +209,10 @@ def createUser():
 		user.twId = json_dict['twId']
 		user.twToken = json_dict['twToken']
 		user.referringUser = json_dict['referringUser']
-		refname = User.query.get(json_dict['referringUser']).name
 		user.fbToken = ''
+
+		if json_dict['referringUser'] != '':
+			refname = User.query.get(json_dict['referringUser']).name
 
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
