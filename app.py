@@ -13,9 +13,14 @@ import requests
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 import os
+from flask import Flask
+from flask_mail import Mail, Message
+from mailcreds import mailpassword
+
 
 
 app = Flask(__name__)
+mail = Mail(app)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -24,12 +29,18 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# mail config
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'teamcommitapp@gmail.com'
+app.config['MAIL_PASSWORD'] = mailpassword
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
 from models import User
 
 currentUser = 0
-# user = User('jared', datetime.datetime.now(), 'jrjohns@mit.edu', '3280803892', '508508393', '83082982983', '930290903', '3989809808', 'hi', 'oh no', datetime.datetime.now(), '5000')
-
-
 
 @app.route("/")
 def hello():
@@ -40,6 +51,22 @@ def hello():
 	except:
 		out = ' FIX MEEEEEEEEEEEEEEEEEEEEEE!!!!.'
 		return out
+
+@app.route("/mail", methods=["POST"])
+def sendit():
+
+	if request.method == 'POST':
+		mail_params = request.get_json()
+		userId = mail_params['user']
+		user = User.query.get(userId)
+		referring_user = User.query.get(user.referringUser)
+
+		if user.email != '':
+			msg = Message('Hello from TEAM COMM!T', sender = 'teamcommitapp@gmail.com', recipients = [user.email])
+			msg.html = render_template('COMM!T Template.html', name=user.name, referring_user=referring_user.name, ref_link='https://commit.vote/r/' + str(user.id))
+			mail.send(msg)
+
+	return "Sent"
 
 @app.route("/initialize", methods=["POST", "GET"])
 def initdb():
@@ -182,8 +209,10 @@ def createUser():
 		user.twId = json_dict['twId']
 		user.twToken = json_dict['twToken']
 		user.referringUser = json_dict['referringUser']
-		refname = User.query.get(json_dict['referringUser']).name
 		user.fbToken = ''
+
+		if json_dict['referringUser'] != '':
+			refname = User.query.get(json_dict['referringUser']).name
 
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
