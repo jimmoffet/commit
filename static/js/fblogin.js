@@ -146,7 +146,8 @@ function fbLogin(ref){
                   success: function(response) {
                     console.log(response);
                     uid = response;
-                    emailUser();
+                    emailUser(uid);
+                    window.location= '/commit/'+ref+"A"+uid;
                   },
                   error: function(error) {
                     console.log(error);
@@ -157,8 +158,7 @@ function fbLogin(ref){
 
               });
 
-             function emailUser(){  
-              function emailUser(userId) {
+             function emailUser(uid){  
                 $.ajax({
                   url: '/mail',
                   data: JSON.stringify({
@@ -168,19 +168,13 @@ function fbLogin(ref){
                   contentType: "application/json",
                   type: 'POST',
                   success: function(response) {
-                    console.log(response);
-                    window.location= '/commit/'+ref+"A"+uid;
+                    console.log(response);              
                   },
                   error: function(error) {
                     console.log(error);
-                    window.location= '/commit/'+ref+"A"+uid;
                   }
                 });
-
-
-              
-             }
-           }
+              }
               
 
 
