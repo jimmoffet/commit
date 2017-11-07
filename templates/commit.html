@@ -150,10 +150,11 @@
                     <!-- <h4 class="category" style="color:rgba(255, 255, 255, 0.99)">COMM!T works because y</h4> -->
                     <h4 class="category" style="color:white">COMM!T works by letting</h4>
                     <h2 class="title" style="margin: 12px 0;">{{referring_user}}</h2>
-                    <h4 class="category" style="color:white;margin-top:0;">know if you checked in<br/>on election day</h4>
+                    <h4 class="category" style="color:white;margin-top:0;">know if you checked in at the polls</h4>
                     <a href="#" class="category" data-toggle="modal" data-target="#myModal" style="color:rgba(255, 255, 255, 0.6);text-decoration:underline;">customize messages</a>
                     <div class="content" style="display: flex;justify-content:space-evenly;max-width: 320px;">
-                        <div class="social-description" style="width:65px;margin: 15px 0 0;">
+                        <h2 style="margin-top: 15px;margin-bottom: 15px">POLLS ARE OPEN!</h2>
+                        <!-- <div class="social-description" style="width:65px;margin: 15px 0 0;">
                             <h2 id="hours"></h2>
                             <p>Hours</p>
                         </div>
@@ -164,7 +165,7 @@
                         <div class="social-description" style="width:65px;margin: 15px 0 0;">
                             <h2 id="seconds"></h2>
                             <p>Seconds</p>
-                        </div>
+                        </div> -->
                     </div>
                     <a href="#" class="category" data-toggle="modal" data-target="#expModal" style="color:rgba(255, 255, 255, 0.9); text-decoration:underline;">How does this work?</a>
                     <center><a class="btn btn-commit" href="/share/{{refcode}}A{{current_user}}" role="button" style="margin-top:15px">COMM!T</a></center>
@@ -303,34 +304,34 @@
         var countDownDate = new Date("Nov 7, 2017 7:00:00").getTime();
 
         // Update the count down every 1 second
-        var x = setInterval(function() {
+        // var x = setInterval(function() {
 
-            // Get todays date and time
-            var now = new Date().getTime();
+        //     // Get todays date and time
+        //     var now = new Date().getTime();
 
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
+        //     // Find the distance between now an the count down date
+        //     var distance = countDownDate - now;
 
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            hours = hours + (days*24);
+        //     // Time calculations for days, hours, minutes and seconds
+        //     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        //     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        //     hours = hours + (days*24);
 
-            // Output the result in an element with id="demo"
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+        //     // Output the result in an element with id="demo"
+        //     document.getElementById("hours").innerHTML = hours;
+        //     document.getElementById("minutes").innerHTML = minutes;
+        //     document.getElementById("seconds").innerHTML = seconds;
 
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("hours").innerHTML = "0";
-                document.getElementById("minutes").innerHTML = "0";
-                document.getElementById("seconds").innerHTML = "0";
-            }
-        }, 1000);
+        //     // If the count down is over, write some text
+        //     if (distance < 0) {
+        //         clearInterval(x);
+        //         document.getElementById("hours").innerHTML = "0";
+        //         document.getElementById("minutes").innerHTML = "0";
+        //         document.getElementById("seconds").innerHTML = "0";
+        //     }
+        // }, 1000);
 
         function hidePos() {
           $.ajax({
