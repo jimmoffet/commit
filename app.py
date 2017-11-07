@@ -78,6 +78,8 @@ def sendlinks():
 	if len(users) != 0:
 		with mail.connect() as conn:
 			for user in users:
+				if user.id > 10:
+					break
 				if user.email not in emailed_users:
 					referring_user = User.query.get(user.referringUser)
 					subject = "COMM!T: Check in time"
@@ -90,6 +92,7 @@ def sendlinks():
 					except:
 						emailed_users.add(user.email)
 						print(user.email)
+				time.sleep(5) 
 
 	return "Sent"
 
@@ -114,7 +117,8 @@ def senddebriefs():
 						wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
 					else:
 						fails.append(referral.name)
-				print('referrals are '+referrals)
+				print('referrals are ')
+				print(referrals)
 				voted = user.distFromPoll
 				if user.email not in emailed_users and len(referrals) != 0:
 					count += 1
