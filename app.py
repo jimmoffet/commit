@@ -146,7 +146,7 @@ def emaillist():
 		emails.append(user.email)
 
 	print_to_screen = ', '.join(emails)
-	return 'print_to_screen'
+	return print_to_screen
 
 @app.route("/r/<string:refcode>", methods=["POST", "GET"])
 def renderLogin(refcode):
