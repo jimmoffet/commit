@@ -2,22 +2,24 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta property="fb:app_id" content="2024489881171070" /> 
+    <meta property="og:url" content="https://www.commit.vote" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="COMM!T" />
+    <meta property="og:description" content="Feeling over-connected and under-committed? COMM!T let's friends help friends follow through" />
+    <meta property="og:image" content="https://commitweb.herokuapp.com/static/img/fbimg.jpg" />
+
+    <link rel="icon" type="image/png" href="../static/now/assets/img/favicon.png">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/now/assets/img/apple-icon.png">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="bootstrap 4, bootstrap 4 ui kit, bootstrap 4 kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit">
-    <meta name="description" content="Start your development with a beautiful Bootstrap 4 UI kit.">
-    <meta name="author" content="Cantusstar(cc) Cantusstar, 2017. All Rights Reserved." />
 	
 	<title>SNOW - Bootstrap 4 UI Kit</title>
 
-    <!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Permanent+Marker|Material+Icons" rel="stylesheet">
-	
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/snow-ui-kit.css" />
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/ico/favicon.png" />
-    
     <!-- DEMO CSS -->
 	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/demo.css" />
 
@@ -81,16 +83,24 @@
 	<!-- Replace the value of the key parameter with your own API key. -->
 	
 	<script>
+	console.log('{{refcode}}')
+	console.log('{{current_user}}')
+	console.log('did it work?')
+	var herelatlng;
+	var polllatlng;
+	var disttopoll = 0;
 	var address;
 	var map;
 	var infowindow;
 	var geocoder;
 	var latlng;
 	var poll;
+	var myMarker;
+
 
 	function initMap() {
 	  map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 8,
+	    zoom: 12,
 	    center: {lat: 40.731, lng: -73.997}
 	  });
 	  geocoder = new google.maps.Geocoder;
@@ -104,25 +114,102 @@
 
 	}
 
+	//var geocoder2 = new google.maps.Geocoder();
+	function geocodeAddress(address) {
+	  geocoder.geocode( { 'address': address }, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	       var lat = results[0].geometry.location.lat();
+	       var long = results[0].geometry.location.lng();
+	       console.log('lat long of polling place');
+	       console.log(lat);
+	       console.log(long);
+	       disttopoll = distanceLL(herelatlng[0], herelatlng[1], lat, long, 'M');
+	       disttopoll = Math.round(disttopoll*1609); 
+	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/>' + '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll + '" style="'+"font-size:1.3rem;"+'">' + 'Check in here!' + '</a></center>');
+	       disttopoll = 0;
+	    } else {
+	       console.log('failed to include ' + curr.title); 
+	    }
+	  });  
+	}
+
+
+	function distanceLL(lat1, lon1, lat2, lon2, unit) {
+		var radlat1 = Math.PI * lat1/180
+		var radlat2 = Math.PI * lat2/180
+		var theta = lon1-lon2
+		var radtheta = Math.PI * theta/180
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		dist = Math.acos(dist)
+		dist = dist * 180/Math.PI
+		dist = dist * 60 * 1.1515
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist
+	}
+
+
+
+	function triggerBounceListen(){
+		google.maps.event.addListener(myMarker, "dragstart", function (event) {
+		   myMarker.setAnimation(3); // raise
+
+		});
+
+		google.maps.event.addListener(myMarker, "dragend", function (event) {
+		    myMarker.setAnimation(4); // fall
+		    var lat = myMarker.getPosition().lat();
+			var lng = myMarker.getPosition().lng();
+		    var latlngstring = lat + ',' + lng;
+		    
+		    geocodeLatLng(geocoder, map, infowindow, latlngstring); 
+		    myMarker.setMap(null);
+
+		    
+		});
+	}
+
+	// function toggleBounce() {
+	//   if (myMarker.getAnimation() !== null) {
+	//     myMarker.setAnimation(null);
+	//   } else {
+	//     myMarker.setAnimation(google.maps.Animation.BOUNCE);
+	//     var lat = myMarker.getPosition().lat();
+	// 	var lng = myMarker.getPosition().lng();
+	//     var latlngstring = lat + ',' + lng;
+	//     geocodeLatLng(geocoder, map, infowindow, latlngstring); 
+
+	//   }
+	// }
+
 	function geocodeLatLng(geocoder, map, infowindow, input) {
 	  //var input = document.getElementById('latlng').value;
 	  
 	  var latlngStr = input.split(',', 2);
+
+	  herelatlng = latlngStr;
+	  console.log('herelatlng is currently',herelatlng);
 	  
 	  latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
 	  
 	  geocoder.geocode({'location': latlng}, function(results, status) {
 	    if (status === 'OK') {
 	      if (results[0]) {
-	        map.setZoom(11);
+	        map.setZoom(15);
 	        var marker = new google.maps.Marker({
 	          position: latlng,
+	          draggable: true,
 	          map: map
 	        });
+	        myMarker = marker;
+	        // myMarker.addListener('click', toggleBounce);
+	        triggerBounceListen();
 	        address = results[0].formatted_address;
+
 	        lookup(address, renderResults);
-	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/>' + '<center><a href="http://commitweb.herokuapp.com"> style="font-size:1.3rem;"' + 'Check in here!' + '</a></center>');
-	        infowindow.open(map, marker);
+
+	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/>' + '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ '0' + '" style="'+"font-size:1.3rem;"+'">' + 'Check in here!' + '</a></center>');
+	        infowindow.open(map, myMarker);
 	      } else {
 	        console.log('No results found')
 	      }
@@ -132,12 +219,14 @@
 	  });
 
 	  map.setCenter(new google.maps.LatLng(latlngStr[0], latlngStr[1]));
-	  output.innerHTML = "";
+	  //output.innerHTML = "";
 	  
 	  var element = document.getElementById("floating-panel");
-	  element.innerHTML = "";
-	  element.outerHTML = "";
-	  delete element;
+	  if (element) {
+		  element.innerHTML = "";
+		  element.outerHTML = "";
+		  delete element;
+		}
 	}
 
 	function geoFindMe() {
@@ -179,7 +268,7 @@
          * Election ID for which to fetch voter info.
          * @type {number}
          */
-        var electionId = 2000;
+        var electionId = 4424;
  
         /**
          * Request object for given parameters.
@@ -225,17 +314,17 @@
           //el.appendChild(normEl);
           //el.appendChild(document.createTextNode(pollingAddress));
           poll = pollingAddressOnly;
+          infowindow.setContent('Nearest Polling Place: ' + poll + '<br/>' + '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ '0' + '" style="'+"font-size:1.3rem;"+'">' + 'Check in here!' + '</a></center>');
+    	  console.log(poll);
+          infowindow.open(map, myMarker);
+
+          console.log('address of polling place',poll);
+		  geocodeAddress(normalizedAddress); 
+
         } else {
           //el.appendChild(document.createTextNode('Could not find polling place for ' + normalizedAddress));
           console.log('Could not find polling place for ' + normalizedAddress);
         }
-
-        var marker2 = new google.maps.Marker({
-          position: latlng,
-          map: map
-        });
-        infowindow.setContent('Nearest Polling Place: ' + poll + '<br/>' + '<a href="http://commitweb.herokuapp.com/fancycommitlandingFINAL">' + 'Check in here!' + '</a>');
-        infowindow.open(map, marker2);
 
       }
 
@@ -247,6 +336,22 @@
         //lookup('1263 Pacific Ave. Kansas City KS', renderResults);
         //lookup(address, renderResults);
       }
+
+
+      function distance(lat1, lon1, lat2, lon2, unit) {
+			var radlat1 = Math.PI * lat1/180
+			var radlat2 = Math.PI * lat2/180
+			var theta = lon1-lon2
+			var radtheta = Math.PI * theta/180
+			var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+			dist = Math.acos(dist)
+			dist = dist * 180/Math.PI
+			dist = dist * 60 * 1.1515
+			if (unit=="K") { dist = dist * 1.609344 }
+			if (unit=="N") { dist = dist * 0.8684 }
+			return dist
+		}
+
     </script>
 	 
 	  

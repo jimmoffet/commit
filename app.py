@@ -128,6 +128,31 @@ def renderCheckin(refcode):
 
 	return render_template('checkin.html', referring_user=name, refcode=refcode, current_user=userId)
 
+@app.route("/checkedin/<string:refcode>", methods=["POST", "GET"])
+def renderCheckedin(refcode):
+
+	if refcode:
+		data = refcode.split('A')
+		refcode = data[0]
+		userId = data[1]
+		dist = data[2]
+		name = User.query.get(refcode).name
+
+		currentUser = User.query.get(userId)
+		print(currentUser.name)
+		print(dist)
+
+		currentUser.distFromPoll = dist
+
+		db.session.commit()
+
+		
+
+	else:
+		name = "TEAM COMM!T"
+
+	return render_template('checkedin.html', referring_user=name, refcode=refcode, current_user=userId)
+
 @app.route("/privacy", methods=["POST", "GET"])
 def renderPrivacy(refcode):
 
