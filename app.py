@@ -68,6 +68,63 @@ def sendit():
 
 	return "Sent"
 
+@app.route("/mail/links")
+def sendlinks():
+
+	users = User.query.filter_by(distFromPoll=None).all()
+	emailed_users = set([])
+
+	if len(users) != 0:
+		with mail.connect() as conn:
+			for user in users:
+				if user.email not in emailed_users:
+					referring_user = User.query.get(user.referringUser)
+					subject = "COMM!T: Check in time"
+					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+					msg.html = render_template('COMM!T check-in.html', name=user.name, referring_user=referring_user.name, checkin_link='https://www.commit.vote/checkin/' + str(referring_user.id) + 'A' + str(user.id))
+
+					try:
+						conn.send(msg)
+						emailed_users.add(user.email)
+					except:
+						emailed_users.add(user.email)
+						print(user.email)
+
+	return "Sent"
+
+@app.route("/mail/debriefs")
+def senddebriefs():
+
+	users = User.query.all()
+	emailed_users = set([])
+
+	if len(users) != 0:
+		with mail.connect() as conn:
+			for user in users:
+				referrals = User.query.filter_by(referringUser=str(user.id)).all()
+				wins = []
+				fails = []
+				for referral in referrals:
+					if referral.distFromPoll:
+						wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
+					else:
+						fails.append(referral.name)
+				voted = user.distFromPoll
+				if user.email not in emailed_users and len(referrals) != 0:
+					subject = "COMM!T: Election Day Debrief"
+					referring_user = User.query.get(user.referringUser)
+					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+					msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
+
+					try:
+						conn.send(msg)
+						emailed_users.add(user.email)
+					except:
+						emailed_users.add(user.email)
+						print(user.email)
+
+	return "Sent"
+
 @app.route("/initialize", methods=["POST", "GET"])
 def initdb():
 	user = User('TEAM COMM!T')
@@ -257,7 +314,7 @@ def createUser():
 		if json_dict['fbToken'] != '':
 			user.fbToken = extendToken(json_dict['fbToken'])
 
-		
+
 
 		user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
 		user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
