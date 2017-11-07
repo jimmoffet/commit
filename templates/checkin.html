@@ -45,7 +45,7 @@
 	  padding: 5px;
 	  border: 1px solid #999;
 	  text-align: center;
-	  font-family: 'Roboto','sans-serif';
+	  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 	  line-height: 30px;
 	  padding-left: 10px;
 	}
@@ -60,9 +60,16 @@
 	  padding: 5px;
 	  border: 1px solid #999;
 	}
+
 	#latlng {
 	  width: 225px;
+	  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 	}
+	.gm-style {
+        font: 400 11px "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+
+      }
+
 	
 
 	</style>
@@ -125,9 +132,9 @@
 	       console.log(long);
 	       disttopoll = distanceLL(herelatlng[0], herelatlng[1], lat, long, 'M');
 	       disttopoll = Math.round(disttopoll*1609); 
-	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a></center><br/>');
+	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 	    } else {
 	       console.log('failed to include ' + curr.title); 
@@ -210,9 +217,9 @@
 
 	        lookup(address, renderResults);
 
-	        infowindow.setContent('Nearest Polling Place: ' + results[0].formatted_address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a></center><br/>');
+	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/>'
+	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
+	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 
 	        infowindow.open(map, myMarker);
@@ -321,9 +328,9 @@
           //el.appendChild(document.createTextNode(pollingAddress));
           poll = pollingAddressOnly;
 
-          infowindow.setContent('Nearest Polling Place: ' + poll + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0+'m' + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a></center><br/>');
+          infowindow.setContent('Nearest Polling Place: ' + poll + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0+'m' + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/>'
+	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
+	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 
 
@@ -331,7 +338,7 @@
           infowindow.open(map, myMarker);
 
           console.log('address of polling place',poll);
-		  geocodeAddress(normalizedAddress); 
+		  geocodeAddress(pollingAddressOnly); 
 
         } else {
           //el.appendChild(document.createTextNode('Could not find polling place for ' + normalizedAddress));

@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
 # from twilio.twiml.messaging_response import MessagingResponse
 from scrape import extendToken
-from scrapeNEW import sendSMS
+from scrapeNEW import sendSMS, sendReminderSMS
 import random
 import threading
 import datetime
@@ -78,21 +78,51 @@ def sendlinks():
 	if len(users) != 0:
 		with mail.connect() as conn:
 			for user in users:
-				if user.id > 10:
-					break
-				if user.email not in emailed_users:
-					referring_user = User.query.get(user.referringUser)
-					subject = "COMM!T: Check in time"
-					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
-					msg.html = render_template('COMM!T check-in.html', name=user.name, referring_user=referring_user.name, checkin_link='https://www.commit.vote/checkin/' + str(referring_user.id) + 'A' + str(user.id))
+				if user.id < 12:
+					if user.email not in emailed_users:
+						referring_user = User.query.get(user.referringUser)
+						subject = "COMM!T: Check in time"
+						msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+						msg.html = render_template('COMM!T check-in.html', name=user.name, referring_user=referring_user.name, checkin_link='https://www.commit.vote/checkin/' + str(referring_user.id) + 'A' + str(user.id))
 
-					try:
-						conn.send(msg)
-						emailed_users.add(user.email)
-					except:
-						emailed_users.add(user.email)
-						print(user.email)
-				time.sleep(5) 
+						if user.phone != None:
+							try:
+								sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
+							except Exception as e:
+								print(e)
+
+						try:
+							conn.send(msg)
+							emailed_users.add(user.email)
+						except:
+							emailed_users.add(user.email)
+							print(user.email)
+					#time.sleep(5) 
+
+	return "Sent"
+
+@app.route("/sms/links")
+def sendSMSlinks():
+
+	users = User.query.filter_by(distFromPoll=None).all()
+	sent_users = set([])
+	print(users)
+
+	if len(users) != 0:
+		for user in users:
+			if user.id < 12:
+				if user.phone not in sent_users:
+					referring_user = User.query.get(user.referringUser)
+
+					print('attempting a phone')
+					print(user.name)
+					if user.phone != None:
+						try:
+							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
+						except Exception as e:
+							print(e)
+
+
 
 	return "Sent"
 
@@ -118,7 +148,7 @@ def senddebriefs():
 					fails = []
 					for referral in referrals:
 						if referral.distFromPoll != None:
-							wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
+							wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + ' )')
 						else:
 							fails.append(referral.name)
 
@@ -141,7 +171,7 @@ def senddebriefs():
 						except:
 							emailed_users.add(user.email)
 							print('message failed'+user.email)
-					time.sleep(5) 
+					#time.sleep(5) 
 
 	return "Sent"
 
@@ -337,7 +367,7 @@ def createUser():
 			print('add new user')
 
 
-
+		user.name = json_dict['name']
 		user.email = json_dict['email']
 		user.phone = json_dict['phone']
 		user.fbId = json_dict['fbId']
