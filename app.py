@@ -105,10 +105,12 @@ def sendSMSlinks():
 
 	users = User.query.filter_by(distFromPoll=None).all()
 	sent_users = set([])
-	#print(users)
+	print(users)
 
 	if len(users) != 0:
 		for user in users:
+			print('attempting user')
+			print(user.id)
 			if user.phone not in sent_users:
 				try:
 					referring_user = User.query.get(user.referringUser)
@@ -128,8 +130,6 @@ def sendSMSlinks():
 					else:
 						print('call to sendReminderSMS worked')
 						print(user.phone)
-			time.sleep(1) 
-
 
 	return "Sent"
 
@@ -398,6 +398,8 @@ def createUser():
 		user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
 
 		db.session.commit()
+
+		#yessena 3472682813
 
 		try:
 			if json_dict['phone'] != '':
