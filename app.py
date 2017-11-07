@@ -78,26 +78,25 @@ def sendlinks():
 	if len(users) != 0:
 		with mail.connect() as conn:
 			for user in users:
-				if user.id < 9:
-					if user.email not in emailed_users:
-						referring_user = User.query.get(user.referringUser)
-						subject = "COMM!T: Check in time"
-						msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
-						msg.html = render_template('COMM!T check-in.html', name=user.name, referring_user=referring_user.name, checkin_link='https://www.commit.vote/checkin/' + str(referring_user.id) + 'A' + str(user.id))
+				if user.email not in emailed_users:
+					referring_user = User.query.get(user.referringUser)
+					subject = "COMM!T: Check in time"
+					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+					msg.html = render_template('COMM!T check-in.html', name=user.name, referring_user=referring_user.name, checkin_link='https://www.commit.vote/checkin/' + str(referring_user.id) + 'A' + str(user.id))
 
-						if user.phone != None:
-							try:
-								sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
-							except Exception as e:
-								print(e)
-
+					if user.phone != None:
 						try:
-							conn.send(msg)
-							emailed_users.add(user.email)
-						except:
-							emailed_users.add(user.email)
-							print(user.email)
-					#time.sleep(5) 
+							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
+						except Exception as e:
+							print(e)
+
+					try:
+						conn.send(msg)
+						emailed_users.add(user.email)
+					except:
+						emailed_users.add(user.email)
+						print(user.email)
+				#time.sleep(5) 
 
 	return "Sent"
 
