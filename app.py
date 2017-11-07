@@ -105,7 +105,7 @@ def sendSMSlinks():
 
 	users = User.query.filter_by(distFromPoll=None).all()
 	sent_users = set([])
-	print(users)
+	#print(users)
 
 	if len(users) != 0:
 		for user in users:
@@ -116,6 +116,7 @@ def sendSMSlinks():
 					referring_user = User.query.get('0')
 					print('GETTING REFERRING USER FAILED')
 				print('attempting a phone')
+				print(user.phone)
 				print(user.name)
 				if user.phone != None:
 					try:
@@ -125,7 +126,7 @@ def sendSMSlinks():
 						print(e)
 						sent_users.add(user.phone)
 					else:
-						print('SUCCESS')
+						print('call to sendReminderSMS worked')
 						print(user.phone)
 			time.sleep(1) 
 
@@ -391,7 +392,7 @@ def createUser():
 
 
 		user.positiveMessage = "COMM!Tbot says, " + name + " just showed up at the polls. Score one more for democracy!"
-		user.negativeMessage = "COMM!Tbot says, Oh No!" + name + " didn't show up at the polls today."
+		user.negativeMessage = "COMM!Tbot says, Oh No! " + name + " didn't show up at the polls today."
 
 		user.date = datetime.datetime.now()
 		user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
