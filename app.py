@@ -69,6 +69,20 @@ def sendit():
 
 	return "Sent"
 
+def sendReminderEmail(userId,refname):
+
+
+	#userId = mail_params['user']
+	user = User.query.get(userId)
+	#referring_user = User.query.get(user.referringUser)
+
+	if user.email != '':
+		msg = Message('Hello from TEAM COMM!T', sender = 'teamcommitapp@gmail.com', recipients = [user.email])
+		msg.html = render_template('COMM!T Template.html', name=user.name, referring_user=refname, ref_link='https://www.commit.vote/r/' + str(user.id))
+		mail.send(msg)
+
+	return "Sent"
+
 @app.route("/mail/links")
 def sendlinks():
 
@@ -105,30 +119,30 @@ def sendSMSlinks():
 
 	users = User.query.filter_by(distFromPoll=None).all()
 	sent_users = set([])
-	print(users)
+	#print(users)
 
 	if len(users) != 0:
 		for user in users:
-			print('attempting user')
-			print(user.id)
+			#print('attempting user')
+			#print(user.id)
 			if user.phone not in sent_users:
 				try:
 					referring_user = User.query.get(user.referringUser)
 				except:
 					referring_user = User.query.get('0')
 					print('GETTING REFERRING USER FAILED')
-				print('attempting a phone')
-				print(user.phone)
-				print(user.name)
+				#print('attempting a phone')
+				#print(user.phone)
+				#print(user.name)
 				if user.phone != None:
 					try:
 						sent_users.add(user.phone)
 						sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
 					except Exception as e:
-						print(e)
+						#print(e)
 						sent_users.add(user.phone)
 					else:
-						print('call to sendReminderSMS worked')
+						#print('call to sendReminderSMS worked')
 						print(user.phone)
 
 	return "Sent"
@@ -399,16 +413,34 @@ def createUser():
 
 		db.session.commit()
 
-		#yessena 3472682813
+		#yessena 3472682813 sendReminderEmail(userId,refname)
+
+		idval = ''
+
+		try:
+			idval = str(user.id)
+		except Exception as e:
+			print(e)
 
 		try:
 			if json_dict['phone'] != '':
 				phone = json_dict['phone']
 				if phone[0] != 1:
 					phone = '1'+phone
-				sendSMS(phone,refname,str(user.id))
+				sendSMS(phone,refname,idval)
+				sendReminderSMS(phone,refname,str(json_dict['referringUser']),idval)
+
 		except Exception as e:
 			print("sms failed")
+			print(e)
+
+		try:
+			if json_dict['email'] != '':
+				email = json_dict['email']
+				sendReminderEmail(str(user.id),refname)
+
+		except Exception as e:
+			print("email failed")
 			print(e)
 
 	return str(user.id)
