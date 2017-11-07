@@ -62,14 +62,20 @@ def sendSMS(from_num,refname,uid):
         print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
         return "Success"
 
-def sendReminderSMS(from_num,refname,uid):
+def sendReminderSMS(from_num,refname,refid,uid):
     ### get phone number
 
     cnt=1
 
-    reminder = "COMM!Tbot says, You're committed! We'll let "+refname+" know when you check in at the polls tomorrow (or if you don't). We'll send you a few location-aware check-in reminders until you check in. Do for others what "+refname+" is doing for you with your COMM!T link: "+"http://www.commit.vote/r/"+uid
+    if from_num != "" and from_num != None:
+        if from_num[0] !=1:
+            from_num = '1'+from_num
 
     from_num = '+'+from_num
+
+    link = 'https://www.commit.vote/checkin/' + str(refid) + 'A' + str(uid)
+
+    reminder = "COMM!Tbot says:\n\nThe polls are open, here's your check in link! (requires allowing location, obvs)\n\n"+link+"\n\nWe'll let "+refname+" know when you check in (or don't), so no flaking!"
 
     # now = datetime.datetime.now()
     # now = now.replace(second=0, microsecond=0)
@@ -86,6 +92,7 @@ def sendReminderSMS(from_num,refname,uid):
     else:
         print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
         return "Success"
+
 
 def sendDebriefSMS(from_num,refname,uid,wins,fails):
     ### get phone number
