@@ -87,10 +87,10 @@ def sendReminderSMS(from_num,refname,refid,uid):
     try:
         message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
     except Exception as e:
-        print(e)
+        #print(e)
         return e
     else:
-        print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
+        #print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
         return "Success"
 
 
