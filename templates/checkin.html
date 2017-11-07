@@ -61,6 +61,7 @@
 	#latlng {
 	  width: 225px;
 	}
+	
 
 	</style>
 	
@@ -120,13 +121,13 @@
 	        });
 	        address = results[0].formatted_address;
 	        lookup(address, renderResults);
-	        infowindow.setContent(results[0].formatted_address + '<br/>' + '<a href="http://commitweb.herokuapp.com">' + 'Check in here!' + '</a>');
+	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/>' + '<center><a href="http://commitweb.herokuapp.com"> style="font-size:1.3rem;"' + 'Check in here!' + '</a></center>');
 	        infowindow.open(map, marker);
 	      } else {
-	        window.alert('No results found');
+	        console.log('No results found')
 	      }
 	    } else {
-	      window.alert('Geocoder failed due to: ' + status);
+	      console.log('Geocoder failed due to: ' + status);
 	    }
 	  });
 
@@ -143,7 +144,7 @@
 	  google.maps.event.trigger(map, 'resize');
 
 	  if (!navigator.geolocation){
-	    window.alert('Geolocation is not supported by your browser');
+	    console.log('Geolocation is not supported by your browser');
 	    return;
 	  }
 
@@ -156,7 +157,7 @@
 
 	  function error() {
 	    //output.innerHTML = "Unable to retrieve your location";
-	    window.alert('Unable to retrieve your location');
+	    console.log('Unable to retrieve your location');
 	  }
 
 	  output.innerHTML = "<p>Locating…</p>";
@@ -201,7 +202,7 @@
         var el = document.getElementById('results');
         if (!response || response.error) {
           //el.appendChild(document.createTextNode('Error while trying to fetch polling place'));
-          window.alert('Error while trying to fetch polling place');
+          console.log('Error while trying to fetch polling place');
           return;
         }
         var normalizedAddress = response.normalizedInput.line1 + ' ' +
@@ -226,7 +227,7 @@
           poll = pollingAddressOnly;
         } else {
           //el.appendChild(document.createTextNode('Could not find polling place for ' + normalizedAddress));
-          window.alert('Could not find polling place for ' + normalizedAddress);
+          console.log('Could not find polling place for ' + normalizedAddress);
         }
 
         var marker2 = new google.maps.Marker({
