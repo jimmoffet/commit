@@ -109,10 +109,8 @@ def sendSMSlinks():
 
 	if len(users) != 0:
 		for user in users:
-			if user.id < 9:
 				if user.phone not in sent_users:
 					referring_user = User.query.get(user.referringUser)
-
 					print('attempting a phone')
 					print(user.name)
 					if user.phone != None:
@@ -120,8 +118,6 @@ def sendSMSlinks():
 							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
 						except Exception as e:
 							print(e)
-
-
 
 	return "Sent"
 
@@ -391,11 +387,15 @@ def createUser():
 
 		db.session.commit()
 
-		if json_dict['phone'] != '':
-			phone = json_dict['phone']
-			if phone[0] != 1:
-				phone = '1'+phone
-			sendSMS(phone,refname,str(user.id))
+		try:
+			if json_dict['phone'] != '':
+				phone = json_dict['phone']
+				if phone[0] != 1:
+					phone = '1'+phone
+				sendSMS(phone,refname,str(user.id))
+		except Exception as e:
+			print("sms failed")
+			print(e)
 
 	return str(user.id)
 
