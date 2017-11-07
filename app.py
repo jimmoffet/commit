@@ -97,10 +97,15 @@ def senddebriefs():
 
 	users = User.query.all()
 	emailed_users = set([])
+	count = 0
 
 	if len(users) != 0:
 		with mail.connect() as conn:
 			for user in users:
+				if user.id > 10:
+					break
+				count += 1
+				print(count)
 				referrals = User.query.filter_by(referringUser=str(user.id)).all()
 				wins = []
 				fails = []
