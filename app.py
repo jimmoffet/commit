@@ -108,19 +108,26 @@ def senddebriefs():
 			for user in users:
 				if user.id > 10:
 					break
-				
-				referrals = User.query.filter_by(referringUser=str(user.id)).all()
+				print(user.name)
+				#referrals = User.query.filter_by(referringUser=str(user.id)).all()
+				referrals = []
+				for tmpuser in users:
+					if tmpuser.referringUser == str(user.id):
+						referrals.append(tmpuser)
+
 				wins = []
 				fails = []
 				for referral in referrals:
-					if referral.distFromPoll:
+					if referral.distFromPoll != None:
 						wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
 					else:
 						fails.append(referral.name)
+
 				print('referrals are ')
 				print(referrals)
+
 				voted = user.distFromPoll
-				if user.email not in emailed_users and len(referrals) != 0:
+				if user.email not in emailed_users and len(referrals) != 0 and user.referringUser != None:
 					count += 1
 					print(count)
 					subject = "COMM!T: Election Day Debrief"
@@ -302,14 +309,19 @@ def createUser():
 		sms = json_dict['phone']
 		name = json_dict['name']
 		user = None
+		new = False
 
 		users = User.query.all()
 		for temp_user in users:
 			if email == temp_user.email or sms == temp_user.phone:
 				user = temp_user
+				new = False
+				break
 			else:
-				user = User(name)
-				db.session.add(user)
+				new = True
+		if new:
+			user = User(name)
+			db.session.add(user)
 
 
 
