@@ -78,7 +78,7 @@ def sendlinks():
 	if len(users) != 0:
 		with mail.connect() as conn:
 			for user in users:
-				if user.id < 12:
+				if user.id < 9:
 					if user.email not in emailed_users:
 						referring_user = User.query.get(user.referringUser)
 						subject = "COMM!T: Check in time"
@@ -110,7 +110,7 @@ def sendSMSlinks():
 
 	if len(users) != 0:
 		for user in users:
-			if user.id < 12:
+			if user.id < 9:
 				if user.phone not in sent_users:
 					referring_user = User.query.get(user.referringUser)
 
