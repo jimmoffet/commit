@@ -115,6 +115,19 @@ def renderShare(refcode):
 
 	return render_template('share.html', referring_user=name, refcode=refcode, current_user=userId)
 
+@app.route("/checkin/<string:refcode>", methods=["POST", "GET"])
+def renderCheckin(refcode):
+
+	if refcode:
+		data = refcode.split('A')
+		refcode = data[0]
+		userId = data[1]
+		name = User.query.get(refcode).name
+	else:
+		name = "TEAM COMM!T"
+
+	return render_template('checkin.html', referring_user=name, refcode=refcode, current_user=userId)
+
 @app.route("/privacy", methods=["POST", "GET"])
 def renderPrivacy(refcode):
 
@@ -125,6 +138,7 @@ def renderPrivacy(refcode):
 #     return render_template('%s.html' % page_name)
 
 @app.route("/positive/<string:message>", methods=["POST", "GET"])
+
 def writePosMessage(message):
 
     resp = writeMessageToDB(message)
