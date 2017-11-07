@@ -118,6 +118,10 @@ def sendSMSlinks():
 							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
 						except Exception as e:
 							print(e)
+						else:
+							print('SUCCESS')
+							print(user.phone)
+
 
 	return "Sent"
 
