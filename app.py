@@ -16,6 +16,7 @@ import os
 from flask import Flask
 from flask_mail import Mail, Message
 from mailcreds import mailpassword
+import time
 
 
 
@@ -104,8 +105,7 @@ def senddebriefs():
 			for user in users:
 				if user.id > 10:
 					break
-				count += 1
-				print(count)
+				
 				referrals = User.query.filter_by(referringUser=str(user.id)).all()
 				wins = []
 				fails = []
@@ -114,8 +114,11 @@ def senddebriefs():
 						wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
 					else:
 						fails.append(referral.name)
+				print('referrals are '+referrals)
 				voted = user.distFromPoll
 				if user.email not in emailed_users and len(referrals) != 0:
+					count += 1
+					print(count)
 					subject = "COMM!T: Election Day Debrief"
 					referring_user = User.query.get(user.referringUser)
 					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
@@ -123,10 +126,12 @@ def senddebriefs():
 
 					try:
 						conn.send(msg)
+						print('message sent')
 						emailed_users.add(user.email)
 					except:
 						emailed_users.add(user.email)
-						print(user.email)
+						print('message failed'+user.email)
+				time.sleep(5) 
 
 	return "Sent"
 
