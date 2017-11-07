@@ -92,6 +92,16 @@ def sendDebriefSMS(from_num,refname,uid,wins,fails):
 
     cnt=1
 
+    wins = ['Alice','Bob','Carl']
+    winprint = ', '.join(wins[:-1])
+    winprint = winprint+" and "+wins[-1]
+    print(winprint)
+
+    fails = ['Alice','Bob','Carl']
+    failprint = ', '.join(fail[:-1])
+    failprint = failprint+" and "+wins[-1]
+    print(failprint)
+
     reminder = "COMM!Tbot says, You're committed! We'll let "+refname+" know when you check in at the polls tomorrow (or if you don't). We'll send you a few location-aware check-in reminders until you check in. Do for others what "+refname+" is doing for you with your COMM!T link: "+"http://www.commit.vote/r/"+uid
 
     from_num = '+'+from_num
@@ -112,8 +122,6 @@ def sendDebriefSMS(from_num,refname,uid,wins,fails):
         print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
         return "Success"
 
-wins = ['Alice','Bob','Carl']
-toprint = ', '.join(wins[:-1])
-print(toprint)
+
 
 
