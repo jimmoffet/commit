@@ -282,29 +282,6 @@ def nm():
 
 	return 'Success!'
 
-# @app.route('/api', methods=["POST"])
-# def apiTest():
-
-#     if request.method == "POST":
-#         json_dict = request.get_json(force=True)
-
-#         uid = json_dict['uid']
-#         longToken = json_dict['longToken']
-#         friends = ''
-#         timeStamp = datetime.datetime.now()
-#         message1 = ""
-#         message2 = ""
-#         #stuff = writeAll(uid, longToken, friends, timeStamp, message1, message2)
-#         success = writeAll(json_dict)
-
-#         data = {'uid': uid, 'longToken': longToken}
-
-#         return success
-
-#     else:
-
-#         return "Something sent a non-post request to apiTest"
-
 @app.route('/createuser', methods=["POST"])
 def createUser():
 
@@ -319,7 +296,7 @@ def createUser():
 
 		users = User.query.all()
 		for temp_user in users:
-			if email == temp_user.email or sms == temp_user.sms:
+			if email == temp_user.email or sms == temp_user.phone:
 				user = temp_user
 			else:
 				user = User(name)
