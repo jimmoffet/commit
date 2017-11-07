@@ -106,43 +106,42 @@ def senddebriefs():
 	if len(users) != 0:
 		with mail.connect() as conn:
 			for user in users:
-				if user.id > 10:
-					break
-				print(user.name)
-				#referrals = User.query.filter_by(referringUser=str(user.id)).all()
-				referrals = []
-				for tmpuser in users:
-					if tmpuser.referringUser == str(user.id):
-						referrals.append(tmpuser)
+				if user.id < 12:
+					print(user.name)
+					#referrals = User.query.filter_by(referringUser=str(user.id)).all()
+					referrals = []
+					for tmpuser in users:
+						if tmpuser.referringUser == str(user.id):
+							referrals.append(tmpuser)
 
-				wins = []
-				fails = []
-				for referral in referrals:
-					if referral.distFromPoll != None:
-						wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
-					else:
-						fails.append(referral.name)
+					wins = []
+					fails = []
+					for referral in referrals:
+						if referral.distFromPoll != None:
+							wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + 'm )')
+						else:
+							fails.append(referral.name)
 
-				print('referrals are ')
-				print(referrals)
+					print('referrals are ')
+					print(referrals)
 
-				voted = user.distFromPoll
-				if user.email not in emailed_users and len(referrals) != 0 and user.referringUser != None:
-					count += 1
-					print(count)
-					subject = "COMM!T: Election Day Debrief"
-					referring_user = User.query.get(user.referringUser)
-					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
-					msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
+					voted = user.distFromPoll
+					if user.email not in emailed_users and len(referrals) != 0 and user.referringUser != None:
+						count += 1
+						print(count)
+						subject = "COMM!T: Election Day Debrief"
+						referring_user = User.query.get(user.referringUser)
+						msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+						msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
 
-					try:
-						conn.send(msg)
-						print('message sent')
-						emailed_users.add(user.email)
-					except:
-						emailed_users.add(user.email)
-						print('message failed'+user.email)
-				time.sleep(5) 
+						try:
+							conn.send(msg)
+							print('message sent')
+							emailed_users.add(user.email)
+						except:
+							emailed_users.add(user.email)
+							print('message failed'+user.email)
+					time.sleep(5) 
 
 	return "Sent"
 
@@ -311,17 +310,31 @@ def createUser():
 		user = None
 		new = False
 
+		if email == '':
+			email = '99999999999999999'
+		if sms == '':
+			sms = '99999999999999999'
+
 		users = User.query.all()
 		for temp_user in users:
+			print('username')
+			print(temp_user.name)
+			print(email)
+			print(sms)
+			print(temp_user.email)
+			print(temp_user.phone)
 			if email == temp_user.email or sms == temp_user.phone:
 				user = temp_user
 				new = False
+				print('this is an existing user')
 				break
 			else:
 				new = True
-		if new:
+				print('this is a new user')
+		if new == True:
 			user = User(name)
 			db.session.add(user)
+			print('add new user')
 
 
 
@@ -346,6 +359,7 @@ def createUser():
 
 		user.date = datetime.datetime.now()
 		user.triggerDate = datetime.datetime(2018, 11, 7, 7, 00)
+
 		db.session.commit()
 
 		if json_dict['phone'] != '':
