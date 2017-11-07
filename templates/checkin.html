@@ -127,7 +127,7 @@
 	       disttopoll = Math.round(disttopoll*1609); 
 	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/></center>'
 	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Non-eligible voter check in here!' + '</a></center><br/>');
+	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a></center><br/>');
 	       disttopoll = 0;
 	    } else {
 	       console.log('failed to include ' + curr.title); 
@@ -212,7 +212,7 @@
 
 	        infowindow.setContent('Nearest Polling Place: ' + results[0].formatted_address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/></center>'
 	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Non-eligible voter check in here!' + '</a></center><br/>');
+	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a></center><br/>');
 	       disttopoll = 0;
 
 	        infowindow.open(map, myMarker);
@@ -323,7 +323,7 @@
 
           infowindow.setContent('Nearest Polling Place: ' + poll + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/></center>'
 	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a></center>'
-	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Non-eligible voter check in here!' + '</a></center><br/>');
+	       	+'<br/>'+ '<center><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a></center><br/>');
 	       disttopoll = 0;
 
 
