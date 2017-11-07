@@ -313,7 +313,7 @@ def createUser():
 		print(json_dict)
 
 		email = json_dict['email']
-		sms = json_dict['sms']
+		sms = json_dict['phone']
 		name = json_dict['name']
 		user = None
 
