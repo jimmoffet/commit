@@ -84,11 +84,11 @@ def sendlinks():
 					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
 					msg.html = render_template('COMM!T check-in.html', name=user.name, referring_user=referring_user.name, checkin_link='https://www.commit.vote/checkin/' + str(referring_user.id) + 'A' + str(user.id))
 
-					if user.phone != None:
-						try:
-							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
-						except Exception as e:
-							print(e)
+					# if user.phone != None:
+					# 	try:
+					# 		sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
+					# 	except Exception as e:
+					# 		print(e)
 
 					try:
 						conn.send(msg)
@@ -109,20 +109,25 @@ def sendSMSlinks():
 
 	if len(users) != 0:
 		for user in users:
-				if user.phone not in sent_users:
+			if user.phone not in sent_users:
+				try:
 					referring_user = User.query.get(user.referringUser)
-					print('attempting a phone')
-					print(user.name)
-					if user.phone != None:
-						try:
-							sent_users.add(user.phone)
-							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
-						except Exception as e:
-							print(e)
-							sent_users.add(user.phone)
-						else:
-							print('SUCCESS')
-							print(user.phone)
+				except:
+					referring_user = User.query.get('0')
+					print('GETTING REFERRING USER FAILED')
+				print('attempting a phone')
+				print(user.name)
+				if user.phone != None:
+					try:
+						sent_users.add(user.phone)
+						sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
+					except Exception as e:
+						print(e)
+						sent_users.add(user.phone)
+					else:
+						print('SUCCESS')
+						print(user.phone)
+			time.sleep(1) 
 
 
 	return "Sent"
