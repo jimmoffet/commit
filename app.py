@@ -115,9 +115,11 @@ def sendSMSlinks():
 					print(user.name)
 					if user.phone != None:
 						try:
+							sent_users.add(user.phone)
 							sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
 						except Exception as e:
 							print(e)
+							sent_users.add(user.phone)
 						else:
 							print('SUCCESS')
 							print(user.phone)
