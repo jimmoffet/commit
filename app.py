@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, jsonify, render_template
 from flask_cors import CORS, cross_origin
 # from twilio.twiml.messaging_response import MessagingResponse
 from scrape import extendToken
-from scrapeNEW import sendSMS, sendReminderSMS
+from scrapeNEW import sendSMS, sendReminderSMS, sendDebriefSMS
 import random
 import threading
 import datetime
@@ -216,47 +216,61 @@ def sendSMSdebriefs():
 
 	users = User.query.all()
 	sent_users = set([])
+	succeeded = []
+	failed = []
 	count = 0
 
 	if len(users) != 0:
-		with mail.connect() as conn:
-			for user in users:
-				if user.id < 12:
-					print(user.name)
-					#referrals = User.query.filter_by(referringUser=str(user.id)).all()
-					referrals = []
-					for tmpuser in users:
-						if tmpuser.referringUser == str(user.id):
-							referrals.append(tmpuser)
+		for user in users:
+			print(user.name)
+			referrals = User.query.filter_by(referringUser=str(user.id)).all()
 
-					wins = []
-					fails = []
-					for referral in referrals:
-						if referral.distFromPoll != None:
-							wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + ' )')
-						else:
-							fails.append(referral.name)
+			if len(referrals) == 0:
+				print('no referrals')
+				continue
 
-					print('referrals are ')
-					print(referrals)
+			wins = []
+			fails = []
+			for referral in referrals:
+				if referral.distFromPoll != None:
+					wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + ' )')
+				else:
+					fails.append(referral.name)
 
-					voted = user.distFromPoll
-					if user.email not in sent_users and len(referrals) != 0 and user.referringUser != None:
-						count += 1
-						print(count)
-						subject = "COMM!T: Election Day Debrief"
-						referring_user = User.query.get(user.referringUser)
-						msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
-						msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
+			# print('phone is ')
+			# print(user.phone)
+			# print('referrals are ')
+			# print(referrals)
 
-						try:
-							conn.send(msg)
-							print('message sent')
-							sent_users.add(user.email)
-						except:
-							sent_users.add(user.email)
-							print('message failed'+user.email)
-					#time.sleep(5) 
+			if user.phone == None:
+				print('no phone')
+				continue
+
+			voted = user.distFromPoll
+			if user.phone not in sent_users and len(referrals) != 0 and user.referringUser != None:
+				count += 1
+				#print(count)
+				referring_user = User.query.get(user.referringUser)
+				if voted == None:
+					voted = 'didnt'
+
+				try:
+					print(user.phone,referring_user.name,str(user.id),wins,fails,voted)
+					sendDebriefSMS(user.phone,referring_user.name,str(user.id),wins,fails,voted)
+					print('message sent')
+					sent_users.add(user.phone)
+				except Exception as e:
+					sent_users.add(user.phone)
+					print('message failed '+user.phone)
+					print(e)
+					failed.append(user.phone)
+				else:
+					succeeded.append(user.phone)
+
+	print('succeeded')
+	print(succeeded)
+	print('failed')
+	print(failed)
 
 	return "Sent"
 
