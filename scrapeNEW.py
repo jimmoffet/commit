@@ -87,7 +87,7 @@ def sendReminderSMS(from_num,refname,refid,uid):
         return "Success"
 
 
-def sendDebriefSMS(from_num,refname,uid,wins,fails,voted):
+def sendDebriefSMS(from_num,refname,name,wins,fails,voted):
     ### get phone number
     # print(from_num,refname,uid,wins,fails,voted)
     # print(len(wins))
@@ -144,7 +144,7 @@ def sendDebriefSMS(from_num,refname,uid,wins,fails,voted):
     else:
         c = "Nice follow through, score another one for democracy!"
 
-    reminder = "COMM!T Election Day Debrief:\nHere's your summary. " + c + "\n\n" + pwins + "\n\n" +  pfails
+    reminder = "COMM!T Post-Election Debrief: \n\nHi "+name+", here's your summary. " + c + "\n\n" + pwins + "\n\n" +  pfails
 
     from_num = '+'+from_num
 
