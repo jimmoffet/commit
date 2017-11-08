@@ -139,7 +139,8 @@ def sendSMSlinks():
 						sent_users.add(user.phone)
 						sendReminderSMS(user.phone,referring_user.name,str(referring_user.id),str(user.id))
 					except Exception as e:
-						#print(e)
+						print('sendReminderSMS route failed')
+						print(e)
 						sent_users.add(user.phone)
 					else:
 						#print('call to sendReminderSMS worked')
@@ -182,7 +183,7 @@ def senddebriefs():
 						print(count)
 						subject = "COMM!T: Election Day Debrief"
 						referring_user = User.query.get(user.referringUser)
-						msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+						msg = Message(recipients=['teamcommitapp@gmail.com'], subject=subject, sender='teamcommitapp@gmail.com')
 						msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
 
 						try:
@@ -191,6 +192,55 @@ def senddebriefs():
 							emailed_users.add(user.email)
 						except:
 							emailed_users.add(user.email)
+							print('message failed'+user.email)
+					#time.sleep(5) 
+
+	return "Sent"
+
+@app.route("/sms/debriefs")
+def sendSMSdebriefs():
+
+	users = User.query.all()
+	sent_users = set([])
+	count = 0
+
+	if len(users) != 0:
+		with mail.connect() as conn:
+			for user in users:
+				if user.id < 12:
+					print(user.name)
+					#referrals = User.query.filter_by(referringUser=str(user.id)).all()
+					referrals = []
+					for tmpuser in users:
+						if tmpuser.referringUser == str(user.id):
+							referrals.append(tmpuser)
+
+					wins = []
+					fails = []
+					for referral in referrals:
+						if referral.distFromPoll != None:
+							wins.append(referral.name + ' (distance from poll: ' + referral.distFromPoll + ' )')
+						else:
+							fails.append(referral.name)
+
+					print('referrals are ')
+					print(referrals)
+
+					voted = user.distFromPoll
+					if user.email not in sent_users and len(referrals) != 0 and user.referringUser != None:
+						count += 1
+						print(count)
+						subject = "COMM!T: Election Day Debrief"
+						referring_user = User.query.get(user.referringUser)
+						msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+						msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
+
+						try:
+							conn.send(msg)
+							print('message sent')
+							sent_users.add(user.email)
+						except:
+							sent_users.add(user.email)
 							print('message failed'+user.email)
 					#time.sleep(5) 
 
