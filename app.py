@@ -180,6 +180,9 @@ def senddebriefs():
 				print('referrals are ')
 				print(referrals)
 
+				if user.email == None:
+					continue
+
 				voted = user.distFromPoll
 				if user.email not in emailed_users and len(referrals) != 0 and user.referringUser != None:
 					count += 1
