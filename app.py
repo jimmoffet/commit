@@ -189,7 +189,7 @@ def senddebriefs():
 					print(count)
 					subject = "COMM!T: Election Day Debrief"
 					referring_user = User.query.get(user.referringUser)
-					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
+					msg = Message(recipients=['jimmoffet@gmail.com'], subject=subject, sender='teamcommitapp@gmail.com')
 					msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
 
 					try:
@@ -255,8 +255,8 @@ def sendSMSdebriefs():
 					voted = 'didnt'
 
 				try:
-					print(user.phone,referring_user.name,str(user.id),wins,fails,voted)
-					sendDebriefSMS(user.phone,referring_user.name,str(user.id),wins,fails,voted)
+					print(user.phone,referring_user.name,user.name,wins,fails,voted)
+					sendDebriefSMS("7733541500",referring_user.name,user.name,wins,fails,voted)
 					print('message sent')
 					sent_users.add(user.phone)
 				except Exception as e:
