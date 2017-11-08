@@ -186,7 +186,7 @@ def senddebriefs():
 					print(count)
 					subject = "COMM!T: Election Day Debrief"
 					referring_user = User.query.get(user.referringUser)
-					msg = Message(recipients=['jimmoffet@gmail.com'], subject=subject, sender='teamcommitapp@gmail.com')
+					msg = Message(recipients=[user.email], subject=subject, sender='teamcommitapp@gmail.com')
 					msg.html = render_template('COMM!T Debrief.html', voted=voted, name=user.name, wins=wins, fails=fails, referring_user=referring_user.name)
 
 					try:
