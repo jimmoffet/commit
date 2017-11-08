@@ -76,13 +76,6 @@ def sendReminderSMS(from_num,refname,refid,uid):
     link = 'https://www.commit.vote/checkin/' + str(refid) + 'A' + str(uid)
 
     reminder = "COMM!Tbot says:\n\nThe polls are open, here's your check in link! (requires allowing location, obvs)\n\n"+link+"\n\nWe'll let "+refname+" know when you check in (or don't), so no flaking!"
-
-    # now = datetime.datetime.now()
-    # now = now.replace(second=0, microsecond=0)
-
-    #test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
-    # print('Found +17733541500')
-    # print(from_num)
     
     try:
         message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
@@ -94,33 +87,72 @@ def sendReminderSMS(from_num,refname,refid,uid):
         return "Success"
 
 
-def sendDebriefSMS(from_num,refname,uid,wins,fails):
+def sendDebriefSMS(from_num,refname,uid,wins,fails,voted):
     ### get phone number
+    # print(from_num,refname,uid,wins,fails,voted)
+    # print(len(wins))
+    # print(wins[0])
+
+    if from_num != "" and from_num != None:
+        if from_num[0] !=1:
+            from_num = '1'+from_num
 
     cnt=1
 
-    wins = ['Alice','Bob','Carl']
-    winprint = ', '.join(wins[:-1])
-    winprint = winprint+" and "+wins[-1]
-    print(winprint)
+    pwins = ''
+    pfails = ''
 
-    fails = ['Alice','Bob','Carl']
-    failprint = ', '.join(fail[:-1])
-    failprint = failprint+" and "+wins[-1]
-    print(failprint)
+    if len(wins) == 1:
+        pwins = wins[0]+'.'
+        pwins = "Friends who checked in:\n"+pwins
+        print('1 triggered')
 
-    reminder = "COMM!Tbot says, You're committed! We'll let "+refname+" know when you check in at the polls tomorrow (or if you don't). We'll send you a few location-aware check-in reminders until you check in. Do for others what "+refname+" is doing for you with your COMM!T link: "+"http://www.commit.vote/r/"+uid
+    if len(fails) == 1:
+        pfails = "Friends who didn't check in:\n"+fails[0]+'.'
+
+    if len(wins) == 2:
+        tmpwins = wins[0]+' and '+wins[1]+'.'
+        pwins = tmpwins
+        pwins = "Friends who checked in:\n"+pwins
+        print('2 triggered')
+
+    if len(fails) == 2:
+        pfails = fails[0]+' and '+fails[1]+'.'
+        pfails = "Friends who didn't check in:\n"+pfails
+
+    
+    if len(wins) > 2:
+        pwins = ''
+        for win in wins:
+            pwins = pwins+', '+win
+        pwins = pwins[2:]
+        pwins = "Friends who checked in:\n"+pwins+'.'
+        print('3 triggered')
+
+    
+    if len(fails) > 2:
+        pfails = ''
+        for fail in fails:
+            pfails = pfails+', '+fail
+        pfails = pfails[2:]
+        pfails = "Friends who didn't check in:\n"+pfails+'.'
+        print('3 triggered')
+        
+
+    if voted == 'didnt':
+        c = "You didn't check in and "+str(refname)+" was notified."
+    else:
+        c = "Nice follow through, score another one for democracy!"
+
+    reminder = "COMM!T Election Day Debrief:\nHere's your summary. " + c + "\n\n" + pwins + "\n\n" +  pfails
 
     from_num = '+'+from_num
 
-    # now = datetime.datetime.now()
-    # now = now.replace(second=0, microsecond=0)
-
-    #test = datetime.datetime.strptime(subscriber[1],"%Y-%m-%d %H:%M:%S") + datetime.timedelta(days=7)
-    # print('Found +17733541500')
-    # print(from_num)
+    print(from_num)
+    #print(reminder)
     
     try:
+        foo = 'foo'
         message = client.api.account.messages.create(to=from_num, from_="+16172497881", body=reminder)
     except Exception as e:
         print(e)
@@ -129,6 +161,6 @@ def sendDebriefSMS(from_num,refname,uid,wins,fails):
         print('send_sms sent "'+ str(reminder) +'" to '+ str(cnt) + ' numbers')
         return "Success"
 
-
+# sendDebriefSMS(u'7733541500', u'TEAM COMM!T', '9', [u'James David Moffet III (distance from poll: honor-system )'], [], '30m')
 
 
