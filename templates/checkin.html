@@ -133,7 +133,7 @@
 	       disttopoll = distanceLL(herelatlng[0], herelatlng[1], lat, long, 'M');
 	       disttopoll = Math.round(disttopoll*1609); 
 	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a>'
-	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a><br/>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
 	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 	    } else {
@@ -219,7 +219,7 @@
 
 	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/>'
 	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
-	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 
 	        infowindow.open(map, myMarker);
@@ -330,7 +330,7 @@
 
           infowindow.setContent('Nearest Polling Place: ' + poll + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0+'m' + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/>'
 	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
-	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 
 
