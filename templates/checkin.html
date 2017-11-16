@@ -17,11 +17,15 @@
 	
 	<title>SNOW - Bootstrap 4 UI Kit</title>
 
-	<!-- Main CSS -->
-	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/snow-ui-kit.css" />
+	<!-- -->
 
-    <!-- DEMO CSS -->
-	<link rel="stylesheet" href="https://s3.us-east-2.amazonaws.com/commitwebapp/snowassets/css/demo.css" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../static/now/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../static/now/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../static/now/assets/css/demo.css" rel="stylesheet" />
 
 	<style>
 
@@ -64,11 +68,17 @@
 	#latlng {
 	  width: 225px;
 	  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+	  font-weight: 600;
 	}
+
 	.gm-style {
         font: 400 11px "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+        font-weight: 600;
+     }
 
-      }
+  	.navbar {
+  		color: white;
+  	}
 
 	
 
@@ -76,8 +86,35 @@
 	
   </head>
   <body>
+  	<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top" color-on-scroll="400">
+        <div class="container">
+        <div class="navbar-translate">
+          <a class="navbar-brand" href="#" rel="tooltip" title="Designed and coded by Jared and Jim" data-placement="bottom" target="_blank">
+                    COMM!T
+                </a>
+          <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+        </div>
+        <!-- <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../static/now/assets/img/blurred-image-1.jpg"> -->
+        <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../static/img/selmaskyblur.jpg">
+          <ul class="navbar-nav">
+            <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Back to COMM!T</a>
+                    </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="mailto:teamcommitapp@gmail.com">Have an issue?</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
 
-	<div id="floating-panel">
+	<div id="floating-panel" style="margin-top:70px">
 		<div id="results"></div>
 		<!-- <input id="latlng" type="text" value="">
 		<input id="submit" type="button" value="Reverse Geocode">
@@ -132,9 +169,9 @@
 	       console.log(long);
 	       disttopoll = distanceLL(herelatlng[0], herelatlng[1], lat, long, 'M');
 	       disttopoll = Math.round(disttopoll*1609); 
-	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a>'
-	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
-	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
+	       infowindow.setContent('Nearest Polling Place: ' + address + '<br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ disttopoll +'m'+ '" style="'+"font-size:1.3rem;font-weight:600;font-weight:600;"+'">' + 'Voters check in here!' + '</a>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Absentee voters check in here!' + '</a>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 	    } else {
 	       console.log('failed to include ' + curr.title); 
@@ -217,9 +254,9 @@
 
 	        lookup(address, renderResults);
 
-	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 +'m'+ '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/>'
-	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
-	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
+	        infowindow.setContent('Nearest Polling Place to: ' + results[0].formatted_address + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0 +'m'+ '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Voters check in here!' + '</a><br/>'
+	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Absentee voters check in here!' + '</a>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 
 	        infowindow.open(map, myMarker);
@@ -328,9 +365,9 @@
           //el.appendChild(document.createTextNode(pollingAddress));
           poll = pollingAddressOnly;
 
-          infowindow.setContent('Nearest Polling Place: ' + poll + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0+'m' + '" style="'+"font-size:1.3rem;"+'">' + 'Voters check in here!' + '</a><br/>'
-	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;"+'">' + 'Absentee voters check in here!' + '</a>'
-	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
+          infowindow.setContent('Nearest Polling Place: ' + poll + '<br/><br/>Not quite right? Drag the pin!<br/>' + '<br/><a href="/checkedin/{{refcode}}A{{current_user}}A'+ 0+'m' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Voters check in here!' + '</a><br/>'
+	       	+'<br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'absentee' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Absentee voters check in here!' + '</a>'
+	       	+'<br/><br/>'+ '<a href="/checkedin/{{refcode}}A{{current_user}}A'+ 'honor-system' + '" style="'+"font-size:1.3rem;font-weight:600;"+'">' + 'Honor-system/ineligible check in here!' + '</a><br/>');
 	       disttopoll = 0;
 
 
