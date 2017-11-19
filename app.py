@@ -515,7 +515,7 @@ def createUser():
 		try:
 			if json_dict['email'] != '':
 				email = json_dict['email']
-				sendReminderEmail(str(user.id),refname)
+				# sendReminderEmail(str(user.id),refname)
 
 		except Exception as e:
 			print("email failed")
