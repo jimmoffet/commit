@@ -506,7 +506,7 @@ def createUser():
 				if phone[0] != 1:
 					phone = '1'+phone
 				sendSMS(phone,refname,idval)
-				sendReminderSMS(phone,refname,str(json_dict['referringUser']),idval)
+				#sendReminderSMS(phone,refname,str(json_dict['referringUser']),idval)
 
 		except Exception as e:
 			print("sms failed")
