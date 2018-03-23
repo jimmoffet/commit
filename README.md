@@ -2,7 +2,9 @@ COMM!T Web App
 =============
 
 
-<img src="https://jamesdavidmoffet.com/images/commit/login.jpg" data-canonical-src="https://jamesdavidmoffet.com/images/commit/login.jpg" height="400" /><img src="https://jamesdavidmoffet.com/images/commit/login.jpg" data-canonical-src="https://jamesdavidmoffet.com/images/commit/login.jpg" height="400" /><img src="https://jamesdavidmoffet.com/images/commit/login.jpg" data-canonical-src="https://jamesdavidmoffet.com/images/commit/login.jpg" height="400" />
+<img src="https://jamesdavidmoffet.com/images/commit/login.jpg" height="400" /><img src="https://jamesdavidmoffet.com/images/commit/commit.jpg" height="400" /><img src="https://jamesdavidmoffet.com/images/commit/map.jpg" height="400" />
+
+
 
 The COMM!T app keeps people accountable to their friends by letting the friend who invited them know whether or not they checked in at the polls via GPS. COMM!T sends voters reminders with a checkin link that uses Google's Civic Data API to identify polling places for folks to check in. Once a user clicks "COMM!T" their referring friend will be notified on election of their checkin status and commitments cannot be revoked (we provide a few backup options at checkin that give users and their friends an opportunity to hash things out). 
 
