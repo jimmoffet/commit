@@ -143,8 +143,8 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
-      window.location = "/fancycommitlanding2";
-      console.log('sent to fancycommitlanding2');
+      //window.location = "/fancycommitlanding2";
+      //console.log('sent to fancycommitlanding2');
     }
 
   function sendNegative(e)
@@ -157,8 +157,8 @@ window.fbAsyncInit = function() {
       console.log(request.status);
       console.log(request.statusText);
       console.log(request.response);
-      location.href = "/fancycommitlandingFINAL";
-      console.log('sent to fancycommitlanding2');
+      //location.href = "/fancycommitlandingFINAL";
+      //console.log('sent to fancycommitlandingFINAL');
     }
 
   function resetCursor(txtElement) {
